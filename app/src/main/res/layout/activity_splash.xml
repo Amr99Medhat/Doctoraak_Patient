@@ -12,8 +12,8 @@
 
         <ImageView
                 android:id="@+id/iv_logo"
-                android:layout_width="@dimen/_145sdp"
-                android:layout_height="@dimen/_145sdp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_180sdp"
                 android:scaleType="centerCrop"
                 android:layout_marginTop="@dimen/_125sdp"
                 app:layout_constraintStart_toStartOf="parent"
