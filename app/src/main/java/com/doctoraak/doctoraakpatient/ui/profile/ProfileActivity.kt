@@ -49,6 +49,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     var name = ""
     var photo = ""
     var gender = ""
+    var phone2=""
 
     private val viewModel: ProfileViewModel by lazy {
         ViewModelProviders.of(this).get(
@@ -221,8 +222,15 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 ) {
                     name = text
                     binding.tvFulName.text = name
-                } else {
-                    //viewModel.user.value!!.address = text
+                } else if (hint.toLowerCase(Locale.getDefault()).contains(
+                    getString(R.string.enter_phone).toLowerCase(Locale.getDefault()))
+                ) {
+                    phone2
+                    binding.tvPhone.text = phone2
+                }
+                else
+                    {
+                    viewModel.user.value!!.address = text
                     binding.tvAddress.text = text
                 }
 
@@ -463,6 +471,10 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
         fun onEditGenderClick() {
             showGenderDialog()
+        }
+
+        fun editPhone(){
+            showInputDialog(DialogType.Number,getString(R.string.enter_phone))
         }
     }
 

@@ -256,5 +256,8 @@
     <string name="isolation_center">Isolation Center</string>
     <string name="no_pharmacy_found">No pharmacies found</string>
     <string name="phone_number_onecare">Phone Number-One Care</string>
+    <string name="Company_name">Company Name</string>
+    <string name="company_name">Company name (company code)</string>
+    <string name="enter_phone">enter phone</string>
 
 </resources>
