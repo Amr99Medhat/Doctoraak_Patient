@@ -223,5 +223,6 @@
     <string name="for_other">للآخرين</string>
     <string name="isolation_center">مراكز العزل</string>
     <string name="no_pharmacy_found">لا يوجد صيدليات</string>
+    <string name="phone_number_onecare">رقم الهاتف - One Care</string>
 
 </resources>

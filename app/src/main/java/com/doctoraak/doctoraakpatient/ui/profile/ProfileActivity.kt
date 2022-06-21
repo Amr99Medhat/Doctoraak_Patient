@@ -220,7 +220,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                     )
                 ) {
                     name = text
-                    binding.tvName.text = name
+                    binding.tvFulName.text = name
                 } else {
                     //viewModel.user.value!!.address = text
                     binding.tvAddress.text = text
@@ -443,6 +443,11 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     inner class ProfileClickHander() {
         fun onEditAddressClick() {
             showInputDialog(DialogType.Text, getString(R.string.enter_your_address))
+        }
+
+
+        fun onEditFullNameClick() {
+            showInputDialog(DialogType.Text, getString(R.string.enter_your_name))
         }
 
         fun onEditBirthDateClick() {
