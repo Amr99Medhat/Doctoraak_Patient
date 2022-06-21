@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radius_rect_border_normal_text">10dp</dimen>
+    <dimen name="height_map_incubation_icu">@dimen/_300sdp</dimen>
+    <dimen name="corner_payment">@dimen/_10sdp</dimen>
+    <dimen name="loading_size">@dimen/_120sdp</dimen>
+    <dimen name="corner_dialog_sweet">@dimen/_10sdp</dimen>
+    <dimen name="empty_list_size">@dimen/_170sdp</dimen>
+    <dimen name="radiobuttons_radius">25dp</dimen>
+    <dimen name="toolbar_title_textsize">@dimen/_25ssp</dimen>
+    <dimen name="default_radius">10dp</dimen>
+    <dimen name="toolbar_subtitle_textsize">@dimen/_13ssp</dimen>
+    <dimen name="subtitle_margin_bottom">45dp</dimen>
+
+</resources>

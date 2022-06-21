@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/darkWhite">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spl_lab_name"
+            style="@style/SpinnerNormal"
+            android:hint="@string/name"
+             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+                android:inputType="text"
+                android:id="@+id/sp_lab_name"
+                style="@style/AutoCompleteSpinnerNormal"
+                 />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@color/or_views_color"
+            app:layout_constraintStart_toStartOf="@id/tv_or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_or"
+            app:layout_constraintBottom_toBottomOf="@id/tv_or"
+            android:layout_width="0dp"
+            android:layout_height="1dp"/>
+
+    <TextView
+
+            android:id="@+id/tv_or"
+            android:text="@string/or"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spl_lab_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <View
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
+            android:background="@color/or_views_color"
+            app:layout_constraintEnd_toEndOf="@id/tv_or"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_or"
+            app:layout_constraintBottom_toBottomOf="@id/tv_or"
+            android:layout_width="0dp"
+            android:layout_height="1dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spl_city"
+            style="@style/SpinnerNormal"
+            android:hint="@string/city_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_or">
+
+        <AutoCompleteTextView
+                android:id="@+id/sp_city"
+                style="@style/AutoCompleteSpinnerNormal"
+                />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spl_area"
+            style="@style/SpinnerNormal"
+            android:hint="@string/area_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spl_city">
+
+        <AutoCompleteTextView
+
+                android:id="@+id/sp_area"
+                style="@style/AutoCompleteSpinnerNormal"
+                />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Switch
+            android:id="@+id/cb_insurance"
+            style="@style/ViewRectNormal"
+            android:text="@string/insurance"
+            android:textDirection="locale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spl_area" />
+
+    <Switch
+            android:id="@+id/cb_delivery"
+            style="@style/ViewRectNormal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/delivery"
+            android:textDirection="locale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_insurance" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+package com.doctoraak.doctoraakpatient.model
+
+data class RaysResponse(
+    val data: ArrayList<RayInfo>
+) : BaseResponse()
+
+data class RayInfo(
+    val created_at: String,
+    val id: Int,
+    val name: String,
+    val name_ar: String,
+    val name_fr: String,
+    val updated_at: String
+)

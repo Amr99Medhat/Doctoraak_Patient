@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/darkWhite"
+            android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/spl_lab_name"
+                style="@style/SpinnerNormal"
+                android:hint="@string/name"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pb_loading_names"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <AutoCompleteTextView
+                    android:id="@+id/sp_lab_name"
+                    style="@style/AutoCompleteSpinnerNormal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ProgressBar
+                android:id="@+id/pb_loading_names"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintEnd_toEndOf="@id/spl_lab_name"
+                app:layout_constraintStart_toStartOf="@+id/spl_lab_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/spl_city"
+                style="@style/SpinnerNormal"
+                android:hint="@string/city_hint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                    android:id="@+id/sp_city"
+                    style="@style/AutoCompleteSpinnerNormal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/spl_area"
+                style="@style/SpinnerNormal"
+                android:hint="@string/area_hint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spl_city">
+
+            <AutoCompleteTextView
+
+                    android:id="@+id/sp_area"
+                    style="@style/AutoCompleteSpinnerNormal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/cb_insurance"
+                style="@style/ViewRectNormal"
+                android:text="@string/insurance"
+                android:textDirection="locale"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spl_area" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/cb_delivery"
+                style="@style/ViewRectNormal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="@string/delivery"
+                android:textDirection="locale"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cb_insurance" />
+
+        <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_city_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="cb_delivery,spl_city,spl_area,cb_insurance" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

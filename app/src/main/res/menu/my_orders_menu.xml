@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/nav_doctor"
+            android:icon="@drawable/ic_doctor"
+            android:title="@string/doctors" />
+
+    <item
+            android:id="@+id/nav_pharmacy"
+            android:icon="@drawable/ic_pharmacy"
+            android:title="@string/pharmacy" />
+
+    <item
+            android:id="@+id/nav_lab"
+            android:icon="@drawable/ic_lab"
+            android:title="@string/lab" />
+
+    <item
+            android:id="@+id/nav_radiology"
+            android:icon="@drawable/ic_radiology"
+            android:title="@string/radiology" />
+
+</menu>

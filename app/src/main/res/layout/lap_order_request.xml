@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkWhite"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/motion_layout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/radiogroup_shape"
+            app:layoutDescription="@xml/order_options_animation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <View
+                android:id="@+id/radiobutton_order_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/radiobutton_shape"
+                app:layout_constraintBottom_toBottomOf="@id/tv_prescription"
+                app:layout_constraintEnd_toEndOf="@id/tv_prescription"
+                app:layout_constraintStart_toStartOf="@id/tv_prescription"
+                app:layout_constraintTop_toTopOf="@id/tv_prescription" />
+
+        <TextView
+
+                android:id="@+id/tv_prescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/prescription"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+
+                android:id="@+id/tv_request_medicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/request_an_analysis"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_all"
+                app:layout_constraintStart_toEndOf="@id/tv_prescription"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+
+                android:id="@+id/tv_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/all"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_request_medicine"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:layout_constraintBottom_toTopOf="@id/btn_send_order"
+            app:layout_constraintTop_toBottomOf="@+id/motion_layout2"
+            android:id="@+id/scroll_view"
+            android:background="@color/darkWhite"
+            android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+            <ImageView
+                    android:id="@+id/iv_upload"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:contentDescription="@string/upload_medicine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_prescription" />
+
+
+
+            <TextView
+                    android:id="@+id/tv_upload_presciption_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shadow_background"
+                    android:elevation="4dp"
+                    android:gravity="end"
+                    android:textSize="@dimen/_9ssp"
+                    android:paddingStart="4dp"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="15dp"
+                    android:text="@string/upload_prescription"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/iv_upload"
+                    app:layout_constraintStart_toStartOf="@id/iv_upload"
+                    app:layout_constraintTop_toBottomOf="@id/iv_upload" />
+
+            <ImageView
+                    android:id="@+id/iv_take_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:background="@drawable/address_side_with_radius_of_rect_border"
+                    android:elevation="5dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_upload_presciption_text"
+                    app:layout_constraintStart_toStartOf="@+id/tv_upload_presciption_text"
+                    app:layout_constraintTop_toTopOf="@+id/tv_upload_presciption_text"
+                    app:srcCompat="@drawable/ic_upload" />
+
+            <View
+                    android:id="@+id/view_divider"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_upload_presciption_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"/>
+
+            <View
+                    android:id="@+id/view4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@color/or_views_color"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_or"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_or"
+                    app:layout_constraintTop_toTopOf="@id/tv_or" />
+
+            <TextView
+                    style="@style/normalTextViewStyle"
+                    android:id="@+id/tv_or"
+                    android:text="@string/or"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <View
+                    android:id="@+id/view3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:background="@color/or_views_color"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_or"
+                    app:layout_constraintEnd_toEndOf="@id/tv_or"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_or" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/name"
+                    android:id="@+id/spl_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_or"
+                    style="@style/SpinnerNormal">
+
+                <AutoCompleteTextView
+                        android:focusable="true"
+                        android:inputType="text"
+                        android:id="@+id/sp_name"
+                        style="@style/AutoCompleteSpinnerNormal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                    android:id="@+id/btn_add_medicine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/rect_corner_blue"
+                    android:contentDescription="@string/add_medicine"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="@id/spl_name"
+                    app:layout_constraintTop_toBottomOf="@+id/spl_name"
+                    app:srcCompat="@drawable/ic_add" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_medicine"
+                    android:background="@drawable/shadow_background"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/spl_name"
+                    app:layout_constraintStart_toStartOf="@+id/spl_name"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_add_medicine"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/lap_order_laps_item" />
+
+            <androidx.constraintlayout.widget.Group
+
+                    android:id="@+id/group_request_medicine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="btn_add_medicine,rv_medicine,spl_name" />
+
+            <androidx.constraintlayout.widget.Group
+                    app:constraint_referenced_ids="tv_upload_presciption_text,iv_upload"
+                    android:id="@+id/group_upload_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <androidx.constraintlayout.widget.Group
+                    android:visibility="gone"
+                    android:id="@+id/group_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="view3,view4,tv_or" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_send_order"
+            style="@style/ButtonNormal"
+            android:text="@string/next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

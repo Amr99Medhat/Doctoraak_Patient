@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet
+            android:id="@+id/start">
+
+        <Constraint
+                android:id="@+id/iv_care_logo"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_logo"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
+                app:layout_constraintTop_toTopOf="@+id/iv_logo"/>
+
+        <Constraint
+                android:id="@+id/iv_logo"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_90sdp"
+                app:layout_constraintBottom_toTopOf="@id/iv_heartbeat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_care_logo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_logo" />
+
+    </ConstraintSet>
+
+
+
+</MotionScene>

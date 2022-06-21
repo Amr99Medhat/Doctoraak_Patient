@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_margin="5dp"
+        android:background="@drawable/rect_border_back_black_normal"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+    <RatingBar
+            android:id="@+id/rb_doctor"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_favorite"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/divider"
+            app:layout_constraintTop_toTopOf="@+id/iv_favorite" />
+
+    <View
+            style="@style/DividerView"
+            android:id="@+id/divider"
+             android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/colorDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_fees2" />
+
+    <ImageView
+            android:id="@+id/iv_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="@id/divider"
+            app:layout_constraintTop_toTopOf="@id/divider"
+            app:srcCompat="@drawable/ic_favorite" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_doctor_image"
+            tools:src="@color/blue"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:civ_border_color="@color/gray_1"
+            app:civ_border_width="2dp"
+            app:elevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            style="@style/normalTextViewStyle"
+            android:id="@+id/tv_doctor_name"
+            tools:text="Dr. Ahmed Mohamed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="@dimen/_18ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_doctor_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_doctor_image" />
+
+    <TextView
+            style="@style/normalTextViewStyle"
+            android:id="@+id/tv_degree_name"
+            tools:text="Degree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_doctor_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name" />
+
+    <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_image_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tv_degree_name,iv_doctor_image" />
+
+    <TextView
+            style="@style/normalTextViewStyle"
+            android:id="@+id/tv_specialization"
+            tools:text="specialization"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:drawableStart="@drawable/ic_spec_icon_small"
+            android:drawablePadding="16dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_doctor_image"
+            app:layout_constraintTop_toBottomOf="@+id/barrier_image_degree" />
+
+    <TextView
+            style="@style/normalTextViewStyle"
+            android:id="@+id/tv_address"
+            tools:text="Fifth Settlement, New Cairo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:drawableStart="@drawable/ic_placeholder_small"
+            android:drawablePadding="16dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_doctor_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_specialization" />
+
+    <TextView
+            style="@style/normalTextViewStyle"
+            android:id="@+id/tv_fees"
+            tools:text="Fifth Settlement, New Cairo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:drawableStart="@drawable/ic_cash_small"
+            android:drawablePadding="16dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_doctor_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+    <TextView
+            style="@style/normalTextViewStyle"
+            android:id="@+id/tv_fees2"
+            tools:text="Fifth Settlement, New Cairo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:drawableStart="@drawable/ic_cash_small"
+            android:drawablePadding="16dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_doctor_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fees" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

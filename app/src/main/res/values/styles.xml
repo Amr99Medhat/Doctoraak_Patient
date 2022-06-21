@@ -1,0 +1,229 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="homeAsUpIndicator">@drawable/ic_back_white</item>
+        <item name="drawerArrowStyle">@style/drawerArrowStyle</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:fontFamily">@font/segoe_ui</item>
+    </style>
+
+    <style name="DateDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:fontFamily">@font/segoe_ui</item>
+    </style>
+
+    <style name="drawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="dialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_from_top</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_to_bottom</item>
+    </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <style name="DividerView">
+        <item name="android:layout_marginStart">@dimen/_10sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_10sdp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorDivider</item>
+    </style>
+
+    <style name="TextInputEditTextStyle" >
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_20sdp</item>
+    </style>
+
+    <style name="EditTextNormal"
+            parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+        <item name="android:fontFamily">@font/segoe_ui</item>
+        <item name="android:layout_marginTop">@dimen/_14sdp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColorHint">@color/gray_1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_22sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_22sdp</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="hintTextAppearance">@style/hintStyle</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/default_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/default_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/default_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/default_radius</item>
+        <item name="android:background">@drawable/shadow_background</item>
+        <item name="android:elevation" tools:targetApi="lollipop">@dimen/elevation_default</item>
+    </style>
+
+    <style name="normalTextViewStyle">
+        <item name="android:fontFamily">@font/segoe_ui</item>
+    </style>
+
+    <style name="ViewRectNormal">
+        <item name="android:elevation" tools:targetApi="lollipop">4dp</item>
+        <item name="android:fontFamily">@font/segoe_ui</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:layout_marginTop">@dimen/_14sdp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_22sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_22sdp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:background">@drawable/shadow_background</item>
+    </style>
+
+
+    <style name="ProfileTextView" parent="normalTextViewStyle">
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="android:elevation" tools:targetApi="lollipop">4dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:background">@drawable/shadow_background</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/_14sdp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:layout_marginTop">@dimen/_14sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_20sdp</item>
+        <item name="android:layout_marginStart">@dimen/_20sdp</item>
+    </style>
+
+    <style name="ProfileEditImageView">
+        <item name="android:elevation" tools:targetApi="lollipop">5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/rect_corner_blue</item>
+        <item name="srcCompat">@drawable/ic_edit</item>
+        <item name="android:padding">@dimen/_2sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_10sdp</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:contentDescription">@string/edit</item>
+    </style>
+
+    <style name="hintStyle" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:fontFamily">@font/segoe_ui</item>
+    </style>
+
+    <style name="SpinnerNormal"
+            parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
+
+        <item name="android:fontFamily">@font/segoe_ui</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="android:layout_marginTop">@dimen/_16sdp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="hintTextAppearance">@style/hintStyle</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColorHint">@color/gray_1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:layout_marginStart">@dimen/_22sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_22sdp</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:background">@drawable/shadow_background</item>
+        <item name="android:elevation" tools:targetApi="lollipop">@dimen/elevation_default</item>
+    </style>
+
+    <style name="AutoCompleteSpinnerNormal">
+        <item name="android:textSize">@dimen/_13ssp</item>
+         <item name="android:paddingEnd">@dimen/_8sdp</item>
+        <item name="android:paddingStart">@dimen/_8sdp</item>
+        <item name="android:drawablePadding">@dimen/_8sdp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:focusable">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:cursorVisible">true</item>
+    </style>
+
+    <style name="AutoCompleteSpinnerNotEditable" parent="AutoCompleteSpinnerNormal">
+        <item name="android:textSize">@dimen/_13ssp</item>
+         <item name="android:paddingEnd">@dimen/_8sdp</item>
+        <item name="android:paddingStart">@dimen/_8sdp</item>
+        <item name="android:drawablePadding">@dimen/_8sdp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:focusable">false</item>
+        <item name="android:inputType">none</item>
+        <item name="android:cursorVisible">false</item>
+    </style>
+
+    <style name="navigationViewSytle">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:fontFamily">@font/segoe_ui</item>
+    </style>
+    <style name="ButtonNormal">
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:fontFamily">@font/segoe_ui</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_click_stete</item>
+        <item name="android:paddingStart">@dimen/_24sdp</item>
+        <item name="android:paddingEnd">@dimen/_24sdp</item>
+        <item name="android:paddingTop">@dimen/_10sdp</item>
+        <item name="android:paddingBottom">@dimen/_10sdp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="FullScreenDialogTheme" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="mainLogoStyle">
+        <item name="layout_constraintTop_toTopOf">@id/iv_back</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
+
+    <style name="searchCityAndAreaIndicatorStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+
+    <dimen name="elevation_default">4dp</dimen>
+
+
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+            app:constraintSetStart="@id/start"
+            app:constraintSetEnd="@id/end"
+            app:duration="300"
+        />
+
+    <Transition
+            app:constraintSetStart="@id/end"
+            app:constraintSetEnd="@id/start"
+            app:duration="300"
+            />
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+                android:id="@+id/btn_backward"
+                app:layout_constraintEnd_toStartOf="@id/btn_forward"
+                app:layout_constraintTop_toTopOf="@id/tv_skip"
+                app:layout_constraintBottom_toBottomOf="@id/tv_skip"
+                android:layout_width="60dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="60dp"
+                />
+
+        <Constraint
+                android:id="@+id/tv_payment_text"
+                android:alpha="0"
+                app:layout_constraintTop_toTopOf="@id/tv_skip"
+                app:layout_constraintBottom_toBottomOf="@id/tv_skip"
+                app:layout_constraintEnd_toEndOf="@id/view_pager"
+                app:layout_constraintStart_toEndOf="@id/btn_backward"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+               >
+        </Constraint>
+
+    </ConstraintSet>
+
+
+    />
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+                android:id="@+id/btn_backward"
+                android:layout_width="60dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="60dp"
+                app:layout_constraintStart_toStartOf="@id/view_pager"
+                app:layout_constraintTop_toTopOf="@id/tv_skip"
+                app:layout_constraintBottom_toBottomOf="@id/tv_skip"
+
+                />
+
+        <Constraint
+                android:id="@+id/tv_payment_text"
+                android:alpha="1"
+                android:layout_marginStart="10dp"
+                app:layout_constraintTop_toTopOf="@id/tv_skip"
+                app:layout_constraintBottom_toBottomOf="@id/tv_skip"
+                app:layout_constraintEnd_toEndOf="@id/view_pager"
+                app:layout_constraintStart_toEndOf="@id/btn_backward"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                >
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>

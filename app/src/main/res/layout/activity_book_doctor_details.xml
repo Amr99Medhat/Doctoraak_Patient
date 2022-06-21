@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_book_doctot_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkWhite">
+
+        <ImageView
+                android:id="@+id/toolbar_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/toolbar_big_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+                style="@style/mainLogoStyle"
+                layout="@layout/main_logos" />
+
+        <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/back"
+                android:src="@drawable/ic_back_mirror"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/book"
+                android:textColor="@color/white"
+                android:textSize="@dimen/toolbar_title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
+                app:layout_constraintStart_toStartOf="@id/tv_subtitle" />
+
+        <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="@dimen/subtitle_margin_bottom"
+                android:text="@string/get_well_soon"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
+                android:textSize="@dimen/toolbar_subtitle_textsize"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/motion_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/radiogroup_shape"
+                app:layoutDescription="@xml/booking_options_animation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image">
+
+            <View
+                    android:id="@+id/radiobutton_book_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/radiobutton_shape"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_book_me"
+                    app:layout_constraintEnd_toEndOf="@id/tv_book_me"
+                    app:layout_constraintStart_toStartOf="@id/tv_book_me"
+                    app:layout_constraintTop_toTopOf="@id/tv_book_me" />
+
+            <TextView
+
+                    android:id="@+id/tv_book_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="@string/book_for_me"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+
+                    android:id="@+id/tv_book_for_another"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="@string/book_for_other_person"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_book_me"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+
+                    android:id="@+id/view_click"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@color/darkWhite"
+                app:layout_constraintBottom_toTopOf="@id/btn_book"
+                app:layout_constraintTop_toBottomOf="@id/motion_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/tool_bar"
+                    tools:context=".ui.bookDoctorDetail.BookDoctorDetailsActivity">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_date"
+                        style="@style/EditTextNormal"
+                        android:hint="@string/date"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="false"
+                            android:drawableEnd="@drawable/address_side_with_radius_of_rect_border"
+                            android:drawablePadding="8dp"
+                            android:focusable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/spl_type"
+                        style="@style/SpinnerNormal"
+                        android:hint="@string/type"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/etl_date">
+
+                    <AutoCompleteTextView
+                            android:id="@+id/sp_type"
+                            style="@style/AutoCompleteSpinnerNotEditable" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/spl_shift"
+                        style="@style/SpinnerNormal"
+                        android:hint="@string/choose_shift"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/spl_type">
+
+                    <AutoCompleteTextView
+                            android:id="@+id/sp_shift"
+                            style="@style/AutoCompleteSpinnerNotEditable" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                        android:id="@+id/view_divider"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/spl_shift" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_name"
+                        style="@style/EditTextNormal"
+                        android:hint="@string/full_name"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view_divider">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/address_side_with_radius_of_rect_border"
+                            android:drawablePadding="8dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_phone"
+                        style="@style/EditTextNormal"
+                        android:hint="@string/phone_number"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/etl_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/address_side_with_radius_of_rect_border"
+                            android:drawablePadding="8dp"
+                            android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_age"
+                        style="@style/EditTextNormal"
+                        android:hint="@string/age"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/etl_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_age"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/address_side_with_radius_of_rect_border"
+                            android:drawablePadding="8dp"
+
+                            android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RadioGroup
+                        android:id="@+id/gender_group"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@drawable/radio_group_background"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@id/etl_age"
+                        app:layout_constraintStart_toStartOf="@id/etl_age"
+                        app:layout_constraintTop_toBottomOf="@id/etl_age">
+
+                    <RadioButton
+                            android:id="@+id/tv_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_male"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/male" />
+
+                    <RadioButton
+                            android:id="@+id/tv_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_female"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/female" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <include
+                android:id="@+id/loading"
+                layout="@layout/loading"
+                android:layout_width="@dimen/loading_size"
+                android:layout_height="@dimen/loading_size"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_book"
+                style="@style/ButtonNormal"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginEnd="15dp"
+                android:text="@string/book"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

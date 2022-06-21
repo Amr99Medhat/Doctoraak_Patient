@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:motion="http://schemas.android.com/tools">
+
+    <Transition
+            app:constraintSetEnd="@id/end"
+            app:constraintSetStart="@id/start"
+            app:duration="300"/>
+
+    <Transition
+            app:constraintSetEnd="@id/end2"
+            app:constraintSetStart="@id/start2"
+            app:duration="300"/>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/tv_search_by_city">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/white" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tv_search_by_address">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/black" />
+        </Constraint>
+
+        <Constraint
+                android:id="@id/radiobutton_view"
+                app:layout_constraintStart_toStartOf="@id/tv_search_by_city"
+                app:layout_constraintEnd_toEndOf="@id/tv_search_by_city"
+                app:layout_constraintBottom_toBottomOf="@id/tv_search_by_city"
+                app:layout_constraintTop_toTopOf="@id/tv_search_by_city"/>
+        <Constraint
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:id="@+id/view_click" />
+
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+                android:id="@id/radiobutton_view"
+                app:layout_constraintBottom_toBottomOf="@id/tv_search_by_address"
+                app:layout_constraintEnd_toEndOf="@id/tv_search_by_address"
+                app:layout_constraintStart_toStartOf="@id/tv_search_by_address"
+                app:layout_constraintTop_toTopOf="@id/tv_search_by_address"/>
+
+        <Constraint android:id="@+id/tv_search_by_city">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/black" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tv_search_by_address">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/white" />
+        </Constraint>
+
+
+    </ConstraintSet>
+
+
+
+
+
+
+
+
+
+
+
+    <ConstraintSet android:id="@+id/start2">
+
+        <Constraint android:id="@+id/tv_search_by_city">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/black" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tv_search_by_address">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/white" />
+        </Constraint>
+
+        <Constraint
+                android:id="@id/radiobutton_view"
+                app:layout_constraintBottom_toBottomOf="@id/tv_search_by_address"
+                app:layout_constraintEnd_toEndOf="@id/tv_search_by_address"
+                app:layout_constraintStart_toStartOf="@id/tv_search_by_address"
+                app:layout_constraintTop_toTopOf="@id/tv_search_by_address"/>
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/end2">
+
+        <Constraint android:id="@+id/tv_search_by_city">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/white" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tv_search_by_address">
+
+            <CustomAttribute
+                    app:attributeName="textColor"
+                    app:customColorValue="@color/black" />
+        </Constraint>
+
+        <Constraint
+                android:id="@id/radiobutton_view"
+                app:layout_constraintBottom_toBottomOf="@id/tv_search_by_city"
+                app:layout_constraintEnd_toEndOf="@id/tv_search_by_city"
+                app:layout_constraintStart_toStartOf="@id/tv_search_by_city"
+                app:layout_constraintTop_toTopOf="@id/tv_search_by_city"></Constraint>
+
+    </ConstraintSet>
+
+</MotionScene>

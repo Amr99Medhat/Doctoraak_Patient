@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+            android:name=".utils.MyApp"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:requestLegacyExternalStorage="true"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.WalletWebviewActivity"/>
+        <activity
+                android:name=".ui.paymentDetails.PaymentDetailsActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.payment.PaymentActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.help.HelpActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.myOrders.MyOrdersActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.radiology.RadiologyListActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.lap.LabListActivity"
+                android:screenOrientation="portrait" />
+
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="@string/google_maps_key" />
+
+        <activity
+                android:name=".ui.IcuItemActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.searchDoctor.SearchDoctorActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.IncubationItemActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.RadiologyItemActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.LapItemActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.ForgetPasswordActivity"
+                android:parentActivityName=".ui.SignInActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+                android:name=".ui.icu.IcuActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.incubation.IncubationActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.radiology.RadiologyActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.lap.LapActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.pharmacy.PharmacyActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.notification.NotificationActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.favouriteDoctor.FavoriteDoctorActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.bookDoctorDetail.BookDoctorDetailsActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.bookDoctor.BookDoctorActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.profile.ProfileActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.doctorCategory.DoctorCategoryActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
+        <activity
+                android:name=".ui.findServcie.FindServiceActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.main.MainActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.signUp.SignUpActivity"
+                android:parentActivityName=".ui.SignInActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+                android:name=".ui.SignInActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+                android:name=".ui.splash.SplashActivity"
+                android:launchMode="singleTop"
+                android:exported = "true"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.labOrder.LabOrderActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.radiologyOrder.RadiologyOrderActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.AnalyticActivity"
+                android:screenOrientation="portrait" />
+        <activity android:name="com.example.androidsdk.Pay"></activity>
+
+        <service
+                android:name=".services.FirebaseMsgService"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_channel_id"
+                android:value="@string/notification_channel_id" />
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/logo" />
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="com.doctoraak.doctoraakpatient.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_available_clinics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkWhite"
+            tools:context=".ui.availableClinics.AvailableClinicsActivity">
+
+        <ImageView
+                android:id="@+id/toolbar_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/toolbar_big_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+                style="@style/mainLogoStyle"
+                layout="@layout/main_logos"/>
+
+        <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/back"
+                android:src="@drawable/ic_back_mirror"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctors"
+                android:textColor="@color/white"
+                android:textSize="@dimen/toolbar_title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
+                app:layout_constraintStart_toStartOf="@id/tv_subtitle" />
+
+        <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="@dimen/subtitle_margin_bottom"
+                android:text="@string/get_well_soon"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
+                android:textSize="@dimen/toolbar_subtitle_textsize"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_clinic"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+                tools:listitem="@layout/clinic_item" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

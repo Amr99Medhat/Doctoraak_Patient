@@ -1,0 +1,259 @@
+<resources>
+    <string name="app_name">Doctoraak</string>
+    <!--  Api of Wenshak Project  -->
+    <string name="map_api_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD-uEYjQbwj-bM3F6CJXoFblWiWsVYCZ6g</string>
+
+    <string name="copyright_">Copyright \u00A9 by Doctoraak.</string>
+    <string name="doctoraak">Doctoraak</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="hello">Hello</string>
+    <string name="sign_in_to_your_account">Sign In to your Account</string>
+    <string name="don_t_have_an_account">Don\'t have an account ?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone_number_insurance_code">Phone Number / Insurance Code</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forget_password">Forget Password ?</string>
+    <string name="create_account">Create Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="address">Address</string>
+    <string name="gender">Gender</string>
+    <string name="accept">Accept</string>
+    <string name="terms_and_conditions"><u>Terms and Conditions</u></string>
+    <string name="birthday">Birthday</string>
+    <string name="mobile_verification">Verification</string>
+    <string name="sms_sent_to_phone">SMS will be sent to phone</string>
+    <string name="confirm">Confirm</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="did_not_receive_sms">Did not receive SMS?</string>
+    <string name="resend">Resend again</string>
+    <string name="welcome">Welcome</string>
+    <string name="get_well_soon">Get well Soon!</string>
+    <string name="find">Find</string>
+    <string name="_service">Service</string>
+    <string name="favorite">Favorite</string>
+    <string name="doctors">Doctors</string>
+    <string name="pharmacy">Pharmacy</string>
+    <string name="lab">Lab</string>
+    <string name="incubation">Incubation</string>
+    <string name="radiology">Radiology</string>
+    <string name="find_best_rated_doctors">Find the best rated doctors!</string>
+    <string name="search">Search</string>
+    <string name="insurance">Insurance company</string>
+    <string name="email">Email</string>
+    <string name="book">Book</string>
+    <string name="doctor_s_working_date">Doctor\'s Working Date</string>
+    <string name="age">Age</string>
+    <string name="shift_1">Shift 1</string>
+    <string name="shift_2">Shift 2</string>
+    <string name="delivery">Delivery</string>
+    <string name="order_your_request">Order your request</string>
+    <string name="upload_prescription">Upload prescription</string>
+    <string name="or">OR</string>
+    <string name="name">Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="increase_count" translatable="false">Increase Count</string>
+    <string name="decrease_count" translatable="false">Decrease count</string>
+    <string name="add_medicine">Add medicine</string>
+    <string name="upload_medicine">Upload Medicine</string>
+    <string name="delete">Delete</string>
+    <string name="see_location_on_map">See location on map</string>
+    <string name="back">Back</string>
+    <string name="rest_password">Reset Password</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="select_a_date">Select a date</string>
+    <string name="available_seat">Available seats</string>
+    <string name="city">City</string>
+    <string name="area">Area</string>
+    <string name="is_not_valid">is not valid</string>
+
+    <!--    error Handling Strings  -->
+    <string name="unexpected_error">Unexpected Error</string>
+    <string name="bad_request">Bad Request</string>
+    <string name="request_not_found">Request not found</string>
+    <string name="server_error">Server error</string>
+    <string name="unauthorized_user">Unauthorized User</string>
+    <string name="not_connected_to_network">Not connected to network</string>
+    <!--  ..........................  -->
+    <string name="not_match_password_field">not match password field</string>
+    <string name="success">Success</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_image">Select an image</string>
+    <string name="profile">Profile</string>
+    <string name="contact_us">Contact us</string>
+    <string name="language">Language</string>
+    <string name="log_out">Log out</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="select_location">Select location</string>
+    <string name="location_picker">Location picker</string>
+
+    <!--TODO change the key later-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD4ow5PXyqH-gJwe2rzihxG71prgt4NRFQ</string>
+    <!--pick location-->
+    <string name="no_location_was_selected">No Location was selected</string>
+    <string name="request_location_permission">request Location Permission</string>
+    <string name="this_permission_is_required_for_getting_location">This Permission is required for getting Current Location</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="incubation_item_key" translatable="false">incubationItem</string>
+    <string name="icu_item_key" translatable="false">icuItem</string>
+    <string name="clinic_item_key" translatable="false">clinicItem</string>
+    <string name="clinic_id_key" translatable="false">clinicId</string>
+    <string name="book_date_key" translatable="false">bookDateKey</string>
+    <string name="book_shift_key" translatable="false">bookShiftKey</string>
+    <string name="specialization_Id_Key" translatable="false">specializationIdKey</string>
+    <string name="please_choose_name_and_type">Please choose medicine name and type</string>
+    <string name="next">Next</string>
+    <string name="send_order">Send</string>
+    <string name="search_by_city_and_area">Search by city and area</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="search_by_address">Search by address</string>
+    <string name="city_hint">City</string>
+    <string name="area_hint">Area</string>
+    <string name="egp">EGP</string>
+    <string name="lab_list_key" translatable="false">labList</string>
+    <string name="lab_item" translatable="false">labItem</string>
+    <string name="lab_working_hours">Lab working hours</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="radiology_list_key" translatable="false">Radiology_list</string>
+    <string name="radiology_item_key" translatable="false">radiology_item</string>
+    <string name="choose_gender">Choose gender</string>
+    <string name="choose_analysis_name">Please choose analysis name</string>
+    <string name="choose_ray_name">Please choose ray name</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="minutes">minutes</string>
+    <string name="set_rate_for_the_docor_msg">Please set rating for the doctor</string>
+    <string name="type">Type</string>
+    <string name="date">Date</string>
+    <string name="book_type">Book type</string>
+    <string name="field">Field</string>
+    <string name="approve_terms_and_conditions">Approve terms and conditions</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+    <string name="loading">Loading</string>
+    <string name="lab_id_key" translatable="false">lab_id_key</string>
+    <string name="upload_image_or_choose_from_list">Please upload an image or choose from the list</string>
+    <string name="radiology_id_key" translatable="false">radiology_id_key</string>
+    <string name="choose_langaue">Choose a language</string>
+    <string name="enter_your_name">Enter name</string>
+    <string name="enter_your_address">Enter address</string>
+    <string name="take_photo">Take a Photo</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="please_select_location">Please select location</string>
+    <string name="imgagesize_must_lessthan_2MB">Image size must be less than or equals 3 MB</string>
+    <string name="order_has_been_send">Order has been sent</string>
+    <string name="profile_updated_successfulty">Profile successfully updated</string>
+    <string name="done">Done</string>
+    <string name="password_changed">Password successfully changed</string>
+    <string name="notification_channel_id" translatable="false">PATIENTCH_01</string>
+    <string name="waiting_time">Waiting time</string>
+    <string name="reserv_number">Reservation number</string>
+    <string name="reservation">Reservation</string>
+    <string name="consultion">Consultation</string>
+    <string name="continuee">Continue</string>
+    <string name="you_dont_have_fav_docs">You don\'t have favourite doctors</string>
+    <string name="icu_text">I.C.U</string>
+    <string name="notifications">Notifications</string>
+    <string name="shift">Shift</string>
+    <string name="book_for_me">Book for me</string>
+    <string name="book_for_other_person">Book for another person</string>
+    <string name="isBackFromBookDoctorKey" translatable="false">isBackFromBookDoctor</string>
+    <string name="please_press_long_press">Please press long press on a location to select it</string>
+    <string name="please_open_gps">Please open GPS to fetch location</string>
+    <string name="radiology_working_hours">Radiology working hours</string>
+    <string name="sms_send">SMS has been sent</string>
+    <string name="choose_shift">shift</string>
+    <string name="install_messanger">Please Install Facebook Messenger</string>
+    <string name="install_whatsapp">Make sure whatapp is installed</string>
+    <string name="send_email">Send mail…</string>
+    <string name="undefined_address">Undefined address</string>
+    <string name="are_you_to_go_to_login">Are you sure to go to login ? You will not able to enter this screen for this phone number again</string>
+    <string name="are_sure_you_to_update_profile">Are you sure to update the profile?</string>
+    <string name="couldnt_get_current_location">Couldn\'t get current location</string>
+    <string name="select_none">none</string>
+    <string name="AvailableClincics_key" translatable="false">AvailableClincics</string>
+    <string name="enter_your_notes">Enter your notes (optional)</string>
+    <string name="IOException">Problem in network</string>
+    <string name="password_is_not_valid">must be more than 4 charecters</string>
+    <string name="insurance_code">Insurance code</string>
+    <string name="enter_your_reason_if_you_want_to_cancel_your_order">Enter a reason if you want to cancel your order</string>
+    <string name="anayltics">Anayltics</string>
+    <string name="doctor_free_days">Doctor Free suggested days</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="orders_word">Orders</string>
+    <string name="my_word">My</string>
+    <string name="enter_your_notes_mandotry">Please enter  a reason</string>
+    <string name="are_you_sure_to_logout">Are you sure to logout?</string>
+    <string name="hospital">Hospital</string>
+    <string name="isHospitalKey" translatable="false">isHospitalKey</string>
+    <string name="isMedicalCenterKey" translatable="false">isMedicalCenterKey</string>
+    <string name="isOpticalCenterKey" translatable="false">isOpticalCenterKey</string>
+    <string name="rate_order">Rate order</string>
+    <string name="find_best_hospital">Find the best rated hospital!</string>
+    <string name="please_enter_v_code">Please enter the verification code \n we sent to your mobile</string>
+    <string name="home">Home</string>
+    <string name="doctor">Doctor</string>
+    <string name="details">Details</string>
+    <string name="order">Order</string>
+    <string name="prescription">Prescription</string>
+    <string name="request_a_medicine">Request a medicine</string>
+    <string name="all">All</string>
+    <string name="now">Now</string>
+    <string name="seconds">Seconds</string>
+    <string name="ago">ago</string>
+    <string name="hours">hours</string>
+    <string name="days">days</string>
+    <string name="subscribe_now">Subscribe now to the\n 200 EGP offer</string>
+    <string name="payment">Payment</string>
+    <string name="login_first">Please login first</string>
+    <string name="vodaphone_cash">Vodaphone cash</string>
+    <string name="fawry">Fawry</string>
+    <string name="visa_card">Visa card</string>
+    <string name="select_the_payment_method">Select the payment method</string>
+    <string name="skip">Skip</string>
+    <string name="information">Information</string>
+    <string name="sample" translatable="false">dvfvfvvfv vfv fvj vn njvv vvjnfv vnfjn vfnv vv jfv vfnvjn v fvjnfv vvnvfv fvnfv vjfvjnv fjvnjnf vf vjnfvvnjfn vjfn vjfvn</string>
+    <string name="help">Help</string>
+    <string name="you_pay_250">You will pay 200 pounds for the\n subscription card</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="enter_the_code">Enter the code:</string>
+    <string name="visa_number">Visa number</string>
+    <string name="code">Code</string>
+    <string name="visa_number_">Visa number</string>
+    <string name="process_completed">Process has been completed</string>
+    <string name="doctors_">doctors</string>
+    <string name="delivery_not_available">Delivery not available</string>
+    <string name="cvc">CVC</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="request_a_ray">Request a ray</string>
+    <string name="request_an_analysis">Request an analysis</string>
+    <string name="some_went_wrong">Some went wrong</string>
+    <string name="first_last_name_must_entered">Fisrt and last name must entered</string>
+    <string name="long_press_to_select_location_on_map">Long Press to select Location on map</string>
+    <string name="io_exception_cant_get_location">Can\'t get address Reselect Location and Try Again</string>
+    <string name="general">General</string>
+    <string name="pharmacy_name">Pharmacy name</string>
+    <string name="lab_name">Lab name</string>
+    <string name="radiology_name">Radiology name</string>
+    <string name="no_more_data">No more data</string>
+    <string name="optical_center">Optical Center</string>
+    <string name="medical_center">Medical center</string>
+    <string name="for_me">For me</string>
+    <string name="for_other">For other</string>
+    <string name="isolation_center">Isolation Center</string>
+    <string name="no_pharmacy_found">No pharmacies found</string>
+
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <FrameLayout
+                android:background="@color/darkWhite"
+                android:id="@+id/view_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_my_orders"
+                    tools:listitem="@layout/appointment_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            <include
+                    android:id="@+id/loading"
+                    layout="@layout/loading"
+                    android:layout_width="@dimen/loading_size"
+                    android:layout_height="@dimen/loading_size"
+                    android:layout_gravity="center"
+                    android:visibility="invisible" />
+            <include
+                    android:visibility="invisible"
+                    android:id="@+id/empty_list"
+                    android:layout_height="@dimen/empty_list_size"
+                    android:layout_width="@dimen/empty_list_size"
+                    android:layout_gravity="center"
+                    layout="@layout/search_empty" />
+
+        </FrameLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

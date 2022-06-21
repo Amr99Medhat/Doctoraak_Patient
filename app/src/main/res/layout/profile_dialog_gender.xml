@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginBottom="10dp"
+            android:hint="@string/choose_gender"
+            android:id="@+id/spl_gender"
+            style="@style/SpinnerNormal">
+
+    <AutoCompleteTextView
+            android:id="@+id/sp_gender"
+            style="@style/AutoCompleteSpinnerNotEditable" />
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/darkWhite"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/city"
+            android:id="@+id/spl_city"
+            style="@style/SpinnerNormal"
+            app:layout_constraintBottom_toTopOf="@+id/spl_area"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+
+                android:id="@+id/sp_city"
+                style="@style/AutoCompleteSpinnerNormal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spl_area"
+            style="@style/SpinnerNormal"
+            android:hint="@string/area"
+            android:layout_marginBottom="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spl_city">
+
+        <AutoCompleteTextView
+                android:id="@+id/sp_area"
+                style="@style/AutoCompleteSpinnerNormal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

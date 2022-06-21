@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/toolbar_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_big_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+                style="@style/mainLogoStyle"
+                layout="@layout/main_logos"/>
+
+        <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_back_mirror" />
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radiology"
+                android:textColor="@color/white"
+                android:textSize="@dimen/toolbar_title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
+                app:layout_constraintStart_toStartOf="@id/tv_subtitle"
+                />
+
+        <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/subtitle_margin_bottom"
+                android:text="@string/select_location"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="@dimen/toolbar_subtitle_textsize"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"
+                android:textColor="@color/white"
+                />
+
+        <ScrollView
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+                app:layout_constraintBottom_toTopOf="@id/btn_search"
+                android:background="@color/darkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_radiology"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:context=".ui.radiology.RadiologyActivity">
+
+                <include
+                        style="@style/searchCityAndAreaIndicatorStyle"
+                        android:id="@+id/search_indicator"
+                        layout="@layout/search_name_city_address_indicator" />
+
+                <include
+                        android:id="@+id/search_by_address"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/search_indicator"
+                        layout="@layout/search_address_with_name" />
+
+                <include
+                        android:id="@+id/search_by_city"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/search_indicator"
+                        layout="@layout/search_by_city_and_area_with_name" />
+
+                <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/barrier3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="bottom"
+                        app:constraint_referenced_ids="search_by_address,search_by_city" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_search"
+                style="@style/ButtonNormal"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:text="@string/search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        <include
+                android:visibility="invisible"
+                android:id="@+id/loading"
+                android:layout_height="@dimen/loading_size"
+                android:layout_width="@dimen/loading_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                layout="@layout/loading" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkWhite">
+
+            <include
+                    android:id="@+id/search_indicator"
+                    style="@style/searchCityAndAreaIndicatorStyle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    layout="@layout/search_name_city_address_indicator" />
+
+            <include
+                    android:id="@+id/search_by_city"
+                    layout="@layout/search_by_city_and_area_with_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/search_indicator" />
+
+            <include
+                    android:id="@+id/search_by_address"
+                    layout="@layout/search_address_with_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/search_indicator" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_next"
+                    style="@style/ButtonNormal"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/search_indicator"
+                    app:layout_constraintStart_toStartOf="@id/search_indicator" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

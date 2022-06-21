@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="signUpViewModel"
+                type="com.doctoraak.doctoraakpatient.ui.signUp.SignUpViewModel" />
+
+        <variable
+                name="clickHandler"
+                type="com.doctoraak.doctoraakpatient.ui.signUp.SignUpActivity.SignUpClickHandler" />
+
+        <import type="android.view.View" />
+
+        <import type="com.doctoraak.doctoraakpatient.utils.ExtentionsKt" />
+
+    </data>
+
+    <!--app:layoutDescription="@xml/collapsing_toolbar"-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fr_signup"
+            tools:showPaths="true"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkWhite">
+        <ImageView
+
+                android:scaleType="fitXY"
+                android:id="@+id/toolbar_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_big_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome"
+                android:textColor="@color/white"
+                android:textSize="@dimen/toolbar_title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
+                app:layout_constraintStart_toStartOf="@id/tv_subtitle"
+                />
+
+        <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/subtitle_margin_bottom"
+                android:text="@string/create_account"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="@dimen/toolbar_subtitle_textsize"
+
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"
+                android:textColor="@color/white"
+                />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="@dimen/_80sdp"
+                app:elevation="4dp"
+                android:layout_height="@dimen/_80sdp"
+                android:onClick="@{()->clickHandler.onProfileImageClick()}"
+                android:src="@drawable/ic_face"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image" />
+
+        <ImageView
+                android:padding="5dp"
+                android:id="@+id/iv_edit_photo"
+                style="@style/ProfileEditImageView"
+                android:layout_marginEnd="0dp"
+                android:src="@drawable/ic_camera"
+                android:background="@drawable/circle_shape"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile" />
+        <androidx.core.widget.NestedScrollView
+                android:scrollbars="none"
+                android:layout_marginTop="@dimen/_40sdp"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/main_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="12dp"
+                    android:id="@+id/constraint"
+                    tools:context=".ui.signUp.SignUpActivity">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_name"
+                        style="@style/EditTextNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/full_name"
+                        app:layout_constraintBottom_toTopOf="@+id/etl_address"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="16dp"
+                            android:inputType="textPersonName"
+                            android:text="@={signUpViewModel.user.name}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_address"
+                        style="@style/EditTextNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/address"
+                        app:layout_constraintBottom_toTopOf="@+id/etl_phone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="16dp"
+                            android:inputType="textPostalAddress"
+                            android:text="@={signUpViewModel.user.address}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--   <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_marginTop="@dimen/_4sdp"
+                           android:layout_marginBottom="@dimen/_1sdp"
+                           android:background="@drawable/address_side_with_radius_of_rect_border"
+                           android:contentDescription="@string/pick_location"
+                           android:paddingStart="@dimen/_10sdp"
+                           android:paddingEnd="@dimen/_10sdp"
+                           app:layout_constraintBottom_toBottomOf="@+id/etl_address"
+                           app:layout_constraintEnd_toEndOf="@+id/etl_address"
+                           app:layout_constraintTop_toTopOf="@+id/etl_address"
+                           app:srcCompat="@drawable/ic_location" />-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_phone"
+                        style="@style/EditTextNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/phone_number"
+                        app:layout_constraintBottom_toTopOf="@+id/etl_email"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="18dp"
+                            android:inputType="phone"
+                            android:text="@={signUpViewModel.user.phone}"
+                            android:textAlignment="viewStart" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_email"
+                        style="@style/EditTextNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/email"
+                        app:layout_constraintBottom_toTopOf="@+id/etl_password"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="18dp"
+                            android:inputType="textEmailAddress"
+                            android:text="@={signUpViewModel.user.email}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_password"
+                        style="@style/EditTextNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/password"
+                        app:errorIconDrawable="@null"
+                        app:layout_constraintBottom_toTopOf="@+id/gender_group"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_email"
+                        app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="18dp"
+                            android:inputType="textPassword"
+                            android:text="@={signUpViewModel.user.password}"
+                            android:textAlignment="viewStart" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <include
+                        android:id="@+id/gender_group"
+                        layout="@layout/gender_group"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        app:layout_constraintBottom_toTopOf="@id/etl_birthday"
+                        app:layout_constraintEnd_toEndOf="@+id/etl_password"
+                        app:layout_constraintStart_toStartOf="@id/etl_password"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_password" />
+
+                <!--Birthday format-   2018-08-11-->
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_birthday"
+                        style="@style/EditTextNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/birthday"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gender_group">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_birthday"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="false"
+                            android:drawablePadding="16dp"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:onClick="@{()->clickHandler.onBirthdayClick()}"
+                            android:text="@={signUpViewModel.user.birthdate}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_insurrance"
+                        style="@style/SpinnerNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/insurance"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_birthday">
+
+                    <AutoCompleteTextView
+                            android:id="@+id/et_insurrance"
+                            style="@style/AutoCompleteSpinnerNotEditable"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cursorVisible="false"
+                            android:drawablePadding="16dp"
+                            android:focusable="false"
+                            android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etl_insurrance_code"
+                        style="@style/EditTextNormal"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="28dp"
+                        android:hint="@string/insurance_code"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_insurrance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_insurrance_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="16dp"
+                            android:inputType="number"
+                             />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                        android:id="@+id/cb_terms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_32sdp"
+                        android:text="@string/accept"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_terms"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etl_insurrance_code" />
+
+                <TextView
+                        android:id="@+id/tv_terms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:onClick="@{()->clickHandler.onTermsClick()}"
+                        android:text="@string/terms_and_conditions"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cb_terms"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cb_terms"
+                        app:layout_constraintTop_toTopOf="@+id/cb_terms" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                        app:layout_constraintStart_toStartOf="@id/etl_name"
+                        app:layout_constraintEnd_toEndOf="@id/etl_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_terms"
+                        android:id="@+id/btn_sign_up"
+                        style="@style/ButtonNormal"
+                        android:layout_marginTop="15dp"
+                        android:onClick="@{()->clickHandler.onSignUpClick(signUpViewModel.user)}"
+                        android:text="@string/sign_up"
+                        />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+                android:id="@+id/mobile_verification"
+                bind:clickHandler="@{clickHandler}"
+                layout="@layout/mobile_verification"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        <include
+                android:id="@+id/loading"
+                layout="@layout/loading"
+                android:layout_width="@dimen/loading_size"
+                android:layout_height="@dimen/loading_size"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

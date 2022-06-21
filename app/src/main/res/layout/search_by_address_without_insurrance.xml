@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/darkWhite"
+        android:padding="10dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etl_address"
+            style="@style/EditTextNormal"
+            app:hintEnabled="false"
+            android:layout_marginBottom="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_address"
+                style="@style/TextInputEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:drawableEnd="@drawable/address_side_with_radius_of_rect_border"
+                android:focusable="false"
+                android:cursorVisible="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+            android:elevation="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/address_side_with_radius_of_rect_border"
+            app:layout_constraintBottom_toBottomOf="@+id/etl_address"
+            app:layout_constraintEnd_toEndOf="@+id/etl_address"
+            app:layout_constraintTop_toTopOf="@+id/etl_address"
+            app:srcCompat="@drawable/ic_placeholder_small"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

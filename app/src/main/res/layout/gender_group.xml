@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rg_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radio_group_background"
+        android:orientation="horizontal">
+
+    <RadioButton
+            android:fontFamily="@font/segoe_ui"
+            android:id="@+id/tv_male"
+            android:drawableStart="@drawable/ic_male"
+            android:drawablePadding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_male"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/male" />
+
+    <RadioButton
+            android:fontFamily="@font/segoe_ui"
+            android:id="@+id/tv_female"
+            android:drawableStart="@drawable/ic_female"
+            android:drawablePadding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_female"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/female" />
+
+</RadioGroup>

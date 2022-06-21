@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/iv_address_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_placeholder_small"
+                app:layout_constraintBottom_toBottomOf="@id/tv_reservation_date"
+                app:layout_constraintEnd_toEndOf="@id/divider"
+                app:layout_constraintTop_toTopOf="@id/tv_reservation_date" />
+
+        <TextView
+                android:id="@+id/tv_fees"
+                style="@style/normalTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:drawableStart="@drawable/ic_reservation"
+                android:drawablePadding="10dp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_11ssp"
+
+                app:layout_constraintStart_toStartOf="@+id/tv_doctor_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_waiting_time"
+                tools:text=" New Cairo" />
+
+        <TextView
+                android:id="@+id/tv_fees2"
+                style="@style/normalTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:drawableStart="@drawable/ic_consultaion"
+                android:drawablePadding="10dp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_doctor_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_fees"
+                tools:text=" New Cairo" />
+
+        <TextView
+                android:id="@+id/iv_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bottom_radius_corner_shape"
+                android:gravity="center"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/rate_order"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_fees2" />
+
+        <TextView
+
+                android:id="@+id/tv_cancel_order"
+                style="@style/normalTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/button_click_stete"
+                android:gravity="center"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@string/cancel_order"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_fees2" />
+
+        <TextView
+                android:id="@+id/tv_reservation_date"
+                style="@style/normalTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rect_corner_back_white"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textColor="@color/gray_1"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/divider"
+                app:layout_constraintStart_toStartOf="@id/divider"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="25:5 - 15 May 2019" />
+
+        <View
+                android:id="@+id/divider"
+                style="@style/DividerView"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_reservation_date"
+                tools:ignore="MissingConstraints" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_image"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                tools:src="@color/gray_3" />
+
+        <TextView
+                android:id="@+id/tv_doctor_name"
+                style="@style/normalTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_image"
+                app:layout_constraintTop_toTopOf="@+id/iv_image"
+                tools:text="Saif Zero" />
+
+        <TextView
+                android:id="@+id/tv_reservation_type"
+                style="@style/normalTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_doctor_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name"
+                tools:text="Consultation" />
+
+        <TextView
+                android:id="@+id/tv_for_me"
+                style="@style/normalTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="5dp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textColor="@color/red"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toEndOf="@+id/tv_reservation_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name"
+                tools:text="@string/for_other" />
+
+        <TextView
+                android:id="@+id/tv_reservation_number"
+                style="@style/normalTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:drawableStart="@drawable/ic_type"
+                android:drawablePadding="10dp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="@+id/tv_doctor_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_reservation_type"
+                tools:text="Reservation Number: 5" />
+
+        <TextView
+                android:id="@+id/tv_waiting_time"
+                style="@style/normalTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:drawableStart="@drawable/ic_waiting_time"
+                android:drawablePadding="10dp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_address_map"
+                app:layout_constraintStart_toStartOf="@+id/tv_doctor_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_reservation_number"
+                tools:text="Consultation" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
