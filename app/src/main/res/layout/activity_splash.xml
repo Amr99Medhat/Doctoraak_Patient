@@ -8,15 +8,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/ic_splash_background"
-             tools:context=".ui.splash.SplashActivity">
+            tools:context=".ui.splash.SplashActivity">
 
         <ImageView
                 android:id="@+id/iv_logo"
+                android:layout_marginTop="@dimen/_55sdp"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
-                app:layout_constraintBottom_toTopOf="@id/iv_heartbeat"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_care_logo"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_logo" />
 
@@ -58,16 +58,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-                android:id="@+id/iv_care_logo"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
-                android:layout_marginBottom="12dp"
-                android:src="@drawable/ic_one_care_logo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/iv_logo"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
-                app:layout_constraintTop_toTopOf="@+id/iv_logo"/>
+        <!--        <ImageView-->
+        <!--                android:id="@+id/iv_care_logo"-->
+        <!--                android:layout_width="@dimen/_80sdp"-->
+        <!--                android:layout_height="@dimen/_80sdp"-->
+        <!--                android:layout_marginBottom="12dp"-->
+        <!--                android:src="@drawable/ic_one_care_logo"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintEnd_toStartOf="@id/iv_logo"-->
+        <!--                app:layout_constraintBottom_toBottomOf="@+id/iv_logo"-->
+        <!--                app:layout_constraintTop_toTopOf="@+id/iv_logo"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
