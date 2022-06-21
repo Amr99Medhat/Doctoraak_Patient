@@ -14,7 +14,7 @@ import retrofit2.http.*
 interface ApiEndPoint {
 
     @GET("show_insurance")
-    fun getInsurances() : Call<InsuranceResponse>
+    fun getInsurances(): Call<InsuranceResponse>
 
     @FormUrlEncoded
     @POST("patient_resend")
@@ -23,25 +23,33 @@ interface ApiEndPoint {
 
     @FormUrlEncoded
     @POST("patient_login")
-    fun logIn(@Field("phone") phone: String, @Field("password") password: String): Call<UserResponse>
+    fun logIn(@Field("phone") phone: String,
+              @Field("password") password: String): Call<UserResponse>
 
     @Multipart
     @POST("patient_register")
     fun register(
-        @Part photo: MultipartBody.Part?, @Part("name") name: RequestBody
-        , @Part("password") password: RequestBody, @Part("address") address: RequestBody
-        , @Part("gender") gender: RequestBody, @Part("email") email: RequestBody
-        , @Part("phone") phone: RequestBody
-        , @Part("birthdate") birthdate: RequestBody,@Part("insurance_id") insuranceId: RequestBody,
+        @Part photo: MultipartBody.Part?,
+        @Part("name") name: RequestBody,
+        @Part("password") password: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("phone") phone: RequestBody,
+        @Part("birthdate") birthdate: RequestBody,
+        @Part("insurance_id") insuranceId: RequestBody,
         @Part("insurance_code_id") insurance_code_id: RequestBody): Call<UserResponse>
 
     @Multipart
     @POST("patient_register")
-    fun register(@Part photo: MultipartBody.Part?, @Part("name") name: RequestBody
-        , @Part("password") password: RequestBody, @Part("address") address: RequestBody
-        , @Part("gender") gender: RequestBody, @Part("email") email: RequestBody
-        , @Part("phone") phone: RequestBody
-        , @Part("birthdate") birthdate: RequestBody
+    fun register(@Part photo: MultipartBody.Part?,
+                 @Part("name") name: RequestBody,
+                 @Part("password") password: RequestBody,
+                 @Part("address") address: RequestBody,
+                 @Part("gender") gender: RequestBody,
+                 @Part("email") email: RequestBody,
+                 @Part("phone") phone: RequestBody,
+                 @Part("birthdate") birthdate: RequestBody
     ): Call<UserResponse>
 
     @FormUrlEncoded
@@ -51,14 +59,15 @@ interface ApiEndPoint {
     @FormUrlEncoded
     @POST("patient_update_password")
     fun forgetPasswordUpdatePassword(
-        @Field("phone") phone: String, @Field("old_password") password: String
-        , @Field("new_password") new_password: String
+        @Field("phone") phone: String,
+        @Field("old_password") password: String,
+        @Field("new_password") new_password: String
     ): Call<BaseResponse>
 
     @FormUrlEncoded
     @POST("patient_verify_account")
-    fun activeAccount(@Field("user_id") user_id: Long
-                      , @Field("sms_code") sms_code: String): Call<UserResponse>
+    fun activeAccount(@Field("user_id") user_id: Long,
+                      @Field("sms_code") sms_code: String): Call<UserResponse>
 
     @GET("show_specialization")
     fun getDoctorCategories(): Call<DoctorCategoryResponse>
@@ -69,7 +78,7 @@ interface ApiEndPoint {
 
     //areas for specific city
     @GET("show_area")
-    fun getAreas(@Field("city_id") city_id : Int): Call<AreaResponse>
+    fun getAreas(@Field("city_id") city_id: Int): Call<AreaResponse>
 
     @GET("show_city")
     fun getCities(): Call<CityResponse>
@@ -92,13 +101,12 @@ interface ApiEndPoint {
 
     @GET("patient/favourite/list")
     fun getFavouriteDocotors(
-        @Query("patient_id") patientId: Int
-        , @Query("api_token") api_token: String
+        @Query("patient_id") patientId: Int, @Query("api_token") api_token: String
     ): Call<ClinicsResponse>
 
 
     @GET("clinic/get")
-    fun getClinics(@QueryMap map : HashMap<String , String>) :Call<ClinicsResponse>
+    fun getClinics(@QueryMap map: HashMap<String, String>): Call<ClinicsResponse>
 
     ////////////////////////////////////
 
@@ -133,8 +141,7 @@ interface ApiEndPoint {
 
     @GET("get/resrevation")
     fun getReservations(
-        @Query("patient_id") patient_id: Int
-        , @Query("api_token") api_token: String
+        @Query("patient_id") patient_id: Int, @Query("api_token") api_token: String
     ): Call<ReservationsResponse>
 
     @GET("icu/get")
@@ -156,17 +163,17 @@ interface ApiEndPoint {
         @Query("patient_id") patientId: Int,
         @Query("clinic_id") clinic_id: Int,
         @Query("date") date: String,
-        @Query("type") type: Int
-        , @Query("notes") notes: String
-        , @Query("api_token") api_token: String
-    , @Query("part") part: Int): Call<ClinicOrderResponse>
+        @Query("type") type: Int,
+        @Query("notes") notes: String,
+        @Query("api_token") api_token: String,
+        @Query("part") part: Int): Call<ClinicOrderResponse>
 
 
     @GET("lab/get")
-    fun filterLabs(@QueryMap map : HashMap<String , String> ) : Call<LabResponse>
+    fun filterLabs(@QueryMap map: HashMap<String, String>): Call<LabResponse>
 
     @GET("radiology/get")
-    fun filterRadiologies(@QueryMap map : HashMap<String , String> ) : Call<RadiologyResponse>
+    fun filterRadiologies(@QueryMap map: HashMap<String, String>): Call<RadiologyResponse>
 
     @Multipart
     @POST("pharmacy/order/create")
@@ -191,7 +198,6 @@ interface ApiEndPoint {
         @Part("notes") notes: RequestBody,
         @Part("orderDetails") orderDetails: RequestBody
     ): Call<PharmacyOrderResponse>
-
 
 
     @Multipart
@@ -211,11 +217,11 @@ interface ApiEndPoint {
     @Multipart
     @POST("lab/order/create")
     fun createLabOrder(@Part("api_token") api_token: RequestBody,
-       @Part("lab_id") lab_id: RequestBody,
-       @Part("date") date: RequestBody,
-       @Part("patient_id") patient_id: RequestBody,
-       @Part("notes") notes: RequestBody ,
-       @Part("orderDetails") orderDetails: RequestBody
+                       @Part("lab_id") lab_id: RequestBody,
+                       @Part("date") date: RequestBody,
+                       @Part("patient_id") patient_id: RequestBody,
+                       @Part("notes") notes: RequestBody,
+                       @Part("orderDetails") orderDetails: RequestBody
     ): Call<LabOrderResponse>
 
     @Multipart
@@ -235,11 +241,11 @@ interface ApiEndPoint {
     @Multipart
     @POST("radiology/order/create")
     fun createRadiologyOrder(@Part("api_token") api_token: RequestBody,
-         @Part("radiology_id") radiology_id: RequestBody,
-         @Part("date") date: RequestBody,
-         @Part("patient_id") patient_id: RequestBody,
-         @Part("notes") notes: RequestBody,
-         @Part("orderDetails") orderDetails: RequestBody
+                             @Part("radiology_id") radiology_id: RequestBody,
+                             @Part("date") date: RequestBody,
+                             @Part("patient_id") patient_id: RequestBody,
+                             @Part("notes") notes: RequestBody,
+                             @Part("orderDetails") orderDetails: RequestBody
 
     ): Call<RadiologyOrderResponse>
 
@@ -253,7 +259,9 @@ interface ApiEndPoint {
         @Part("gender") gender: RequestBody,
         @Part("birthdate") birthdate: RequestBody,
         @Part("address") address: RequestBody,
-        @Part("api_token") api_token: RequestBody
+        @Part("api_token") api_token: RequestBody,
+        @Part("patient_name") patient_name: RequestBody,
+        @Part("phone2") phone2: RequestBody
     ): Call<UserResponse>
 
     @Multipart
@@ -265,14 +273,15 @@ interface ApiEndPoint {
         @Part("gender") gender: RequestBody,
         @Part("birthdate") birthdate: RequestBody,
         @Part("address") address: RequestBody,
-        @Part("api_token") api_token: RequestBody
+        @Part("api_token") api_token: RequestBody,
+        @Part("patient_name") patient_name: RequestBody,
+        @Part("phone2") phone2: RequestBody
     ): Call<UserResponse>
 
 
     @POST("patient/favourite_doctor")
     fun favDoctor(
-        @Query("patient_id") patient_id: Int
-        , @Query("doctor_id") doctor_id: Int,
+        @Query("patient_id") patient_id: Int, @Query("doctor_id") doctor_id: Int,
         @Query("api_token") api_token: String
     ): Call<FavDoctorResponse>
 
@@ -285,9 +294,9 @@ interface ApiEndPoint {
     fun getAllRadiology(): Call<AllRadiologiesResponse>
 
     @GET("get/notification")
-    fun getNotifications(@Query("user_id") user_id: Int
-            ,@Query("user_type") user_type: String
-                         ,@Query("api_token") api_token: String)
+    fun getNotifications(@Query("user_id") user_id: Int,
+                         @Query("user_type") user_type: String,
+                         @Query("api_token") api_token: String)
             : Call<NotificationsResponse>
 
     @POST("notification/remove")
@@ -305,60 +314,64 @@ interface ApiEndPoint {
 
     @POST("token/update")
     fun updateToken(@Query("firebase_token") firebase_token: String,
-        @Query("user_id") user_id: Int,
-        @Query("user_type") user_type: String,
-        @Query("api_token") api_token: String)
-    : Call<FirebaseTokenResponse>
+                    @Query("user_id") user_id: Int,
+                    @Query("user_type") user_type: String,
+                    @Query("api_token") api_token: String)
+            : Call<FirebaseTokenResponse>
 
     @GET("contact")
-    fun getContactInfo() : Call<ContactUsResponse>
+    fun getContactInfo(): Call<ContactUsResponse>
 
     @POST("patient/cancel-order")
     fun cancelOrder(@Query("api_token") api_token: String,
                     @Query("patient_id") patient_id: Int,
                     @Query("order_id") order_id: Int,
                     @Query("order_type") order_type: String,
-                    @Query("message") message: String) : Call<BaseResponse>
+                    @Query("message") message: String): Call<BaseResponse>
 
 
     @GET("get-orders")
-    fun getMyOrdersDoctor(@Query("patient_id") patient_id: Int, @Query("api_token") api_token: String
-                          , @Query("user_type") user_type: String) : Call<ReservationsResponse>
+    fun getMyOrdersDoctor(@Query("patient_id") patient_id: Int,
+                          @Query("api_token") api_token: String,
+                          @Query("user_type") user_type: String): Call<ReservationsResponse>
 
     @GET("get-orders")
-    fun getMyOrdersPharmacy(@Query("patient_id") patient_id: Int, @Query("api_token") api_token: String
-                            , @Query("user_type") user_type: String) : Call<PharmacyOrdersListResponse>
+    fun getMyOrdersPharmacy(@Query("patient_id") patient_id: Int,
+                            @Query("api_token") api_token: String,
+                            @Query("user_type") user_type: String): Call<PharmacyOrdersListResponse>
 
     @GET("get-orders")
-    fun getMyOrdersLab(@Query("patient_id") patient_id: Int, @Query("api_token") api_token: String
-                       , @Query("user_type") user_type: String) : Call<LabOrdersListResponse>
+    fun getMyOrdersLab(@Query("patient_id") patient_id: Int,
+                       @Query("api_token") api_token: String,
+                       @Query("user_type") user_type: String): Call<LabOrdersListResponse>
 
     @GET("get-orders")
-    fun getMyOrdersRadiology(@Query("patient_id") patient_id: Int, @Query("api_token") api_token: String
-                             , @Query("user_type") user_type: String) : Call<RadiologyOrdersListResponse>
+    fun getMyOrdersRadiology(@Query("patient_id") patient_id: Int,
+                             @Query("api_token") api_token: String,
+                             @Query("user_type") user_type: String): Call<RadiologyOrdersListResponse>
 
     @GET("pharmacy/get")
-    fun filterPharmacies(@QueryMap map : HashMap<String , String>) : Call<PharmacyFilterResponse>
+    fun filterPharmacies(@QueryMap map: HashMap<String, String>): Call<PharmacyFilterResponse>
 
     @GET("show/pharmacy")
-    fun getAllPharmacies() : Call<PharmacyFilterResponse>
+    fun getAllPharmacies(): Call<PharmacyFilterResponse>
 
     //Payment
     @GET("show-cariense-details")
-    fun getPaymentDetails() : Call<PaymentDetailResponse>
+    fun getPaymentDetails(): Call<PaymentDetailResponse>
 
     @GET("patient-buy-careiense")
-    fun applayBuyCareience(@Query("user_id") userId : Int) : Call<UserResponse>
+    fun applayBuyCareience(@Query("user_id") userId: Int): Call<UserResponse>
 
     @POST("auth/tokens")
-    fun paymentAuth(@Body body : PaymentAuthRequest) : Call<PaymentAuthResponse>
+    fun paymentAuth(@Body body: PaymentAuthRequest): Call<PaymentAuthResponse>
 
     @POST("ecommerce/orders")
-    fun orderRegisteration(@Body body: OrderRegisterationRequest) : Call<OrderRegisterationResponse>
+    fun orderRegisteration(@Body body: OrderRegisterationRequest): Call<OrderRegisterationResponse>
 
     @POST("acceptance/payment_keys")
-    fun getPaymentToken(@Body body: CardPaymentKeyRequest) : Call<CardPaymentKeyResposne>
+    fun getPaymentToken(@Body body: CardPaymentKeyRequest): Call<CardPaymentKeyResposne>
 
     @POST("acceptance/payments/pay")
-    fun makePayRequest(@Body body : PayOrderRequest) : Call<PayOrderResponse>
+    fun makePayRequest(@Body body: PayOrderRequest): Call<PayOrderResponse>
 }

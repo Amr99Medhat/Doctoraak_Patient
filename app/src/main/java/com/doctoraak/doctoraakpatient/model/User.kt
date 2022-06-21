@@ -44,7 +44,14 @@ data class User(
     @SerializedName("updated_at")
     var updatedAt: String = "",
     @SerializedName("insurance")
-    var insurance: Insurance? = null
+    var insurance: Insurance? = null,
+
+
+    // New Fields
+    @SerializedName("patient_name")
+    var patient_name: String = "",
+    @SerializedName("phone2")
+    var phone2: String = ""
 )
 
 data class UserResponse(
@@ -53,7 +60,6 @@ data class UserResponse(
 ) : BaseResponse()
 
 data class UpdatedProfileRequest(
-    val user_id: String, val name: String, val gender: String
-    , val birthdate: String,
-    val photo: String, val address: String, val api_token: String
+    val user_id: String, val name: String, val gender: String, val birthdate: String,
+    val photo: String, val address: String, val api_token: String, val patient_name: String, val phone2: String
 )

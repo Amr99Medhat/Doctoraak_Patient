@@ -43,13 +43,14 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.log
 
 class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     var name = ""
     var photo = ""
     var gender = ""
-    var phone2=""
+
 
     private val viewModel: ProfileViewModel by lazy {
         ViewModelProviders.of(this).get(
@@ -75,6 +76,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     private val GENDER_KEY = "GENDER_KEY"
     private val BUTTON_VISIBILITY_KEY = "BUTTON_VISIBILITY_KEY"
 
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(NAME_KEY, name)
@@ -89,6 +91,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_profile
         )
+
 
 
         if (savedInstanceState == null) {
@@ -222,15 +225,8 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 ) {
                     name = text
                     binding.tvFulName.text = name
-                } else if (hint.toLowerCase(Locale.getDefault()).contains(
-                    getString(R.string.enter_phone).toLowerCase(Locale.getDefault()))
-                ) {
-                    phone2
-                    binding.tvPhone.text = phone2
-                }
-                else
-                    {
-                    viewModel.user.value!!.address = text
+                } else {
+                    //viewModel.user.value!!.address = text
                     binding.tvAddress.text = text
                 }
 
@@ -257,7 +253,8 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 as AutoCompleteTextView
         var temp = binding.tvGender.text.toString()
 
-        setupAutoCompleteTextView(edtext, arrayListOf(getString(R.string.male), getString(R.string.female)))
+        setupAutoCompleteTextView(edtext,
+            arrayListOf(getString(R.string.male), getString(R.string.female)))
         edtext.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
             val selectedItem = parent.getItemAtPosition(position) as String
             temp = if (selectedItem.equals(getString(R.string.male))) {
@@ -285,8 +282,9 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     private fun selectImage(context: Context) {
         val options = arrayOf<CharSequence>(
-            getString(R.string.take_photo), getString(R.string.choose_from_gallery)
-            , getString(R.string.cancel)
+            getString(R.string.take_photo),
+            getString(R.string.choose_from_gallery),
+            getString(R.string.cancel)
         )
 
         val builder = AlertDialog.Builder(context)
@@ -333,12 +331,13 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 0 -> if (resultCode == Activity.RESULT_OK) {
 
                     val file = File(currentPhotoPath);
-                    val bitmap : Bitmap
+                    val bitmap: Bitmap
                     if (Build.VERSION.SDK_INT < 28) {
                         bitmap = MediaStore.Images.Media
                             .getBitmap(this.getContentResolver(), Uri.fromFile(file));
-                    }else{
-                        val source = ImageDecoder.createSource(this.contentResolver, Uri.fromFile(file))
+                    } else {
+                        val source =
+                            ImageDecoder.createSource(this.contentResolver, Uri.fromFile(file))
                         bitmap = ImageDecoder.decodeBitmap(source)
                     }
                     binding.civImage.setImageBitmap(bitmap)
@@ -431,13 +430,14 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
             val request = UpdatedProfileRequest(
                 Utils.getUserId().toString(),
-                name
-                ,
+                name,
                 gender,
                 viewModel.user.value!!.birthdate,
                 photo,
                 viewModel.user.value!!.address,
-                Utils.getApiToken()
+                Utils.getApiToken(),
+                "Thebes",
+                "01212354971"
             )
 
             if (Utils.checkInternetConnection(this, binding.clProfile)) {
@@ -471,10 +471,6 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
         fun onEditGenderClick() {
             showGenderDialog()
-        }
-
-        fun editPhone(){
-            showInputDialog(DialogType.Number,getString(R.string.enter_phone))
         }
     }
 
