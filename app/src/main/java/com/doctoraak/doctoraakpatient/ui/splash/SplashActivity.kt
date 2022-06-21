@@ -166,7 +166,7 @@ class SplashActivity : AppCompatActivity() {
         heartAnimatable.start()
 
         animate(binding.ivLogo)
-        animate(binding.ivCareLogo)
+//        animate(binding.ivCareLogo)
     }
 
     private fun animate(it: View, xCor :Float = -450f, scaleDownUp: Boolean = true)
