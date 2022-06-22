@@ -128,8 +128,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:fillViewport="true"
+                android:layout_marginTop="@dimen/_46sdp"
                 app:layout_constraintBottom_toTopOf="@id/btn_save"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_image">
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -205,9 +208,34 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:gravity="start|center_vertical"
-                        android:text="@={userViewModel.user.name}"
+                        android:text="@={userViewModel.user.patient_name}"
                         android:textAlignment="viewStart"
                         app:layout_constraintTop_toBottomOf="@+id/full_name_text"
+                        tools:text="Abdelrahman Amr" />
+
+                <TextView
+                        android:id="@+id/company_name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="start|center_vertical"
+                        android:text="@string/company_name"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintStart_toStartOf="@id/tv_address_text"
+                        app:layout_constraintTop_toBottomOf="@id/tv_ful_name" />
+
+                <TextView
+                        android:id="@+id/tv_company_name"
+                        style="@style/ProfileTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="start|center_vertical"
+                        android:text="@={userViewModel.user.name}"
+                        android:textAlignment="viewStart"
+                        app:layout_constraintTop_toBottomOf="@+id/company_name_text"
                         tools:text="Abdelrahman Amr" />
 
 
@@ -222,7 +250,7 @@
                         android:textColor="@color/gray_1"
                         android:textSize="@dimen/_13ssp"
                         app:layout_constraintStart_toStartOf="@id/tv_address_text"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_ful_name" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
 
                 <TextView
                         android:id="@+id/tv_email"
@@ -276,6 +304,14 @@
                         app:layout_constraintStart_toStartOf="@id/tv_address_text"
                         app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
 
+                <ImageView
+                        android:id="@+id/iv_edit_phone"
+                        style="@style/ProfileEditImageView"
+                        android:layout_marginEnd="20dp"
+                        android:onClick="@{()->clickHander.onEditSecondPhoneNumber()}"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_second_phone"
+                        app:layout_constraintEnd_toEndOf="@id/tv_second_phone"
+                        app:layout_constraintTop_toTopOf="@+id/tv_second_phone" />
 
                 <TextView
                         android:id="@+id/tv_second_phone"
@@ -284,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:gravity="start|center_vertical"
-                        android:text="@={userViewModel.user.patient_name}"
+                        android:text="@={userViewModel.user.phone2}"
                         android:textAlignment="viewStart"
                         app:layout_constraintTop_toBottomOf="@+id/tv_phone_second_text"
                         tools:text="01121648455" />
@@ -350,12 +386,17 @@
                         style="@style/ProfileTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="26dp"
                         android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="26dp"
+
+                        android:layout_marginBottom="16dp"
                         android:gravity="start|center_vertical"
                         android:textAlignment="viewStart"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_gender_text" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

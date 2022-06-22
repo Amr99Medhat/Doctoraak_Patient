@@ -224,8 +224,7 @@
     <string name="isolation_center">مراكز العزل</string>
     <string name="no_pharmacy_found">لا يوجد صيدليات</string>
     <string name="phone_number_onecare">رقم الهاتف - One Care</string>
-    <string name="Company_name">اسم الشركة التابع لها</string>
-    <string name="company_name">اسم الشارعكة التابع ليها(كود الشركة)</string>
+    <string name="company_name">الاسم بالشركة التابع لها</string>
     <string name="enter_phone">ادخل رقم الهاتف</string>
 
 </resources>

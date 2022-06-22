@@ -1,6 +1,7 @@
 package com.doctoraak.doctoraakpatient.ui.profile
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
@@ -15,6 +16,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
@@ -43,13 +45,14 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.log
 
 class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     var name = ""
     var photo = ""
     var gender = ""
+    var patinet_name =""
+    var phone2 = ""
 
 
     private val viewModel: ProfileViewModel by lazy {
@@ -60,6 +63,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var binding: ActivityProfileBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         binding.tvBirthday.text = "$year-${(month + 1)}-$dayOfMonth"
         showSaveButton("$year-${(month + 1)}-$dayOfMonth")
@@ -125,6 +129,8 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         name = Utils.getUserName()
         gender = user.gender
         photo = user.photo
+        patinet_name = user.patient_name
+        phone2 = user.phone2
     }
 
     private fun iniatializeUI() {
@@ -149,52 +155,42 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     private fun observeData() {
 
-        viewModel.updateProfileResponse.observe(this, object : Observer<UserResponse> {
-            override fun onChanged(t: UserResponse?) {
-
-                SessionManager.logIn(t!!.user!!)
-                showSuccessDialog(
-                    getString(R.string.profile_updated_successfulty),
-                    getString(R.string.done)
-                )
-                binding.loading!!.visibility = View.INVISIBLE
+        viewModel.updateProfileResponse.observe(this
+        ) { t ->
+            SessionManager.logIn(t!!.user!!)
+            showSuccessDialog(
+                getString(R.string.profile_updated_successfulty),
+                getString(R.string.done)
+            )
+            binding.loading.visibility = View.INVISIBLE
+            enableButton(binding.btnSave)
+            setVisiblityGone(binding.btnSave)
+        }
+        viewModel.isLoading.observe(this) { t ->
+            if (t!!) {
+                binding.loading.visibility = View.VISIBLE
+                disableButton(binding.btnSave)
+            } else {
+                binding.loading.visibility = View.INVISIBLE
                 enableButton(binding.btnSave)
-                setVisiblityGone(binding.btnSave)
             }
-        })
-        viewModel.isLoading.observe(this, object : Observer<Boolean> {
-            override fun onChanged(t: Boolean?) {
+        }
 
-                if (t!!) {
-                    binding.loading!!.visibility = View.VISIBLE
-                    disableButton(binding.btnSave)
-                } else {
-                    binding.loading!!.visibility = View.INVISIBLE
-                    enableButton(binding.btnSave)
-                }
-
+        viewModel.errorMsg.observe(this) { t ->
+            if (!t.isNullOrEmpty()) {
+                showSnackbar(binding.clProfile, t)
+                binding.loading.visibility = View.INVISIBLE
+                enableButton(binding.btnSave)
             }
-        })
+        }
 
-        viewModel.errorMsg.observe(this, object : Observer<String> {
-            override fun onChanged(t: String?) {
-                if (!t.isNullOrEmpty()) {
-                    showSnackbar(binding.clProfile, t)
-                    binding.loading!!.visibility = View.INVISIBLE
-                    enableButton(binding.btnSave)
-                }
+        viewModel.errorInt.observe(this) { t ->
+            if (t!! != 0) {
+                showSnackbar(binding.clProfile, getString(t))
+                binding.loading.visibility = View.INVISIBLE
+                enableButton(binding.btnSave)
             }
-        })
-
-        viewModel.errorInt.observe(this, object : Observer<Int> {
-            override fun onChanged(t: Int?) {
-                if (t!! != 0) {
-                    showSnackbar(binding.clProfile, getString(t))
-                    binding.loading!!.visibility = View.INVISIBLE
-                    enableButton(binding.btnSave)
-                }
-            }
-        })
+        }
 
     }
 
@@ -219,13 +215,16 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             DialogInterface.OnClickListener { dialog, id ->
                 val text = edtext.text.toString()
                 showSaveButton(text)
-                if (hint.toLowerCase(Locale.getDefault()).contains(
-                        getString(R.string.enter_your_name).toLowerCase(Locale.getDefault())
-                    )
-                ) {
-                    name = text
-                    binding.tvFulName.text = name
-                } else {
+                if (hint.equals(getString(R.string.enter_your_name)))
+                {
+                    patinet_name = text
+                    binding.tvFulName.text = patinet_name
+                } else if(hint.equals(getString(R.string.enter_phone))){
+                    phone2 = text
+
+                    binding.tvSecondPhone.text=phone2
+                }
+                else {
                     //viewModel.user.value!!.address = text
                     binding.tvAddress.text = text
                 }
@@ -334,7 +333,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                     val bitmap: Bitmap
                     if (Build.VERSION.SDK_INT < 28) {
                         bitmap = MediaStore.Images.Media
-                            .getBitmap(this.getContentResolver(), Uri.fromFile(file));
+                            .getBitmap(this.getContentResolver(), Uri.fromFile(file))
                     } else {
                         val source =
                             ImageDecoder.createSource(this.contentResolver, Uri.fromFile(file))
@@ -427,7 +426,6 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             sd.dismiss()
         })
         sd.setOkClickListener(View.OnClickListener {
-
             val request = UpdatedProfileRequest(
                 Utils.getUserId().toString(),
                 name,
@@ -436,8 +434,8 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 photo,
                 viewModel.user.value!!.address,
                 Utils.getApiToken(),
-                "Thebes",
-                "01212354971"
+                patinet_name,
+                phone2
             )
 
             if (Utils.checkInternetConnection(this, binding.clProfile)) {
@@ -453,6 +451,9 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             showInputDialog(DialogType.Text, getString(R.string.enter_your_address))
         }
 
+         fun onEditSecondPhoneNumber(){
+             showInputDialog(DialogType.Text,getString(R.string.enter_phone))
+         }
 
         fun onEditFullNameClick() {
             showInputDialog(DialogType.Text, getString(R.string.enter_your_name))
