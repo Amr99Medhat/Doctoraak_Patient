@@ -56,7 +56,6 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     var gender = ""
     var patinet_name =""
     var phone2 = ""
-    var oneCareLogo: ImageView = findViewById<ImageView>(R.id.iv_oncare_logo)
 
 
     private val viewModel: ProfileViewModel by lazy {
@@ -99,8 +98,11 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_profile
         )
-        if (SessionManager.returnUserInfo().insuranceId==1){
-            oneCareLogo.visibility=View.VISIBLE
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+
+        val user = SessionManager.returnUserInfo()
+        if (user.insuranceId==1){
+           logo.visibility=View.VISIBLE
         }
 
 
