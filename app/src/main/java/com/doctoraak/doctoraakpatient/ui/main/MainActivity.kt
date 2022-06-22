@@ -249,12 +249,15 @@ class MainActivity : BaseActivity() {
                 //when patient search for doctors check for every doctor id if found
                 //in this list and based on this, mark this doctor as favourite or not
                 viewModel.getFavouriteDoctors(Utils.getUserId() , Utils.getApiToken())
-                val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
 
-                val user = SessionManager.returnUserInfo()
-                if (user.insuranceId==1){
-                    logo.visibility=View.VISIBLE
-                }
+            }
+            val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+            val user = SessionManager.returnUserInfo()
+            if (user.insuranceId==1){
+                logo.visibility=View.VISIBLE
+            }
+            else{
+                logo.visibility=View.GONE
             }
         }
     }

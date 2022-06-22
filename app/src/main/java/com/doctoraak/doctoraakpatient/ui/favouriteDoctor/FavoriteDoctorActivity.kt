@@ -3,6 +3,7 @@ package com.doctoraak.doctoraakpatient.ui.favouriteDoctor
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -12,6 +13,7 @@ import com.doctoraak.doctoraakpatient.databinding.ActivityFavoriteDoctorBinding
 import com.doctoraak.doctoraakpatient.model.Clinic
 import com.doctoraak.doctoraakpatient.model.ClinicsResponse
 import com.doctoraak.doctoraakpatient.model.FavDoctorResponse
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.bookDoctor.BookDoctorActivity
 import com.doctoraak.doctoraakpatient.utils.Utils
@@ -47,7 +49,14 @@ class FavoriteDoctorActivity : BaseActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_favorite_doctor)
-
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user.insuranceId==1){
+            logo.visibility= View.VISIBLE
+        }
+        else{
+            logo.visibility= View.GONE
+        }
 
         setRecyclerviewLinearLayout(binding.rvFavDoctors)
         adapter = FavouriteDoctorAdapter(ArrayList<Clinic>() , this)
