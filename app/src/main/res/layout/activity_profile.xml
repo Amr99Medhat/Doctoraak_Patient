@@ -33,6 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <include
+                android:id="@+id/icons"
                 style="@style/mainLogoStyle"
                 layout="@layout/main_logos" />
 

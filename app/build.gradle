@@ -27,6 +27,7 @@ android {
     dataBinding {
         enabled true
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -78,5 +79,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     //accept payment
     implementation 'com.github.PaymobAccept:Android-SDK:0.1.2'
+
+    implementation 'wu.seal.jsontokotlin:library:3.6.1'
 }
 apply plugin: 'com.google.gms.google-services'

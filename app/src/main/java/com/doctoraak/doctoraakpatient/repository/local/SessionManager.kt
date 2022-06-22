@@ -54,6 +54,13 @@ class SessionManager(context: Context) {
 
         fun getUser() = pref.getString(USER_DATA_KEY , "")
 
+        fun returnUserInfo():User{
+            val user = getUser()
+            var gson = Gson()
+           val m =  gson.fromJson(user,User::class.java)
+            return m;
+        }
+
         fun signOut() = pref.edit()
             .remove(USER_DATA_KEY)
             .remove(DOCTOR_TYPE_KEY)

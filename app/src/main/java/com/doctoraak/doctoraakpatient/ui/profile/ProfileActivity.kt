@@ -16,23 +16,23 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
 import android.widget.DatePicker
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.customView.SweetDialog
 import com.doctoraak.doctoraakpatient.databinding.ActivityProfileBinding
 import com.doctoraak.doctoraakpatient.model.UpdatedProfileRequest
-import com.doctoraak.doctoraakpatient.model.UserResponse
 import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.DatePikerFragment
@@ -40,11 +40,14 @@ import com.doctoraak.doctoraakpatient.ui.main.MainActivity
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_search_doctor.view.*
 import kotlinx.android.synthetic.main.dialog_sweet.*
+import kotlinx.android.synthetic.main.main_logos.view.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
@@ -53,6 +56,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     var gender = ""
     var patinet_name =""
     var phone2 = ""
+    var oneCareLogo: ImageView = findViewById<ImageView>(R.id.iv_oncare_logo)
 
 
     private val viewModel: ProfileViewModel by lazy {
@@ -95,7 +99,9 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_profile
         )
-
+        if (SessionManager.returnUserInfo().insuranceId==1){
+            oneCareLogo.visibility=View.VISIBLE
+        }
 
 
         if (savedInstanceState == null) {

@@ -47,6 +47,7 @@ class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    var oneCareLogo: ImageView = findViewById<ImageView>(R.id.iv_oncare_logo)
 
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this).get(MainViewModel::class.java)
@@ -58,7 +59,13 @@ class MainActivity : BaseActivity() {
 
         if (SessionManager.isLogIn()) {
             sendUpdatedToken()
+
+
+            if (SessionManager.returnUserInfo().insuranceId==1){
+                oneCareLogo.visibility=View.VISIBLE
+            }
         }
+
 
         setupDrawer()
         observeData()
@@ -242,6 +249,10 @@ class MainActivity : BaseActivity() {
                 //when patient search for doctors check for every doctor id if found
                 //in this list and based on this, mark this doctor as favourite or not
                 viewModel.getFavouriteDoctors(Utils.getUserId() , Utils.getApiToken())
+
+                if (SessionManager.returnUserInfo().insuranceId==1){
+                    oneCareLogo.visibility=View.VISIBLE
+                }
             }
         }
     }
@@ -350,4 +361,5 @@ class MainActivity : BaseActivity() {
         }
         )
     }
+
 }
