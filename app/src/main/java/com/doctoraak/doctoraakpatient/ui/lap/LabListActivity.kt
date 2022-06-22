@@ -3,6 +3,7 @@ package com.doctoraak.doctoraakpatient.ui.lap
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.doctoraak.doctoraakpatient.R
@@ -10,6 +11,7 @@ import com.doctoraak.doctoraakpatient.adapters.LabAdapter
 import com.doctoraak.doctoraakpatient.databinding.ActivityLabListBinding
 import com.doctoraak.doctoraakpatient.model.Lab
 import com.doctoraak.doctoraakpatient.model.LabFilter
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.LapItemActivity
 import com.doctoraak.doctoraakpatient.utils.Utils
@@ -34,6 +36,14 @@ class LabListActivity : BaseActivity()
         viewModel.pageNum.postValue(1)
 
         setUpRecyclerView(labs)
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setUpRecyclerView(labs: ArrayList<Lab>)

@@ -60,9 +60,8 @@ class MainActivity : BaseActivity() {
         if (SessionManager.isLogIn()) {
             sendUpdatedToken()
         }
-cksac
-        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
 
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
         val user = SessionManager.returnUserInfo()
         if (user != null) {
             if (user.insurance!!.id == 1) {

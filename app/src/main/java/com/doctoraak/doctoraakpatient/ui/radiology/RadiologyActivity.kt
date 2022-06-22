@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -110,6 +111,14 @@ class RadiologyActivity : BaseActivity() {
 
         observeData()
         setupListenerToAutoCompleteTextViews()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setupListenerToAutoCompleteTextViews() {

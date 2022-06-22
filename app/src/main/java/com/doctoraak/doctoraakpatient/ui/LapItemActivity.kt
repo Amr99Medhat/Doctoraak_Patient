@@ -2,6 +2,7 @@ package com.doctoraak.doctoraakpatient.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -12,6 +13,7 @@ import com.doctoraak.doctoraakpatient.adapters.LabWorkingHoursAdapter
 import com.doctoraak.doctoraakpatient.databinding.ActivityLapItemBinding
 import com.doctoraak.doctoraakpatient.model.Lab
 import com.doctoraak.doctoraakpatient.model.LabWorkingHour
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.labOrder.LabOrderActivity
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.doctoraak.doctoraakpatient.utils.toBoolean
@@ -45,6 +47,14 @@ class LapItemActivity : BaseActivity()
             val intent = Intent(this  , LabOrderActivity::class.java)
             intent.putExtra(getString(R.string.lab_id_key) , lab.id)
             startActivity(intent)
+        }
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
         }
     }
 

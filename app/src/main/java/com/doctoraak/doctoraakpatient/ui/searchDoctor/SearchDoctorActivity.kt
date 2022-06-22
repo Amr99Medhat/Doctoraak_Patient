@@ -158,6 +158,14 @@ class SearchDoctorActivity : BaseActivity()
         setAdapter()
         observeData()
         autoCompleteTextViewSelectListners()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setAdapter()

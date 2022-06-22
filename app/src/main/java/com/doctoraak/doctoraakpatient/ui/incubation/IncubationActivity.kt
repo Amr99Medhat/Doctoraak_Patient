@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.isVisible
@@ -24,6 +25,7 @@ import com.doctoraak.doctoraakpatient.adapters.IncubationsAdapter
 import com.doctoraak.doctoraakpatient.databinding.ActivityIncubationBinding
 import com.doctoraak.doctoraakpatient.model.Incubation
 import com.doctoraak.doctoraakpatient.model.IncubationResponse
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.IncubationItemActivity
 import com.doctoraak.doctoraakpatient.ui.PlacePickerDialog
@@ -143,6 +145,14 @@ class IncubationActivity : BaseActivity() {
         }
 
         autoCompleteTextViewSelectListners()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setListenerToRadioButtons() {

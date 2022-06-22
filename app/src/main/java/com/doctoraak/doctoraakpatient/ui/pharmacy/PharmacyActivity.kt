@@ -20,6 +20,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.app.ActivityCompat
@@ -254,6 +255,14 @@ class PharmacyActivity : BaseActivity()
                 binding.inPharmacyOrderInfo.searchByCity.pbLoadingNames.hide()
             })
         setListenerToSendButtons()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun onFilterPharmacyClick()

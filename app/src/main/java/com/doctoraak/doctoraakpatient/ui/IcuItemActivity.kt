@@ -1,10 +1,13 @@
 package com.doctoraak.doctoraakpatient.ui
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.databinding.ActivityIcuItemBinding
 import com.doctoraak.doctoraakpatient.model.Icu
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -51,6 +54,14 @@ class IcuItemActivity : BaseActivity(){
         binding.ivImage.text = Utils.getTextForAppLanguage(icu.name,icu.name_ar,icu.name_fr)
             .substring(0 , 1).toUpperCase(Locale.US)
         binding.ivImage.setBackgroundResource(colors[(0..3).random()])
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setUpMap() {

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.DataBindingUtil
@@ -38,7 +39,13 @@ class PaymentDetailsActivity : BaseActivity() {
         binding.clickHandler = PaymentDetailsClickHander()
         binding.lifecycleOwner = this
 
-
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun observeData() {

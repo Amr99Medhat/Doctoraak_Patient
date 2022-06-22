@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.DataBindingUtil
@@ -77,6 +78,14 @@ class PaymentActivity : BaseActivity() {
             pageMargin = 25
         }
         disableViewPagerSwipe()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")

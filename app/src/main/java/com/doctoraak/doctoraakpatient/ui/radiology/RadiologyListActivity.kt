@@ -3,12 +3,14 @@ package com.doctoraak.doctoraakpatient.ui.radiology
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.adapters.RadiologyAdapter
 import com.doctoraak.doctoraakpatient.databinding.ActivityRadiologyListBinding
 import com.doctoraak.doctoraakpatient.model.*
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.RadiologyItemActivity
 import com.doctoraak.doctoraakpatient.ui.lap.LabListActivity
@@ -33,6 +35,14 @@ class RadiologyListActivity : BaseActivity()
         viewModel.pageNum.postValue(1)
 
         setUpRecyclerView(radios)
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setUpRecyclerView(radio: ArrayList<Radiology>)

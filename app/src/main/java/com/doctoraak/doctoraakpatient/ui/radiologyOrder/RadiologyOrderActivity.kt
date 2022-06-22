@@ -17,10 +17,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
-import android.widget.AdapterView
-import android.widget.AutoCompleteTextView
-import android.widget.DatePicker
-import android.widget.RadioButton
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.app.ActivityCompat
@@ -157,6 +154,14 @@ class RadiologyOrderActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
         setListenerToRadioButtons()
         setListenerToRadioButtonsSendOptions()
         observeData()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setListenerToRadioButtonsSendOptions() {

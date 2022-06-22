@@ -2,6 +2,7 @@ package com.doctoraak.doctoraakpatient.ui.notification
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +14,7 @@ import com.doctoraak.doctoraakpatient.databinding.ActivityNotificationBinding
 import com.doctoraak.doctoraakpatient.model.BaseResponse
 import com.doctoraak.doctoraakpatient.model.NotificationInfo
 import com.doctoraak.doctoraakpatient.model.NotificationsResponse
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.myOrders.MyOrdersActivity
 import com.doctoraak.doctoraakpatient.utils.Utils
@@ -56,6 +58,14 @@ class NotificationActivity : BaseActivity() {
         })
 
         enableSwipeItem()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun enableSwipeItem() {
