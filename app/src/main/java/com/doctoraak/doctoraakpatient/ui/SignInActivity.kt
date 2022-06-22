@@ -1,5 +1,6 @@
 package com.doctoraak.doctoraakpatient.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
@@ -82,6 +83,7 @@ class SignInActivity : BaseActivity(), BaseResponseListener<UserResponse>
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onError(errorMsgId: Int) {
         stopLoading()
         if (errorMsgId != 0)
