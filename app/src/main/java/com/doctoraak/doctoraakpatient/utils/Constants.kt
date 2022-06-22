@@ -11,5 +11,7 @@ class Constants {
         val KIOSK_INTEGRATION_ID = 27701
 
         val INSURANCE_CODE_START_WITH_FOR_NOTES = "02"
+
+        val MISSING_DATA = "MISSING_DATA"
     }
 }

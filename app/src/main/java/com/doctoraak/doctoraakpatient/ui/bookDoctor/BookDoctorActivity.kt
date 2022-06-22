@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -16,23 +17,23 @@ import com.doctoraak.doctoraakpatient.model.WorkingHour
 import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.bookDoctorDetail.BookDoctorDetailsActivity
+import com.doctoraak.doctoraakpatient.ui.profile.ProfileActivity
 import com.doctoraak.doctoraakpatient.utils.*
 import kotlinx.android.synthetic.main.activity_book_doctor.view.*
 import java.util.*
 
-class BookDoctorActivity : BaseActivity()
-{
+class BookDoctorActivity : BaseActivity() {
     private lateinit var binding: ActivityBookDoctorBinding
     lateinit var clincic: Clinic
 
-    private lateinit var adapter : WorkingHoursAdapter
-    private lateinit var doctorFreeDays : DoctorFreeDaysAdapter
+    private lateinit var adapter: WorkingHoursAdapter
+    private lateinit var doctorFreeDays: DoctorFreeDaysAdapter
     private var isButtonVisible = true
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_book_doctor)
+
 
         setRecyclerviewLayout()
 
@@ -57,34 +58,41 @@ class BookDoctorActivity : BaseActivity()
         }
 
         binding.tvAddress.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("geo:${clincic.latt},${clincic.lang}")))
+            startActivity(Intent(Intent.ACTION_VIEW,
+                Uri.parse("geo:${clincic.latt},${clincic.lang}")))
         }
 
         setupFreeDaysAdapter()
         binding.scrollView.post(Runnable {
-            binding.scrollView.scrollTo(0,0)
+            binding.scrollView.scrollTo(0, 0)
         })
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
-    private fun onBookClick(date: String? = null, shift: Int? = null)
-    {
+    private fun onBookClick(date: String? = null, shift: Int? = null) {
         val intent = Intent(this, BookDoctorDetailsActivity::class.java)
-        intent.putExtra(getString(R.string.clinic_id_key) , clincic.id)
+        intent.putExtra(getString(R.string.clinic_id_key), clincic.id)
         date?.let {
-            intent.putExtra(getString(R.string.book_date_key) , date)
+            intent.putExtra(getString(R.string.book_date_key), date)
         }
         shift?.let {
-            intent.putExtra(getString(R.string.book_shift_key) , shift)
+            intent.putExtra(getString(R.string.book_shift_key), shift)
         }
         startActivity(intent)
     }
 
-    private fun setupFreeDaysAdapter()
-    {
+    private fun setupFreeDaysAdapter() {
         val list = clincic.free_days
-        val layout = LinearLayoutManager(this , LinearLayoutManager.HORIZONTAL , false)
+        val layout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvFreeDays.layoutManager = layout
-        doctorFreeDays = DoctorFreeDaysAdapter(list , this) {
+        doctorFreeDays = DoctorFreeDaysAdapter(list, this) {
             if (SessionManager.getDoctorType() != DoctorType.OPTICAL_CENTER)
                 onBookClick(it.date, if (it.part_id == 1 || it.part_id == 2) it.part_id else null)
         }
@@ -93,12 +101,12 @@ class BookDoctorActivity : BaseActivity()
 
     private fun setAdapter() {
         val list = getActiveWorkingHours(clincic.working_hours)
-        adapter = WorkingHoursAdapter(list , this)
+        adapter = WorkingHoursAdapter(list, this)
         addListDivider(binding.rvWorkingDate)
         binding.rvWorkingDate.adapter = adapter
     }
 
-    private fun getActiveWorkingHours(workingHours: ArrayList<WorkingHour>) : ArrayList<WorkingHour> {
+    private fun getActiveWorkingHours(workingHours: ArrayList<WorkingHour>): ArrayList<WorkingHour> {
         val list = ArrayList<WorkingHour>()
         for (item in workingHours)
             if (item.active.toBoolean())
@@ -107,14 +115,13 @@ class BookDoctorActivity : BaseActivity()
     }
 
     private fun setRecyclerviewLayout() {
-        val layout = LinearLayoutManager(this  )
+        val layout = LinearLayoutManager(this)
         binding.rvWorkingDate.rv_working_date
             .layoutManager = layout
 
     }
 
-    private fun InitializeUI()
-    {
+    private fun InitializeUI() {
         if (SessionManager.getDoctorType() == DoctorType.OPTICAL_CENTER)
             binding.btnBook.hide()
 
@@ -123,22 +130,25 @@ class BookDoctorActivity : BaseActivity()
             .error(R.drawable.ic_doctor_placeholder)
             .into(binding.ivDoctorImage)
 
-        binding.tvDoctorName.text = Utils.getTextForAppLanguage(clincic.doctor.name,clincic.doctor.name_ar,
-            clincic.doctor.name_fr)
+        binding.tvDoctorName.text =
+            Utils.getTextForAppLanguage(clincic.doctor.name, clincic.doctor.name_ar,
+                clincic.doctor.name_fr)
         try {
             binding.rbDoctor.rating = (clincic.doctor.degree_rate).toFloat()
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+        }
 
         binding.tvDegreeName.text = clincic.doctor.title
         binding.tvPhone.text = clincic.doctor.phone
 
         if (clincic.specialization != null) {
-            binding.tvSpecialization.text = Utils.getTextForAppLanguage(clincic.specialization!!.name,clincic.specialization!!.name_ar,
-                clincic.specialization!!.name_fr)
+            binding.tvSpecialization.text =
+                Utils.getTextForAppLanguage(clincic.specialization!!.name,
+                    clincic.specialization!!.name_ar,
+                    clincic.specialization!!.name_fr)
         }
         Utils.getUser()?.insuranceCode?.let {
-            if (it.startsWith(Constants.INSURANCE_CODE_START_WITH_FOR_NOTES))
-            {
+            if (it.startsWith(Constants.INSURANCE_CODE_START_WITH_FOR_NOTES)) {
                 binding.tvFees.text = clincic.notes
                 binding.tvFees.visibility = View.VISIBLE
             } else
@@ -146,7 +156,8 @@ class BookDoctorActivity : BaseActivity()
         }
 
 
-        binding.tvAddress.text = "${Utils.getAreaName((clincic.area).toInt())}, ${Utils.getCityName((clincic.city).toInt())} \n ${clincic.address}"
+        binding.tvAddress.text =
+            "${Utils.getAreaName((clincic.area).toInt())}, ${Utils.getCityName((clincic.city).toInt())} \n ${clincic.address}"
 
     }
 }

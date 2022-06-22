@@ -51,11 +51,10 @@ class FavoriteDoctorActivity : BaseActivity()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_favorite_doctor)
         val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
         val user = SessionManager.returnUserInfo()
-        if (user.insuranceId==1){
-            logo.visibility= View.VISIBLE
-        }
-        else{
-            logo.visibility= View.GONE
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
         }
 
         setRecyclerviewLinearLayout(binding.rvFavDoctors)

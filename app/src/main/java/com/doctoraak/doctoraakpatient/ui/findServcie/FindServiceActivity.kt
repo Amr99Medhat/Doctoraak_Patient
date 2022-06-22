@@ -2,6 +2,8 @@ package com.doctoraak.doctoraakpatient.ui.findServcie
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.databinding.ActivityFindServiceBinding
@@ -83,6 +85,14 @@ class FindServiceActivity : BaseActivity() {
 
         binding.itCvIsolationCenter.setOnClickListener {
             IcuActivity.launch(this, true)
+        }
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
         }
 
     }

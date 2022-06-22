@@ -37,6 +37,7 @@ import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.DatePikerFragment
 import com.doctoraak.doctoraakpatient.ui.main.MainActivity
+import com.doctoraak.doctoraakpatient.utils.Constants
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -54,7 +55,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     var name = ""
     var photo = ""
     var gender = ""
-    var patinet_name =""
+    var patinet_name = ""
     var phone2 = ""
 
 
@@ -98,11 +99,17 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_profile
         )
+
+        val missing = intent.getBooleanExtra(Constants.MISSING_DATA, false)
+        if (missing) {
+            //Toast.makeText(applicationContext,"missing_data",Toast.LENGTH_SHORT).show()
+            showMissingDataDialog()
+        }
         val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
 
         val user = SessionManager.returnUserInfo()
-        if (user.insuranceId==1){
-           logo.visibility=View.VISIBLE
+        if (user!!.insuranceId == 1) {
+            logo.visibility = View.VISIBLE
         }
 
 
@@ -223,16 +230,14 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             DialogInterface.OnClickListener { dialog, id ->
                 val text = edtext.text.toString()
                 showSaveButton(text)
-                if (hint.equals(getString(R.string.enter_your_name)))
-                {
+                if (hint.equals(getString(R.string.enter_your_name))) {
                     patinet_name = text
                     binding.tvFulName.text = patinet_name
-                } else if(hint.equals(getString(R.string.enter_phone))){
+                } else if (hint.equals(getString(R.string.enter_phone))) {
                     phone2 = text
 
-                    binding.tvSecondPhone.text=phone2
-                }
-                else {
+                    binding.tvSecondPhone.text = phone2
+                } else {
                     //viewModel.user.value!!.address = text
                     binding.tvAddress.text = text
                 }
@@ -454,14 +459,31 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         )
     }
 
+    fun showMissingDataDialog() {
+        val sd = SweetDialog.newInstance(
+            this,
+            com.doctoraak.doctoraakpatient.customView.DialogType.ERROR
+        )
+        sd.show()
+        sd.setMessage(getString(R.string.please_complete_your_profile))
+        sd.setTitle(getString(R.string.warning))
+        sd.setCancelClickListener(View.OnClickListener {
+            sd.dismiss()
+        })
+        sd.setOkClickListener(View.OnClickListener {
+            sd.dismiss()
+        }
+        )
+    }
+
     inner class ProfileClickHander() {
         fun onEditAddressClick() {
             showInputDialog(DialogType.Text, getString(R.string.enter_your_address))
         }
 
-         fun onEditSecondPhoneNumber(){
-             showInputDialog(DialogType.Text,getString(R.string.enter_phone))
-         }
+        fun onEditSecondPhoneNumber() {
+            showInputDialog(DialogType.Text, getString(R.string.enter_phone))
+        }
 
         fun onEditFullNameClick() {
             showInputDialog(DialogType.Text, getString(R.string.enter_your_name))

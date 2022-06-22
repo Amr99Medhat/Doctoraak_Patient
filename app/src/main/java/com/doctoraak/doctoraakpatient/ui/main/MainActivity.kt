@@ -34,6 +34,7 @@ import com.doctoraak.doctoraakpatient.ui.notification.NotificationActivity
 import com.doctoraak.doctoraakpatient.ui.payment.PaymentActivity
 import com.doctoraak.doctoraakpatient.ui.paymentDetails.PaymentDetailsActivity
 import com.doctoraak.doctoraakpatient.ui.profile.ProfileActivity
+import com.doctoraak.doctoraakpatient.utils.Constants
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.doctoraak.doctoraakpatient.utils.hide
 import com.google.android.gms.tasks.OnCompleteListener
@@ -58,13 +59,23 @@ class MainActivity : BaseActivity() {
 
         if (SessionManager.isLogIn()) {
             sendUpdatedToken()
-            val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        }
+cksac
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
 
-            val user = SessionManager.returnUserInfo()
-            if (user.insuranceId==1){
-                logo.visibility=View.VISIBLE
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+                if (user.patient_name == "" || user.phone2 == "") {
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
+                    intent.putExtra(Constants.MISSING_DATA, true)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
+
 
 
         setupDrawer()
@@ -91,14 +102,14 @@ class MainActivity : BaseActivity() {
 
         binding.mainContent.tvPayment.setOnClickListener {
             if (SessionManager.isLogIn()) {
-                startActivity(Intent(this@MainActivity , PaymentActivity::class.java))
-            }else {
+                startActivity(Intent(this@MainActivity, PaymentActivity::class.java))
+            } else {
                 showLoginFirstDialog(getString(R.string.login_first))
             }
         }
 
         binding.mainContent.tvDetails.setOnClickListener {
-            startActivity(Intent(this@MainActivity , PaymentDetailsActivity::class.java))
+            startActivity(Intent(this@MainActivity, PaymentDetailsActivity::class.java))
         }
     }
 
@@ -110,8 +121,10 @@ class MainActivity : BaseActivity() {
                     return@OnCompleteListener
                 }
                 val token = task.result?.token
-                ApiOthers.updateFirebaseToken(token!! , Utils.getUserId()
-                    , "PATIENT" , Utils.getApiToken(),
+                ApiOthers.updateFirebaseToken(token!!,
+                    Utils.getUserId(),
+                    "PATIENT",
+                    Utils.getApiToken(),
                     object : BaseResponseListener<FirebaseTokenResponse> {
                         override fun onSuccess(model: FirebaseTokenResponse) {}
 
@@ -126,11 +139,11 @@ class MainActivity : BaseActivity() {
 
 
     private fun setupDrawer() {
-        if (!SessionManager.isLogIn()){
+        if (!SessionManager.isLogIn()) {
             binding.tvLogout.hide()
         }
 
-        binding.mainContent.toolBar.iv_notification.setOnClickListener{
+        binding.mainContent.toolBar.iv_notification.setOnClickListener {
             if (SessionManager.isLogIn()) {
                 launchIntent(this, NotificationActivity::class.java)
             } else {
@@ -148,8 +161,7 @@ class MainActivity : BaseActivity() {
             showWarringDialog()
         }
         actionBarDrawerToggle = ActionBarDrawerToggle(
-            this, binding.drawer
-            , R.string.open, R.string.close
+            this, binding.drawer, R.string.open, R.string.close
         )
 
         binding.drawer.addDrawerListener(actionBarDrawerToggle)
@@ -164,7 +176,7 @@ class MainActivity : BaseActivity() {
                 R.id.nav_profile -> {
                     if (SessionManager.isLogIn()) {
                         launchIntent(this, ProfileActivity::class.java)
-                    }else{
+                    } else {
                         showLoginFirstDialog(getString(R.string.login_first))
                     }
                 }
@@ -188,16 +200,16 @@ class MainActivity : BaseActivity() {
                     selectLanguage()
 
                 }
-                R.id.nav_analytics ->{
+                R.id.nav_analytics -> {
                     if (SessionManager.isLogIn()) {
-                        launchIntent(this , AnalyticActivity::class.java)
+                        launchIntent(this, AnalyticActivity::class.java)
                     } else {
                         showLoginFirstDialog(getString(R.string.login_first))
                     }
                 }
-              /*  R.id.nav_log_out -> {
-                    showWarringDialog()
-                }*/
+                /*  R.id.nav_log_out -> {
+                      showWarringDialog()
+                  }*/
 
             }
 
@@ -226,13 +238,17 @@ class MainActivity : BaseActivity() {
         val website = mView.findViewById(R.id.iv_website)
                 as ImageView
 
-        messenger.setOnClickListener { Utils.openMessanger(this@MainActivity,"2088455828039695") }
-        whatsapp.setOnClickListener { Utils.openWhatsApp(this@MainActivity , "2"+contactInfo.data[3]) }
-        phone.setOnClickListener { Utils.openDialer(this@MainActivity , contactInfo.data[3]) }
-        email.setOnClickListener { Utils.openEmail(this@MainActivity , contactInfo.data[2]) }
-        facebook.setOnClickListener { Utils.openFacebookPage(this@MainActivity
-         , contactInfo.data[0] , "2088455828039695") }
-        website.setOnClickListener { Utils.openWebsite(this@MainActivity , contactInfo.data[1]) }
+        messenger.setOnClickListener { Utils.openMessanger(this@MainActivity, "2088455828039695") }
+        whatsapp.setOnClickListener {
+            Utils.openWhatsApp(this@MainActivity,
+                "2" + contactInfo.data[3])
+        }
+        phone.setOnClickListener { Utils.openDialer(this@MainActivity, contactInfo.data[3]) }
+        email.setOnClickListener { Utils.openEmail(this@MainActivity, contactInfo.data[2]) }
+        facebook.setOnClickListener {
+            Utils.openFacebookPage(this@MainActivity, contactInfo.data[0], "2088455828039695")
+        }
+        website.setOnClickListener { Utils.openWebsite(this@MainActivity, contactInfo.data[1]) }
 
         builder.setView(mView)
         val alertDialog = builder.create()
@@ -244,22 +260,28 @@ class MainActivity : BaseActivity() {
         super.onResume()
         if (SessionManager.isLogIn()) {
             setImageAndUsername()
-            if (Utils.checkInternetConnection(this , binding.drawer)){
+            if (Utils.checkInternetConnection(this, binding.drawer)) {
                 //get favourite list ids and save it to shaerdpref and later
                 //when patient search for doctors check for every doctor id if found
                 //in this list and based on this, mark this doctor as favourite or not
-                viewModel.getFavouriteDoctors(Utils.getUserId() , Utils.getApiToken())
+                viewModel.getFavouriteDoctors(Utils.getUserId(), Utils.getApiToken())
 
             }
-            val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
-            val user = SessionManager.returnUserInfo()
-            if (user.insuranceId==1){
-                logo.visibility=View.VISIBLE
-            }
-            else{
-                logo.visibility=View.GONE
+        }
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+                if (user.patient_name == "" || user.phone2 == "") {
+                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                    finish()
+                }
             }
         }
+
     }
 
     private fun setImageAndUsername() {
@@ -275,12 +297,12 @@ class MainActivity : BaseActivity() {
     private fun logout() {
         SessionManager.signOut()
         startActivity(Intent(this, SignInActivity::class.java))
+        finish()
     }
 
     private fun selectLanguage() {
         val options = arrayOf<CharSequence>(
-            getString(R.string.english), getString(R.string.arabic)
-            , getString(R.string.cancel)
+            getString(R.string.english), getString(R.string.arabic), getString(R.string.cancel)
         )
 
         val builder = AlertDialog.Builder(this)
@@ -290,12 +312,12 @@ class MainActivity : BaseActivity() {
             if (options[item].equals(getString(R.string.english))) {
                 SessionManager.saveLang("en")
                 changelayoutDirection("en")
-                Utils.changeLanguage(this , "en")
+                Utils.changeLanguage(this, "en")
                 recreate()
             } else if (options[item].equals(getString(R.string.arabic))) {
                 SessionManager.saveLang("ar")
                 changelayoutDirection("ar")
-                Utils.changeLanguage(this , "ar")
+                Utils.changeLanguage(this, "ar")
                 recreate()
             } else {
                 dialog.dismiss()
@@ -349,6 +371,7 @@ class MainActivity : BaseActivity() {
         })
 
     }
+
     fun showWarringDialog() {
         val sd = SweetDialog.newInstance(
             this,

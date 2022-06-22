@@ -35,10 +35,10 @@ class SessionManager(context: Context) {
 
         private const val USER_ID_MOBILE_Verfi_KEY = "USER_ID_MOBILE_Verfi_KEY"
 
-        fun saveUserIDMobileVerfi(id : String) =
-        pref.edit().putString(USER_ID_MOBILE_Verfi_KEY , id).apply()
+        fun saveUserIDMobileVerfi(id: String) =
+            pref.edit().putString(USER_ID_MOBILE_Verfi_KEY, id).apply()
 
-        fun getUserIDMobileVerfi() = pref.getString(USER_ID_MOBILE_Verfi_KEY , "1")
+        fun getUserIDMobileVerfi() = pref.getString(USER_ID_MOBILE_Verfi_KEY, "1")
 
         fun isInMobileVerfi() = pref.contains(USER_ID_MOBILE_Verfi_KEY)
 
@@ -52,12 +52,11 @@ class SessionManager(context: Context) {
             USER_DATA_KEY, Gson().toJson(model)
         ).apply()
 
-        fun getUser() = pref.getString(USER_DATA_KEY , "")
+        fun getUser() = pref.getString(USER_DATA_KEY, "")
 
-        fun returnUserInfo():User{
+        fun returnUserInfo(): User? {
             val user = getUser()
-            var gson = Gson()
-           val m =  gson.fromJson(user,User::class.java)
+            val m = Gson().fromJson(user, User::class.java)
             return m;
         }
 
@@ -192,8 +191,7 @@ class SessionManager(context: Context) {
             .putString(CACHE_LIST_KEY, Gson().toJson(obj))
             .apply()
 
-        fun getCachedList(): String
-        {
+        fun getCachedList(): String {
             val list = pref.getString(CACHE_LIST_KEY, "")!!
             pref.edit()
                 .remove(CACHE_LIST_KEY)
@@ -204,8 +202,7 @@ class SessionManager(context: Context) {
 
         fun getDoctorType(): DoctorType? = DoctorType.getType(pref.getInt(DOCTOR_TYPE_KEY, -1))
 
-        fun setDoctorType(type: DoctorType)
-        {
+        fun setDoctorType(type: DoctorType) {
             pref.edit()
                 .putInt(DOCTOR_TYPE_KEY, type.value)
                 .apply()

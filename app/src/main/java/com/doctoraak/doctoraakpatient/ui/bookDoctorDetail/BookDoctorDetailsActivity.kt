@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
+import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.DataBindingUtil
@@ -114,6 +115,14 @@ class BookDoctorDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetList
         setListenerForRadioButtons()
         observeData()
         initData()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun initData()
