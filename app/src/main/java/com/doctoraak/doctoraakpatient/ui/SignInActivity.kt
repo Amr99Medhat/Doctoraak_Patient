@@ -18,8 +18,7 @@ import com.doctoraak.doctoraakpatient.utils.validateEmpty
 import com.doctoraak.doctoraakpatient.utils.validatePassword
 import com.doctoraak.doctoraakpatient.utils.validatePhone
 
-class SignInActivity : BaseActivity(), BaseResponseListener<UserResponse>
-{
+class SignInActivity : BaseActivity(), BaseResponseListener<UserResponse> {
     private lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,8 +50,7 @@ class SignInActivity : BaseActivity(), BaseResponseListener<UserResponse>
         startActivity(Intent(this, SignUpActivity::class.java))
     }
 
-    private fun logInClick()
-    {
+    private fun logInClick() {
         val phone = binding.etPhone.text.toString()
         val password = binding.etPassword.text.toString()
 
@@ -69,6 +67,7 @@ class SignInActivity : BaseActivity(), BaseResponseListener<UserResponse>
         model.let {
             SessionManager.removeMobileVerfiMode()
             SessionManager.logIn(it.user!!)
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
@@ -87,7 +86,7 @@ class SignInActivity : BaseActivity(), BaseResponseListener<UserResponse>
     override fun onError(errorMsgId: Int) {
         stopLoading()
         if (errorMsgId != 0)
-        toast(errorMsgId)
+            toast(errorMsgId)
     }
 
 }

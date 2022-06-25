@@ -17,6 +17,7 @@
     <color name="light_blue">#1CA3C6</color>
     <color name="purple">#9C5EFC</color>
     <color name="red">#F00A0A</color>
+    <color name="light_red">#F2CF4A4A</color>
     <color name="or_views_color">#ECE1E1</color>
     <color name="darkWhite">#fafafa</color>
 </resources>

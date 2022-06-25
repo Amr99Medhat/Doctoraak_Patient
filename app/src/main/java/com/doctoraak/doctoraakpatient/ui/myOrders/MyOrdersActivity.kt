@@ -1,11 +1,14 @@
 package com.doctoraak.doctoraakpatient.ui.myOrders
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.adapters.MyOrdersPagerAdapter
 import com.doctoraak.doctoraakpatient.databinding.ActivityMyOrdersBinding
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 
 class MyOrdersActivity : BaseActivity()
@@ -21,6 +24,14 @@ class MyOrdersActivity : BaseActivity()
 
         handleBottomNavigation()
         handleViewPagerSwipe()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
 

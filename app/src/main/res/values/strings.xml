@@ -259,5 +259,7 @@
     <string name="company_name">Company name</string>
     <string name="enter_phone">enter phone</string>
     <string name="please_complete_your_profile">Please Complete Your Profile</string>
+    <string name="must_be_11_digits">Phone Number Must be 11 digits</string>
+    <string name="enter_your_birthday">Enter Your Birthday</string>
 
 </resources>

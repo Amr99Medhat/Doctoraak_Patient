@@ -1,6 +1,7 @@
 package com.doctoraak.doctoraakpatient.ui.profile
 
 import android.Manifest
+import android.R.attr.maxLength
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -8,6 +9,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -15,18 +17,19 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.InputFilter
+import android.text.InputFilter.LengthFilter
 import android.text.InputType
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
 import android.widget.DatePicker
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.doctoraak.doctoraakpatient.R
@@ -102,16 +105,8 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
         val missing = intent.getBooleanExtra(Constants.MISSING_DATA, false)
         if (missing) {
-            //Toast.makeText(applicationContext,"missing_data",Toast.LENGTH_SHORT).show()
             showMissingDataDialog()
         }
-        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
-
-        val user = SessionManager.returnUserInfo()
-        if (user!!.insuranceId == 1) {
-            logo.visibility = View.VISIBLE
-        }
-
 
         if (savedInstanceState == null) {
             initializeData()
@@ -125,11 +120,21 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         iniatializeUI()
 
         binding.btnSave.setOnClickListener {
+            if (isValidProfileDetails()) {
+                showWrringDialog()
 
-            showWrringDialog()
+            }
         }
         observeData()
         setListenerToInfoButtons()
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun getCurrentStat(savedInstanceState: Bundle) {
@@ -206,7 +211,6 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 enableButton(binding.btnSave)
             }
         }
-
     }
 
     private fun showInputDialog(type: DialogType, hint: String) {
@@ -217,6 +221,10 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         val edtext = mView.findViewById(R.id.ed_data)
                 as TextInputEditText
 
+        if (type == DialogType.Number){
+            edtext.inputType = InputType.TYPE_CLASS_NUMBER
+            edtext.filters = arrayOf<InputFilter>(LengthFilter(11))
+        }
         val edltext = mView.findViewById(R.id.edl_data)
                 as TextInputLayout
 
@@ -242,6 +250,9 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                     binding.tvAddress.text = text
                 }
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    checkFields()
+                }
             })
             .setNegativeButton(getString(R.string.cancel),
                 DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
@@ -476,13 +487,30 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         )
     }
 
+    private fun showUnValidProfileDialog(errorMessage: String) {
+        val sd = SweetDialog.newInstance(
+            this,
+            com.doctoraak.doctoraakpatient.customView.DialogType.ERROR
+        )
+        sd.show()
+        sd.setMessage(errorMessage)
+        sd.setTitle(getString(R.string.error))
+        sd.setCancelClickListener(View.OnClickListener {
+            sd.dismiss()
+        })
+        sd.setOkClickListener(View.OnClickListener {
+            sd.dismiss()
+        }
+        )
+    }
+
     inner class ProfileClickHander() {
         fun onEditAddressClick() {
             showInputDialog(DialogType.Text, getString(R.string.enter_your_address))
         }
 
         fun onEditSecondPhoneNumber() {
-            showInputDialog(DialogType.Text, getString(R.string.enter_phone))
+            showInputDialog(DialogType.Number, getString(R.string.enter_phone))
         }
 
         fun onEditFullNameClick() {
@@ -521,6 +549,62 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             // Save a file: path for use with ACTION_VIEW intents
             currentPhotoPath = absolutePath
         }
+    }
+
+    private fun isValidProfileDetails(): Boolean {
+        when {
+            binding.tvFulName.text.toString().trim().isEmpty() -> {
+                showUnValidProfileDialog(getString(R.string.enter_your_name))
+                binding.tvFulName.requestFocus()
+                return false
+            }
+            binding.tvSecondPhone.text.toString().trim().isEmpty() -> {
+                showUnValidProfileDialog(getString(R.string.enter_phone))
+                binding.tvSecondPhone.requestFocus()
+                return false
+            }
+            binding.tvSecondPhone.text.toString().trim().length != 11 -> {
+                showUnValidProfileDialog(getString(R.string.must_be_11_digits))
+                binding.tvSecondPhone.requestFocus()
+                return false
+            }
+            else -> {
+                return true
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun checkFields() {
+        if (binding.tvFulName.text.toString().trim().isEmpty()) {
+            binding.fullNameText.text = "${resources.getText(R.string.name)} *"
+            binding.ivEditFullName.backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.red, null))
+            binding.fullNameText.setTextColor(resources.getColor(R.color.red, null))
+        } else {
+            binding.fullNameText.text = resources.getText(R.string.name)
+            binding.ivEditFullName.backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.colorAccent, null))
+            binding.fullNameText.setTextColor(resources.getColor(R.color.gray_1, null))
+        }
+        if (binding.tvSecondPhone.text.toString().trim().isEmpty()) {
+            binding.tvPhoneSecondText.text = "${resources.getText(R.string.phone_number)} *"
+            binding.ivEditPhone.backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.red, null))
+            binding.tvPhoneSecondText.setTextColor(resources.getColor(R.color.red, null))
+        } else {
+            binding.tvPhoneSecondText.text = resources.getText(R.string.phone_number)
+            binding.ivEditPhone.backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.colorAccent, null))
+            binding.tvPhoneSecondText.setTextColor(resources.getColor(R.color.gray_1, null))
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onResume() {
+        super.onResume()
+        checkFields()
     }
 
 

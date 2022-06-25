@@ -75,8 +75,6 @@ class MainActivity : BaseActivity() {
             }
         }
 
-
-
         setupDrawer()
         observeData()
         binding.mainContent.itCvFindService.setOnClickListener {

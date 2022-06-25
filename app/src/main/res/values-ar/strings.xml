@@ -86,7 +86,7 @@
     <string name="password">كلمة المرور</string>
     <string name="password_changed">تم تغيير كلمة المرور بنجاح</string>
     <string name="pharmacy">صيدلية</string>
-    <string name="phone_number">رقم الموبايل</string>
+    <string name="phone_number">رقم الهاتف</string>
     <string name="phone_number_insurance_code">رقم الهاتف / كود التأمين</string>
     <string name="please_choose_name_and_type">يرجى اختيار اسم الدواء ونوعه</string>
     <string name="please_select_location">من فضلك اختر موقع</string>
@@ -227,5 +227,7 @@
     <string name="company_name">الاسم بالشركة التابع لها</string>
     <string name="enter_phone">ادخل رقم الهاتف</string>
     <string name="please_complete_your_profile">الرجاء استكمال بيانات الملف الشخصى</string>
+    <string name="must_be_11_digits">رقم الهاتف يجب أن يكون 11 رقمًا</string>
+    <string name="enter_your_birthday">ادخل تاريخ الميلاد</string>
 
 </resources>

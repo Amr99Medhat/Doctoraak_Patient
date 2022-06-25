@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,21 +24,19 @@ import com.doctoraak.doctoraakpatient.utils.DoctorType
 import com.doctoraak.doctoraakpatient.utils.Utils
 
 // todo handle Medical centers and hospitals and Optical Centers.
-class DoctorCategoryActivity : BaseActivity()
-{
+class DoctorCategoryActivity : BaseActivity() {
     private lateinit var binding: ActivityDoctorCategoryBinding
     private val viewModel by lazy { ViewModelProvider(this).get(DoctorCategoryViewModel::class.java) }
     private lateinit var adapter: DoctorCategoryAdapter
     private var isMedicalCenter = false
 
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_doctor_category)
 
-        when (SessionManager.getDoctorType()){
+        when (SessionManager.getDoctorType()) {
             DoctorType.HOSPITAL -> {
                 binding.tvTitle.text = getString(R.string.hospital)
                 binding.btnGeneral.visibility = View.VISIBLE
@@ -55,15 +54,14 @@ class DoctorCategoryActivity : BaseActivity()
         setRecyclerviewLayout()
         ObserveData()
 
-        if (Utils.checkInternetConnection(this , binding.clDoctorCategory)) {
+        if (Utils.checkInternetConnection(this, binding.clDoctorCategory)) {
             viewModel.getCategories()
         }
         adapter = DoctorCategoryAdapter(ArrayList(), this)
         binding.rvList.adapter = adapter
 
         adapter.setOnItemClickListener(object : DoctorCategoryAdapter.ClickListener {
-            override fun onClick(model: Category, aView: View)
-            {
+            override fun onClick(model: Category, aView: View) {
                 categorySelected(model.id)
             }
         })
@@ -77,12 +75,19 @@ class DoctorCategoryActivity : BaseActivity()
             override fun onTextChanged(txt: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 adapter.filter.filter(txt)
             }
+
             override fun afterTextChanged(p0: Editable?) {}
         })
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
     }
 
-    private fun categorySelected(id: Int)
-    {
+    private fun categorySelected(id: Int) {
         val intent = Intent(this@DoctorCategoryActivity, SearchDoctorActivity::class.java)
         intent.putExtra(getString(R.string.specialization_Id_Key), id)
         startActivity(intent)
@@ -100,10 +105,10 @@ class DoctorCategoryActivity : BaseActivity()
             @SuppressLint("SuspiciousIndentation")
             override fun onChanged(t: DoctorCategoryResponse?) {
                 binding.loading.visibility = View.GONE
-                    if (t!!.data.size > 0 ) {
-                        binding.rvList.visibility = View.VISIBLE
-                        adapter.setData(t.data)
-                    }
+                if (t!!.data.size > 0) {
+                    binding.rvList.visibility = View.VISIBLE
+                    adapter.setData(t.data)
+                }
 
             }
         })
@@ -119,7 +124,7 @@ class DoctorCategoryActivity : BaseActivity()
         viewModel.errorMsg.observe(this, object : Observer<String> {
             override fun onChanged(t: String?) {
                 if (!t!!.equals("")) {
-                    showSnackbar(binding.clDoctorCategory , t)
+                    showSnackbar(binding.clDoctorCategory, t)
                     binding.loading.visibility = View.GONE
                 }
             }
@@ -127,8 +132,8 @@ class DoctorCategoryActivity : BaseActivity()
 
         viewModel.errorInt.observe(this, object : Observer<Int> {
             override fun onChanged(t: Int?) {
-                if (t!! != 0){
-                    showSnackbar(binding.clDoctorCategory , getString(t))
+                if (t!! != 0) {
+                    showSnackbar(binding.clDoctorCategory, getString(t))
                     binding.loading.visibility = View.GONE
                 }
             }

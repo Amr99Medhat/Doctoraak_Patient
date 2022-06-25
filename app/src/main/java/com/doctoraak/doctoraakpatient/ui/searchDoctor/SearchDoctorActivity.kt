@@ -29,20 +29,21 @@ import com.doctoraak.doctoraakpatient.model.FavDoctorResponse
 import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.PlacePickerDialog
+import com.doctoraak.doctoraakpatient.ui.SignInActivity
 import com.doctoraak.doctoraakpatient.ui.bookDoctor.BookDoctorActivity
+import com.doctoraak.doctoraakpatient.ui.profile.ProfileActivity
 import com.doctoraak.doctoraakpatient.utils.*
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.search_by_address.view.*
 import kotlinx.android.synthetic.main.search_by_address.view.cb_insurance
 import kotlinx.android.synthetic.main.search_by_city_and_area.view.*
 
-class SearchDoctorActivity : BaseActivity()
-{
+class SearchDoctorActivity : BaseActivity() {
     private var isMedicalCenter = false
     private var specializationId = -1
     private lateinit var binding: ActivitySearchDoctorBinding
     private lateinit var filterClincs: ClinicFilter
-    private lateinit var adapter : AvailableClinicsAdapter
+    private lateinit var adapter: AvailableClinicsAdapter
     private var itemPosition = -1
     private val viewModel by lazy { ViewModelProvider(this).get(SearchDoctorViewModel::class.java) }
 
@@ -52,8 +53,7 @@ class SearchDoctorActivity : BaseActivity()
     private val LATT_KEY = "lat"
     private val LANG_ID_KEY = "lang"
 
-    override fun onSaveInstanceState(outState: Bundle)
-    {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(SPECIALIZATION_ID_KEY, specializationId)
         outState.putInt(CITY_ID_KEY, cityId)
@@ -83,12 +83,12 @@ class SearchDoctorActivity : BaseActivity()
         binding.searchByAddress.et_address.setText(address)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_doctor)
 
-        specializationId = intent.getIntExtra(getString(com.doctoraak.doctoraakpatient.R.string.specialization_Id_Key),
+        specializationId =
+            intent.getIntExtra(getString(com.doctoraak.doctoraakpatient.R.string.specialization_Id_Key),
                 -1)
         isMedicalCenter = intent.getBooleanExtra(getString(R.string.isMedicalCenterKey), false)
 
@@ -118,12 +118,12 @@ class SearchDoctorActivity : BaseActivity()
         }
 
         binding.btnSearch.setOnClickListener {
-            if (binding.searchByAddress.visibility == View.VISIBLE)
-            {
+            if (binding.searchByAddress.visibility == View.VISIBLE) {
                 if (latt.validateLattLang(this, lang, binding.searchByAddress.etl_address)) {
                     val b: Boolean = binding.searchByAddress.cb_insurance.isChecked
                     if (Utils.checkInternetConnection(this, binding.clSearchDoctors)) {
-                        filterClincs = ClinicFilter(api_token = if (SessionManager.isLogIn()) Utils.getApiToken() else "",
+                        filterClincs =
+                            ClinicFilter(api_token = if (SessionManager.isLogIn()) Utils.getApiToken() else "",
                                 patient_id = if (SessionManager.isLogIn()) Utils.getUserId() else -1,
                                 insurance = b.toInt(),
                                 specialization_id = specializationId,
@@ -142,7 +142,8 @@ class SearchDoctorActivity : BaseActivity()
                 val isValidateArea = areaId.validateArea(this, binding.searchByCity.spl_area)
                 if (isValidateCity && isValidateArea) {
 
-                    filterClincs = ClinicFilter(api_token = if (SessionManager.isLogIn()) Utils.getApiToken() else "",
+                    filterClincs =
+                        ClinicFilter(api_token = if (SessionManager.isLogIn()) Utils.getApiToken() else "",
                             patient_id = if (SessionManager.isLogIn()) Utils.getUserId() else -1,
                             insurance = b.toInt(),
                             specialization_id = specializationId,
@@ -164,23 +165,29 @@ class SearchDoctorActivity : BaseActivity()
         if (user != null) {
             if (user.insurance!!.id == 1) {
                 logo.visibility = View.VISIBLE
+                if (user.patient_name == "" || user.phone2 == "") {
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
+                    intent.putExtra(Constants.MISSING_DATA, true)
+                    startActivity(intent)
+                    finish()
+                }
             }
+        } else {
+            startActivity(Intent(applicationContext, SignInActivity::class.java))
+            finish()
         }
     }
 
-    private fun setAdapter()
-    {
+    private fun setAdapter() {
         binding.rvClinic.layoutManager = LinearLayoutManager(this)
         adapter = AvailableClinicsAdapter(this)
         setAdapterClicks()
         binding.rvClinic.adapter = adapter
-        binding.rvClinic.addItemDecoration(DividerItemDecorationExceptLast(this
-            , ResourcesCompat.getDrawable(resources, R.drawable.drawable_divider
-                , null)!!), -1)
+        binding.rvClinic.addItemDecoration(DividerItemDecorationExceptLast(this,
+            ResourcesCompat.getDrawable(resources, R.drawable.drawable_divider, null)!!), -1)
 
         binding.rvClinic.onStartLoadingAction = {
-            if (::filterClincs.isInitialized)
-            {
+            if (::filterClincs.isInitialized) {
                 viewModel.getClinics(filterClincs)
                 true
             }
@@ -191,13 +198,12 @@ class SearchDoctorActivity : BaseActivity()
         adapter.setData(viewModel.clinicsReponse.value?.data)
     }
 
-    private fun setAdapterClicks()
-    {
-        adapter.setOnItemClickListener(object : AvailableClinicsAdapter.ClickListener{
+    private fun setAdapterClicks() {
+        adapter.setOnItemClickListener(object : AvailableClinicsAdapter.ClickListener {
             override fun onClick(model: Clinic, aView: View) {
-                val intent = Intent(this@SearchDoctorActivity
-                    , BookDoctorActivity::class.java)
-                intent.putExtra(getString(R.string.clinic_item_key) , Utils.convertObjectToJson(model))
+                val intent = Intent(this@SearchDoctorActivity, BookDoctorActivity::class.java)
+                intent.putExtra(getString(R.string.clinic_item_key),
+                    Utils.convertObjectToJson(model))
                 startActivity(intent)
             }
 
@@ -205,16 +211,17 @@ class SearchDoctorActivity : BaseActivity()
 
         adapter.setOnItemClickFavListener(object : AvailableClinicsAdapter.ClickFavListener {
             override fun onClick(position: Int, model: Clinic, aView: View) {
-                if (Utils.checkInternetConnection(this@SearchDoctorActivity , binding.clSearchDoctors)) {
-                    viewModel.favDoctor(Utils.getUserId() , model.doctor.id , Utils.getApiToken())
+                if (Utils.checkInternetConnection(this@SearchDoctorActivity,
+                        binding.clSearchDoctors)) {
+                    viewModel.favDoctor(Utils.getUserId(), model.doctor.id, Utils.getApiToken())
                     itemPosition = position
                     hideFavImage(position)
                     showProgressBar(position)
-                    if (aView.tag.equals(Constants.FAVED)){
+                    if (aView.tag.equals(Constants.FAVED)) {
                         (aView as ImageView).setImageResource(R.drawable.ic_unfav)
                         aView.tag = Constants.Not_FAVED
                         Utils.removeIdToFavList(model.doctor_id)
-                    }else{
+                    } else {
                         (aView as ImageView).setImageResource(R.drawable.ic_favorite)
                         aView.tag = Constants.FAVED
                         Utils.addIdToFavList(model.doctor_id)
@@ -224,7 +231,7 @@ class SearchDoctorActivity : BaseActivity()
         })
     }
 
-    fun hideFavImage(position : Int){
+    fun hideFavImage(position: Int) {
         try {
             val holder = binding.rvClinic.findViewHolderForAdapterPosition(position)
             (holder as AvailableClinicsAdapter.MyViewHolder).fav.visibility = View.INVISIBLE
@@ -232,7 +239,7 @@ class SearchDoctorActivity : BaseActivity()
         }
     }
 
-    fun showFavImage(position : Int){
+    fun showFavImage(position: Int) {
         try {
             val holder = binding.rvClinic.findViewHolderForAdapterPosition(position)
             (holder as AvailableClinicsAdapter.MyViewHolder).fav.visibility = View.VISIBLE
@@ -240,7 +247,7 @@ class SearchDoctorActivity : BaseActivity()
         }
     }
 
-    fun hideProgressBar(position : Int){
+    fun hideProgressBar(position: Int) {
         try {
             val holder = binding.rvClinic.findViewHolderForAdapterPosition(position)
             (holder as AvailableClinicsAdapter.MyViewHolder).progressBar.visibility = View.INVISIBLE
@@ -248,7 +255,7 @@ class SearchDoctorActivity : BaseActivity()
         }
     }
 
-    fun showProgressBar(position : Int){
+    fun showProgressBar(position: Int) {
         try {
             val holder = binding.rvClinic.findViewHolderForAdapterPosition(position)
             (holder as AvailableClinicsAdapter.MyViewHolder).progressBar.visibility = View.VISIBLE
@@ -324,8 +331,7 @@ class SearchDoctorActivity : BaseActivity()
         })
     }
 
-    private fun observeData()
-    {
+    private fun observeData() {
         viewModel.clinicsReponse.observe(this, Observer {
             Log.d("saif", "")
             showClinicList()
@@ -333,12 +339,12 @@ class SearchDoctorActivity : BaseActivity()
         })
 
         viewModel.favDoctorResposne.observe(this, {
-            showSnackbar(binding.clSearchDoctors , it!!.getMsg())
-                if (itemPosition != -1){
-                    showFavImage(itemPosition)
-                    hideProgressBar(itemPosition)
-                }
-            })
+            showSnackbar(binding.clSearchDoctors, it!!.getMsg())
+            if (itemPosition != -1) {
+                showFavImage(itemPosition)
+                hideProgressBar(itemPosition)
+            }
+        })
 
         viewModel.isLoading.observe(this, object : Observer<Boolean> {
             override fun onChanged(t: Boolean?) {
@@ -374,15 +380,13 @@ class SearchDoctorActivity : BaseActivity()
         })
     }
 
-    fun showClinicList()
-    {
+    fun showClinicList() {
         binding.rvClinic.show()
         binding.scrollView.hide()
         binding.btnSearch.hide()
     }
 
-    fun hideClinicList()
-    {
+    fun hideClinicList() {
         binding.rvClinic.hide()
         binding.scrollView.show()
         binding.btnSearch.show()
