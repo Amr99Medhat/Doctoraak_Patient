@@ -1,11 +1,15 @@
 package com.doctoraak.doctoraakpatient.ui.splash
 
 import android.animation.Animator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Animatable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.scaleMatrix
 import androidx.databinding.DataBindingUtil
@@ -18,8 +22,8 @@ import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.main.MainActivity
 import com.doctoraak.doctoraakpatient.utils.Utils
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-
     private var noOfResponses = 0
     private lateinit var binding: ActivitySplashBinding
     private val viewModel: SplashViewModel by lazy {
@@ -28,10 +32,15 @@ class SplashActivity : AppCompatActivity() {
         )
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeLanguage(this, Utils.getAppLanguage())
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
+
+        //TODO("Hide Status Bar - Amr")
+        hideStatusBar()
+
         observeData()
 
         if (Utils.checkInternetConnection(this@SplashActivity, binding.viewGroup)) {
@@ -50,6 +59,18 @@ class SplashActivity : AppCompatActivity() {
             startAnimateSplashScreen()
         } catch (e: Exception) {
             Log.e("saif", "onCreate: ", e)
+        }
+    }
+
+    private fun hideStatusBar() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }
     }
 
@@ -153,24 +174,22 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkAndProcess() {
-        if (noOfResponses == 10){
+        if (noOfResponses == 10) {
             val intent = Intent(this@SplashActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
 
-    private fun startAnimateSplashScreen()
-    {
+    private fun startAnimateSplashScreen() {
         val heartAnimatable = binding.ivHeartbeat.drawable as Animatable
         heartAnimatable.start()
 
-        animate(binding.ivLogo)
+        //animate(binding.ivLogo)
 //        animate(binding.ivCareLogo)
     }
 
-    private fun animate(it: View, xCor :Float = -450f, scaleDownUp: Boolean = true)
-    {
+    private fun animate(it: View, xCor: Float = -450f, scaleDownUp: Boolean = true) {
         it.animate().apply {
             startDelay = 500
             duration = 1000
@@ -184,6 +203,7 @@ class SplashActivity : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator?) {
                     animate(it)//, xCor * -1, !scaleDownUp)
                 }
+
                 override fun onAnimationCancel(animation: Animator?) {}
                 override fun onAnimationStart(animation: Animator?) {}
             })

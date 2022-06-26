@@ -7,17 +7,29 @@
             android:id="@+id/view_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_splash_background"
+            android:background="@drawable/background_splash"
             tools:context=".ui.splash.SplashActivity">
+
+        <ImageView
+                android:id="@+id/background_wave"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="0dp"
+                android:fitsSystemWindows="true"
+                android:src="@drawable/background_wave"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
                 android:id="@+id/iv_logo"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_180sdp"
-                android:scaleType="centerCrop"
                 android:layout_marginTop="@dimen/_125sdp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_logo" />
 
@@ -36,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_18sdp"
+                android:fontFamily="@font/ntailub"
                 android:text="@string/copyright_"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
@@ -43,7 +56,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

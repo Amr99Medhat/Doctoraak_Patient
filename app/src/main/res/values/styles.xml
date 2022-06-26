@@ -2,9 +2,9 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary_new</item>
+        <item name="colorPrimaryDark">@color/colorPrimary_new</item>
+        <item name="colorAccent">@color/colorAccent_new</item>
         <item name="homeAsUpIndicator">@drawable/ic_back_white</item>
         <item name="drawerArrowStyle">@style/drawerArrowStyle</item>
         <item name="android:textSize">@dimen/_13ssp</item>
