@@ -22,6 +22,7 @@
     <color name="darkWhite">#fafafa</color>
 
     <!--TODO - New Colors - Amr-->
-    <color name="colorPrimary_new">#2b3595</color>
-    <color name="colorAccent_new">#059ae0</color>
+    <color name="colorPrimary_new">#3C008B</color>
+    <color name="colorAccent_new">#460000</color>
+    <color name="colorLightRed_new">#D098AB</color>
 </resources>
