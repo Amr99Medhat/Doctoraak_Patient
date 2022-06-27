@@ -6,10 +6,9 @@
 
     <ImageView
             android:id="@+id/iv_doctoraak_logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_logo"
-
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/new_logo"
             app:layout_constraintStart_toEndOf="@id/iv_oncare_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
