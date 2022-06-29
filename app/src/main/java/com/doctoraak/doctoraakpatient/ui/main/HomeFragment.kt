@@ -2,12 +2,10 @@ package com.doctoraak.doctoraakpatient.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.doctoraak.doctoraakpatient.R
@@ -19,13 +17,16 @@ import com.doctoraak.doctoraakpatient.repository.remote.BaseResponseListener
 import com.doctoraak.doctoraakpatient.ui.BaseFragment
 import com.doctoraak.doctoraakpatient.ui.favouriteDoctor.FavoriteDoctorActivity
 import com.doctoraak.doctoraakpatient.ui.findServcie.FindServiceActivity
+import com.doctoraak.doctoraakpatient.ui.myOrders.MyOrdersActivity
+import com.doctoraak.doctoraakpatient.ui.notification.NotificationActivity
+import com.doctoraak.doctoraakpatient.ui.payment.PaymentActivity
 import com.doctoraak.doctoraakpatient.ui.paymentDetails.PaymentDetailsActivity
 import com.doctoraak.doctoraakpatient.ui.profile.ProfileActivity
 import com.doctoraak.doctoraakpatient.utils.Constants
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
-
+import kotlinx.android.synthetic.main.main_header.view.*
 
 
 class HomeFragment : BaseFragment() {
@@ -38,29 +39,20 @@ class HomeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         if (SessionManager.isLogIn()) {
             sendUpdatedToken()
+
         }
-//        val logo = requireActivity().findViewById<ImageView>(R.id.iv_oncare_logo)
-//        val user = SessionManager.returnUserInfo()
-//        if (user != null) {
-//            if (user.insurance!!.id == 1) {
-//                logo.visibility = View.VISIBLE
-//                if (user.patient_name == "" || user.phone2 == "") {
-//                    val intent = Intent(requireContext(), ProfileActivity::class.java)
-//                    intent.putExtra(Constants.MISSING_DATA, true)
-//                    startActivity(intent)
-//                   requireActivity().finish()
-//                }
-//            }
-//        }
 
         observeData()
 
@@ -79,6 +71,34 @@ class HomeFragment : BaseFragment() {
         binding.tvDetails.setOnClickListener {
             val intent = Intent(requireContext(), PaymentDetailsActivity::class.java)
             startActivity(intent)
+        }
+
+
+        binding.itCvMyorders.setOnClickListener {
+            if (SessionManager.isLogIn()) {
+                launchIntent(requireActivity(), MyOrdersActivity::class.java)
+            } else {
+                showLoginFirstDialog(getString(R.string.login_first))
+            }
+        }
+
+        binding.tvPayment.setOnClickListener {
+            if (SessionManager.isLogIn()) {
+                startActivity(Intent(requireActivity(), PaymentActivity::class.java))
+            } else {
+                showLoginFirstDialog(getString(R.string.login_first))
+            }
+        }
+
+        binding.tvDetails.setOnClickListener {
+            startActivity(Intent(requireActivity(), PaymentDetailsActivity::class.java))
+        }
+        binding.toolBar.iv_notification.setOnClickListener {
+            if (SessionManager.isLogIn()) {
+                launchIntent(requireActivity(), NotificationActivity::class.java)
+            } else {
+                showLoginFirstDialog(getString(R.string.login_first))
+            }
         }
         return binding.root
     }
@@ -146,6 +166,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setImageAndUsername() {
+        binding.cvUserInformation.visibility=View.VISIBLE
         Glide.with(this).load(Utils.getUser().photo).placeholder(R.drawable.ic_face)
             .error(R.drawable.ic_face).into(binding.ivUserImage)
         binding.tvUserName.text =  Utils.getUserName()
