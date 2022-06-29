@@ -2,7 +2,7 @@
     xmlns:aapt="http://schemas.android.com/aapt"
         xmlns:tools="http://schemas.android.com/tools"
         android:width="375dp"
-    android:height="@dimen/_90sdp"
+    android:height="@dimen/_120sdp"
     android:viewportWidth="375"
     android:viewportHeight="209"
         tools:ignore="VectorRaster">

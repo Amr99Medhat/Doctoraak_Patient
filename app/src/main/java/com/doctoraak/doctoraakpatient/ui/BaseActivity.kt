@@ -53,10 +53,10 @@ open class BaseActivity : AppCompatActivity() {
         view.isEnabled = true
     }
 
-    override fun onStart() {
-        super.onStart()
-        setupBackClick()
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        setupBackClick()
+//    }
 
     protected fun setupBackClick() {
         if (iv_back != null) {

@@ -2,46 +2,25 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.drawerlayout.widget.DrawerLayout
-            android:id="@+id/drawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/darkWhite"
-            tools:openDrawer="start">
-
-        <include
-                android:id="@+id/main_content"
-                layout="@layout/main_content" />
-
-        <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="@drawable/shadow_background"
-                app:headerLayout="@layout/nav_header"
-                app:menu="@menu/drawer_menu"
-                app:theme="@style/navigationViewSytle">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                <TextView
-                        android:id="@+id/tv_logout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginBottom="40dp"
-                        android:drawableStart="@drawable/ic_logout"
-                        android:drawablePadding="20dp"
-                        android:text="@string/log_out"
-                        android:textColor="@color/gray_3"
-                        android:textSize="@dimen/_16ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.navigation.NavigationView>
-    </androidx.drawerlayout.widget.DrawerLayout>
+     <androidx.fragment.app.FragmentContainerView
+             android:id="@+id/fragmentView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            app:itemTextColor="@color/gray_1"
+            app:menu="@menu/bottom_navigation_menu"
+            android:background="@drawable/bottom_navigation_style"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

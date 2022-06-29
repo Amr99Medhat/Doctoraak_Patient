@@ -25,4 +25,16 @@
     <color name="colorPrimary_new">#3C008B</color>
     <color name="colorAccent_new">#460000</color>
     <color name="colorLightRed_new">#D098AB</color>
+
+    <!--TODO - New Colors -Main- Abdelrahman-->
+
+    <color name="find_service_card_background">#1AFB3455</color>
+    <color name="find_Service_view">#A1FB3455</color>
+    <color name="find_Service_text">#FB3455</color>
+    <color name="favorite_doctors_card_background">#1A0090FF</color>
+    <color name="favorite_doctors_view">#A13ACCE1</color>
+    <color name="favorite_doctors_text">#0090FF</color>
+    <color name="myorders_card_background">#A162DEC7</color>
+    <color name="myorders_view">#A108C6A2</color>
+    <color name="myorders_text_color">#08C6A2</color>
 </resources>

@@ -229,5 +229,9 @@
     <string name="please_complete_your_profile">الرجاء استكمال بيانات الملف الشخصى</string>
     <string name="must_be_11_digits">رقم الهاتف يجب أن يكون 11 رقمًا</string>
     <string name="enter_your_birthday">ادخل تاريخ الميلاد</string>
+    <string name="settings">الاعدادات</string>
+    <string name="find_service">اختر خدمة</string>
+    <string name="favorite_doctor">الاطباء المفضلين</string>
+    <string name="my_orders">طلباتك</string>
 
 </resources>
