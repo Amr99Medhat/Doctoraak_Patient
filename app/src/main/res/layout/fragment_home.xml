@@ -269,7 +269,7 @@
                         android:id="@+id/cardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-30dp"
+                        android:layout_marginTop="-60dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="4dp"
@@ -342,17 +342,17 @@
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="40dp"
                         android:backgroundTint="@color/colorPrimary_new"
-                        android:src="@drawable/ic_contactus"
-                        app:tint="@color/white"
                         android:contentDescription="@string/contact_us"
-                        app:fabCustomSize="@dimen/_50sdp"
+                        android:src="@drawable/ic_contactus"
                         app:elevation="0dp"
+                        app:fabCustomSize="@dimen/_50sdp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.985"
+                        app:layout_constraintHorizontal_bias="0.959"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                        app:layout_constraintTop_toBottomOf="@+id/cardView"
+                        app:tint="@color/white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
