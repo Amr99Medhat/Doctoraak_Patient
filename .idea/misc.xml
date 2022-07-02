@@ -74,7 +74,21 @@
         <entry key="..\:/Users/Amr/Desktop/Doctoraak_Patient/app/src/main/res/layout/notification_item.xml" value="0.20291666666666666" />
         <entry key="..\:/Users/Amr/Desktop/Doctoraak_Patient/app/src/main/res/layout/pharmacy_list_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Amr/Desktop/Doctoraak_Patient/app/src/main/res/layout/profile_dialog.xml" value="0.20291666666666666" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable-anydpi/ic_spinner_down.xml" value="0.219" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/address_side_with_radius_of_rect_border.xml" value="0.243" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_edit_text.xml" value="0.2985" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_edit_text_selector.xml" value="0.151" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_splash.xml" value="0.2985" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_view_pressed.xml" value="0.243" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_view_unpressed.xml" value="0.243" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_back.xml" value="0.19" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/spinner_style.xml" value="0.219" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/activity_profile.xml" value="0.2710526315789474" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/fragment_profile.xml" value="0.23194444444444445" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/item_spinner.xml" value="0.27039473684210524" />
+        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/main_logos.xml" value="0.9" />
       </map>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

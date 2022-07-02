@@ -24,7 +24,7 @@
         <ImageView
                 android:id="@+id/toolbar_image"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_125sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/toolbar_big_image"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,14 +37,16 @@
                 style="@style/mainLogoStyle"
                 layout="@layout/main_logos" />
 
-
         <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:contentDescription="@string/back"
-                android:src="@drawable/ic_back_mirror"
+                android:src="@drawable/ic_back_new"
+                android:tint="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,25 +54,15 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:fontFamily="@font/ntailub"
                 android:text="@string/profile"
                 android:textColor="@color/white"
-                android:textSize="@dimen/toolbar_title_textsize"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
-                app:layout_constraintStart_toStartOf="@id/tv_subtitle" />
-
-        <TextView
-                android:id="@+id/tv_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginBottom="@dimen/subtitle_margin_bottom"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white"
-                android:textSize="@dimen/toolbar_subtitle_textsize"
-                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:textSize="@dimen/_22ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_back" />
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_image"
@@ -96,38 +88,11 @@
                 app:layout_constraintBottom_toBottomOf="@+id/civ_image"
                 app:layout_constraintEnd_toEndOf="@+id/civ_image" />
 
-        <!--        <TextView-->
-        <!--                android:id="@+id/tv_name"-->
-        <!--                style="@style/normalTextViewStyle"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginStart="@dimen/_16sdp"-->
-        <!--                android:layout_marginEnd="@dimen/_16sdp"-->
-        <!--                android:gravity="start|center_vertical"-->
-        <!--                android:textAlignment="viewStart"-->
-        <!--                android:textColor="@color/white"-->
-        <!--                android:textSize="@dimen/_18ssp"-->
-        <!--                android:visibility="visible"-->
-        <!--                app:layout_constraintBottom_toBottomOf="@+id/civ_image"-->
-        <!--                app:layout_constraintEnd_toStartOf="@+id/civ_image"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="@+id/civ_image"-->
-        <!--                app:layout_constraintVertical_chainStyle="packed"-->
-        <!--                tools:text="Name" />-->
-
-        <!--        <ImageView-->
-        <!--                android:id="@+id/iv_edit_name"-->
-        <!--                style="@style/ProfileEditImageView"-->
-        <!--                android:visibility="invisible"-->
-        <!--                app:layout_constraintHorizontal_bias="0.0"-->
-        <!--                app:layout_constraintStart_toStartOf="@+id/tv_name"-->
-        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_name" />-->
-
         <ScrollView
                 android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_46sdp"
+                android:layout_marginTop="@dimen/_45sdp"
                 android:fillViewport="true"
                 app:layout_constraintBottom_toTopOf="@id/btn_save"
                 app:layout_constraintTop_toBottomOf="@id/toolbar_image"
@@ -137,15 +102,226 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/_12sdp">
+                    android:paddingBottom="@dimen/_55sdp">
 
-
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_full_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_full_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_view_unpressed"
+                            android:fontFamily="@font/segoe_ui"
+                            android:hint="@string/full_name"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textSize="@dimen/_13ssp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_second_phone"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_full_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_second_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_view_unpressed"
+                            android:hint="@string/phone_number"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textSize="@dimen/_13ssp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_company_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_second_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_company_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_view_unpressed"
+                            android:enabled="false"
+                            android:hint="@string/company_name"
+                            android:imeOptions="actionNext"
+                            android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_email"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_company_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_view_unpressed"
+                            android:enabled="false"
+                            android:hint="@string/email"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textSize="@dimen/_13ssp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_phone"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_view_unpressed"
+                            android:enabled="false"
+                            android:hint="@string/phone_number_oneCare"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textSize="@dimen/_13ssp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_address"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_view_unpressed"
+                            android:hint="@string/address"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textSize="@dimen/_13ssp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_birthday"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_birthday"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_view_unpressed"
+                            android:hint="@string/birthday"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textSize="@dimen/_13ssp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_gender"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/background_edit_text_selector"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_birthday">
+
+                    <!--                    <com.google.android.material.textfield.TextInputEditText-->
+                    <!--                            android:id="@+id/tv_gender"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="match_parent"-->
+                    <!--                            android:background="@drawable/background_view_unpressed"-->
+                    <!--                            android:hint="@string/gender"-->
+                    <!--                            android:imeOptions="actionDone"-->
+                    <!--                            android:inputType="text"-->
+                    <!--                            android:drawableEnd="@drawable/ic_spinner_down"-->
+                    <!--                            android:drawablePadding="@dimen/_10sdp"-->
+                    <!--                            android:textSize="@dimen/_13ssp" />-->
+
+
+                    <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:background="@drawable/spinner_style"
+                            android:dropDownVerticalOffset="@dimen/_40sdp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </ScrollView>
 
