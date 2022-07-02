@@ -1,14 +1,13 @@
 package com.doctoraak.doctoraakpatient.ui
 
-import android.content.DialogInterface
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat.recreate
 import com.doctoraak.doctoraakpatient.R
+import com.doctoraak.doctoraakpatient.databinding.ChangeLanguageDialogBinding
 import com.doctoraak.doctoraakpatient.databinding.FragmentSettingsBinding
 import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.utils.Utils
@@ -16,6 +15,8 @@ import com.doctoraak.doctoraakpatient.utils.Utils
 
     class SettingsFragment : BaseFragment() {
     private lateinit var binding:FragmentSettingsBinding
+    private lateinit var changeLanguageBinding: ChangeLanguageDialogBinding
+    private lateinit var alert: AlertDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,54 +27,58 @@ import com.doctoraak.doctoraakpatient.utils.Utils
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View{
         binding = FragmentSettingsBinding.inflate(inflater,container,false)
+        changeLanguageBinding = ChangeLanguageDialogBinding.inflate(layoutInflater)
         setListener()
         return binding.root
-
     }
-
     companion object {
         @JvmStatic
         fun newInstance() =
             SettingsFragment().apply {
-                arguments = Bundle().apply {
-
-                }
             }
     }
-
-
-        private fun selectLanguage() {
-            val options = arrayOf<CharSequence>(
-                getString(R.string.english), getString(R.string.arabic), getString(R.string.cancel)
-            )
-
-                    val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(getString(R.string.choose_langaue))
-
-        builder.setItems(options, DialogInterface.OnClickListener { dialog, item ->
-            if (options[item].equals(getString(R.string.english))) {
-                SessionManager.saveLang("en")
-                changelayoutDirection("en")
-                Utils.changeLanguage(requireContext(), "en")
-                requireActivity().recreate()
-            } else if (options[item].equals(getString(R.string.arabic))) {
-                SessionManager.saveLang("ar")
-                changelayoutDirection("ar")
-                Utils.changeLanguage(requireContext(), "ar")
-               requireActivity().recreate()
-            } else {
-                dialog.dismiss()
+        private fun showChangeLanguageDialog() {
+           val builder =AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            if (changeLanguageBinding.root.parent != null) {
+                (changeLanguageBinding.root.parent as ViewGroup).removeView(
+                    changeLanguageBinding.root
+                )
             }
-        })
-        builder.show()
+            builder.setView(changeLanguageBinding.root)
+            alert = builder.create()
+            if (SessionManager.getLang().equals("en"))
+            {
+                changeLanguageBinding.rbEnglish.isChecked = true
+            }
+            else{
+                changeLanguageBinding.rbArabic.isChecked = true
+            }
+            if (alert.window != null) {
+                alert.window!!.setBackgroundDrawable(ColorDrawable(0))
+            }
+            alert.show()
+
         }
 private fun setListener(){
     binding.btnChangeLanguage.setOnClickListener {
-        selectLanguage()
+        showChangeLanguageDialog()
+    }
+    changeLanguageBinding.rbEnglish.setOnClickListener {
+        SessionManager.saveLang("en")
+        changelayoutDirection("en")
+        Utils.changeLanguage(requireContext(), "en")
+           alert.dismiss()
+        requireActivity().recreate()
+    }
+
+    changeLanguageBinding.rbArabic.setOnClickListener {
+        SessionManager.saveLang("ar")
+        changelayoutDirection("ar")
+        Utils.changeLanguage(requireContext(), "ar")
+        alert.dismiss()
+        requireActivity().recreate()
     }
 }
-
-
 }

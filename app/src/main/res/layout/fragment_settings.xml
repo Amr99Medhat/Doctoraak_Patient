@@ -7,7 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#FAFAFA">
 
         <include
                 android:id="@+id/tool_bar"
@@ -28,17 +29,17 @@
 
             <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_changeLanguage"
+                    android:padding="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@null"
                     android:layout_margin="@dimen/_5sdp"
                     android:drawableStart="@drawable/ic_language"
-                    android:drawableEnd="@drawable/ic_arrow_forward"
+                  android:background="@drawable/settings_background"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:drawableTint="@color/black"
                     android:gravity="start|center"
                     android:text="@string/language"
                     android:textAllCaps="false"
+                    android:fontFamily="@font/segoe_ui"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />

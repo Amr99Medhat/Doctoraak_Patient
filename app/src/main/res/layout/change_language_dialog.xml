@@ -37,7 +37,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riv_corner_radius="@dimen/_4sdp" />
+               />
 
         <TextView
                 android:id="@+id/tv_selectALanguage"
@@ -93,7 +93,6 @@
                     android:background="@drawable/language_tab_selector"
                     android:button="@null"
                     android:checked="true"
-
                     android:gravity="center"
                     android:text="@string/arabic"
                     android:textColor="@drawable/language_tab_text_color_selector"
