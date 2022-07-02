@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -22,7 +24,6 @@ import com.doctoraak.doctoraakpatient.ui.notification.NotificationActivity
 import com.doctoraak.doctoraakpatient.ui.payment.PaymentActivity
 import com.doctoraak.doctoraakpatient.ui.paymentDetails.PaymentDetailsActivity
 import com.doctoraak.doctoraakpatient.ui.profile.ProfileActivity
-import com.doctoraak.doctoraakpatient.utils.Constants
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
@@ -35,6 +36,12 @@ class HomeFragment : BaseFragment() {
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
+
+    private val rotateOpen:Animation by lazy {AnimationUtils.loadAnimation(requireContext(),R.anim.contactus_rotate_open_anim)}
+    private val rotateClose:Animation by lazy {AnimationUtils.loadAnimation(requireContext(),R.anim.contactus_rotate_close_anim)}
+    private val rotateOpenLeft:Animation by lazy {AnimationUtils.loadAnimation(requireContext(),R.anim.contactus_from_left_anim)}
+    private val rotateCloseRight:Animation by lazy {AnimationUtils.loadAnimation(requireContext(),R.anim.contactus_from_right_anim)}
+    private var clicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +62,7 @@ class HomeFragment : BaseFragment() {
         }
 
         observeData()
-
+        setListeners()
         binding.itCvFindService.setOnClickListener {
             launchIntent(requireActivity(), FindServiceActivity::class.java)
         }
@@ -187,6 +194,68 @@ class HomeFragment : BaseFragment() {
 
         viewModel.errorInt.observe(requireActivity()) { }
 
+    }
+
+    private fun  setListeners(){
+        binding.btnContactus.setOnClickListener {
+            setVisibility(clicked)
+            setAnimation(clicked)
+            clicked = !clicked
+        }
+
+        val contactInfo = Utils.getContactInfo()
+        binding.ivMessanger.setOnClickListener { Utils.openMessanger(requireContext(), "2088455828039695") }
+        binding.ivWhatsapp.setOnClickListener {
+            Utils.openWhatsApp(requireActivity(),
+                "2" + contactInfo.data[3])
+        }
+        binding.ivPhone.setOnClickListener { Utils.openDialer(requireContext(), contactInfo.data[3]) }
+        binding.ivEmail.setOnClickListener { Utils.openEmail(requireContext(), contactInfo.data[2]) }
+        binding.ivFacebook.setOnClickListener {
+            Utils.openFacebookPage(requireContext(), contactInfo.data[0], "2088455828039695")
+        }
+        binding.ivWebsite.setOnClickListener { Utils.openWebsite(requireContext(), contactInfo.data[1]) }
+    }
+
+    private fun setAnimation(clicked:Boolean) {
+        if (!clicked){
+            binding.ivEmail.visibility = View.VISIBLE
+            binding.ivFacebook.visibility = View.VISIBLE
+            binding.ivMessanger.visibility = View.VISIBLE
+            binding.ivPhone.visibility = View.VISIBLE
+            binding.ivWebsite.visibility = View.VISIBLE
+            binding.ivWhatsapp.visibility = View.VISIBLE
+        }
+        else{
+            binding.ivEmail.visibility = View.INVISIBLE
+            binding.ivFacebook.visibility = View.INVISIBLE
+            binding.ivMessanger.visibility = View.INVISIBLE
+            binding.ivPhone.visibility = View.INVISIBLE
+            binding.ivWebsite.visibility = View.INVISIBLE
+            binding.ivWhatsapp.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun setVisibility(clicked:Boolean) {
+        if(!clicked){
+            binding.ivEmail.startAnimation(rotateOpenLeft)
+            binding.ivFacebook.startAnimation(rotateOpenLeft)
+            binding.ivMessanger.startAnimation(rotateOpenLeft)
+            binding.ivPhone.startAnimation(rotateOpenLeft)
+            binding.ivWebsite.startAnimation(rotateOpenLeft)
+            binding.ivWhatsapp.startAnimation(rotateOpenLeft)
+            binding.btnContactus.startAnimation(rotateOpen)
+
+        }
+        else{
+            binding.ivEmail.startAnimation(rotateCloseRight)
+            binding.ivFacebook.startAnimation(rotateCloseRight)
+            binding.ivMessanger.startAnimation(rotateCloseRight)
+            binding.ivPhone.startAnimation(rotateCloseRight)
+            binding.ivWebsite.startAnimation(rotateCloseRight)
+            binding.ivWhatsapp.startAnimation(rotateCloseRight)
+            binding.btnContactus.startAnimation(rotateClose)
+        }
     }
 
 

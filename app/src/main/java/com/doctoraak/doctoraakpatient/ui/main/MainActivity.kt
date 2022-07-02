@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.databinding.ActivityMainBinding
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
+import com.doctoraak.doctoraakpatient.ui.SettingsFragment
 import com.doctoraak.doctoraakpatient.ui.profile.ProfileFragment
 
 
@@ -18,8 +19,6 @@ class MainActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupBottomNavigation()
         replaceFragment(HomeFragment.newInstance())
-
-
     }
 
 
@@ -132,7 +131,7 @@ class MainActivity : BaseActivity() {
                     replaceFragment(ProfileFragment.newInstance())
                 }
                 R.id.navigation_Settings ->{
-                    replaceFragment(ProfileFragment.newInstance())
+                    replaceFragment(SettingsFragment.newInstance())
                 }
             }
             return@setOnItemSelectedListener true

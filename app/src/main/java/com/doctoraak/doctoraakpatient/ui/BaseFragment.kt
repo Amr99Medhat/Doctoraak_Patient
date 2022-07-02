@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.doctoraak.doctoraakpatient.customView.DialogType
 import com.doctoraak.doctoraakpatient.customView.SweetDialog
+import java.util.*
 
 open class BaseFragment:Fragment() {
     protected fun <T> launchIntent(activity: Context, cls: Class<T>)
@@ -32,5 +33,12 @@ open class BaseFragment:Fragment() {
             sd.dismiss()
         })
 
+    }
+
+    protected fun changelayoutDirection(lang: String) {
+        val configuration = resources.configuration
+        configuration.setLayoutDirection(Locale(lang))
+        //resources.updateConfiguration(configuration, resources.displayMetrics)
+        requireContext().createConfigurationContext(configuration)
     }
 }

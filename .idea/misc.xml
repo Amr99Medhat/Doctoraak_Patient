@@ -9,25 +9,33 @@
         <entry key="..\:/DoctoraakPatient/DoctoraakPatient/app/src/main/res/layout/lap_order_laps_item.xml" value="0.1" />
         <entry key="..\:/DoctoraakPatient/DoctoraakPatient/app/src/main/res/layout/my_orders_pager_item.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable-hdpi/ic_find_service.xml" value="0.1955" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable-hdpi/language_tab_text_color_selector.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable-v21/ic_service.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/bottom_navigation_style.xml" value="0.197" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/chaneg_language_dialog_background.xml" value="0.1485" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/favorit_doctors_view.xml" value="0.215" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/find_service_view.xml" value="0.216" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/gradient_blue_shape.xml" value="0.172" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_arrow_forward_mirror.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_fav_doctor.xml" value="0.216" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_home.xml" value="0.1795" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_main_service.xml" value="0.1505" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_nav_profile.xml" value="0.1795" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_nav_settings.xml" value="0.1795" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_service.xml" value="0.1915" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/language_tab_selector.xml" value="0.1185" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/mian_button_normal.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/orders_view.xml" value="0.216" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/toolbar_background.xml" value="0.164" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/toolbar_big_image.xml" value="0.1685" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout-land/item_custom_dialog_layout.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/activity_splash.xml" value="0.17028985507246377" />
-        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/change_language_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/fragment_profile.xml" value="0.125" />
+        <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/main_content.xml" value="0.18" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/main_header.xml" value="0.1111111111111111" />
         <entry key="..\:/Users/Abdelrahman Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/main_logos.xml" value="0.5" />
@@ -74,19 +82,6 @@
         <entry key="..\:/Users/Amr/Desktop/Doctoraak_Patient/app/src/main/res/layout/notification_item.xml" value="0.20291666666666666" />
         <entry key="..\:/Users/Amr/Desktop/Doctoraak_Patient/app/src/main/res/layout/pharmacy_list_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Amr/Desktop/Doctoraak_Patient/app/src/main/res/layout/profile_dialog.xml" value="0.20291666666666666" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable-anydpi/ic_spinner_down.xml" value="0.219" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/address_side_with_radius_of_rect_border.xml" value="0.243" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_edit_text.xml" value="0.2985" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_edit_text_selector.xml" value="0.151" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_splash.xml" value="0.2985" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_view_pressed.xml" value="0.243" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/background_view_unpressed.xml" value="0.243" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/ic_back.xml" value="0.19" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/drawable/spinner_style.xml" value="0.219" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/activity_profile.xml" value="0.2710526315789474" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/fragment_profile.xml" value="0.23194444444444445" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/item_spinner.xml" value="0.27039473684210524" />
-        <entry key="..\:/Users/Amr/Documents/GitHub/Doctoraak_Patient/app/src/main/res/layout/main_logos.xml" value="0.9" />
       </map>
     </option>
   </component>

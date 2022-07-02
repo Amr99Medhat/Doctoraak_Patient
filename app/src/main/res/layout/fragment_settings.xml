@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include
+                android:id="@+id/tool_bar"
+                layout="@layout/main_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tool_bar">
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_changeLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_language"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableTint="@color/black"
+                    android:gravity="start|center"
+                    android:text="@string/language"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

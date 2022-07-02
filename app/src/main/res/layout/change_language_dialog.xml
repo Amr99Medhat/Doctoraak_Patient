@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_4sdp">
+
+        <View
+                android:id="@+id/viewSupporter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+                android:id="@+id/viewBackground"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/chaneg_language_dialog_background"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@id/viewSupporter" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_language"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_language"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="@dimen/_4sdp" />
+
+        <TextView
+                android:id="@+id/tv_selectALanguage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/ntailub"
+                android:includeFontPadding="false"
+                android:paddingTop="@dimen/_8sdp"
+                android:text="@string/choose_langaue"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_language" />
+
+        <RadioGroup
+                android:id="@+id/rd_languages"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_selectALanguage">
+
+            <RadioButton
+                    android:id="@+id/rb_English"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/language_tab_selector"
+                    android:button="@null"
+                    android:checked="false"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:text="@string/english"
+                    android:textColor="@drawable/language_tab_text_color_selector"
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                    android:id="@+id/rb_arabic"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/language_tab_selector"
+                    android:button="@null"
+                    android:checked="true"
+
+                    android:gravity="center"
+                    android:text="@string/arabic"
+                    android:textColor="@drawable/language_tab_text_color_selector"
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck" />
+        </RadioGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
