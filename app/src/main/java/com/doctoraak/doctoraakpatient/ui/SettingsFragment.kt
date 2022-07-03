@@ -1,10 +1,12 @@
 package com.doctoraak.doctoraakpatient.ui
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.databinding.ChangeLanguageDialogBinding
@@ -21,9 +23,7 @@ import com.doctoraak.doctoraakpatient.utils.Utils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
 
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +61,7 @@ import com.doctoraak.doctoraakpatient.utils.Utils
             alert.show()
 
         }
+@SuppressLint("CommitTransaction")
 private fun setListener(){
     binding.btnChangeLanguage.setOnClickListener {
         showChangeLanguageDialog()
@@ -69,16 +70,17 @@ private fun setListener(){
         SessionManager.saveLang("en")
         changelayoutDirection("en")
         Utils.changeLanguage(requireContext(), "en")
-           alert.dismiss()
         requireActivity().recreate()
+           alert.dismiss()
+
     }
 
     changeLanguageBinding.rbArabic.setOnClickListener {
         SessionManager.saveLang("ar")
         changelayoutDirection("ar")
         Utils.changeLanguage(requireContext(), "ar")
-        alert.dismiss()
         requireActivity().recreate()
+        alert.dismiss()
     }
 }
 }

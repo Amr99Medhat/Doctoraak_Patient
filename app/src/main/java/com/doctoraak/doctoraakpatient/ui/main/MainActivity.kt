@@ -115,8 +115,10 @@ class MainActivity : BaseActivity() {
         val fragmentManager = this.supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentView, fragment)
-        fragmentTransaction.isAddToBackStackAllowed
         fragmentTransaction.commit()
+        if (fragmentManager.fragments.size>0){
+
+        }
     }
 
     private fun setupBottomNavigation() {
@@ -136,5 +138,11 @@ class MainActivity : BaseActivity() {
             }
             return@setOnItemSelectedListener true
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.navView.selectedItemId = R.id.navigation_Home
+
     }
 }

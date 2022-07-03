@@ -19,7 +19,7 @@
     <color name="red">#F00A0A</color>
     <color name="light_red">#F2CF4A4A</color>
     <color name="or_views_color">#ECE1E1</color>
-    <color name="darkWhite">#fafafa</color>
+    <color name="darkWhite">#FAFAFA</color>
 
     <!--TODO - New Colors - Amr-->
     <color name="colorPrimary_new">#3C008B</color>
@@ -38,4 +38,6 @@
     <color name="myorders_card_background">#A162DEC7</color>
     <color name="myorders_view">#A108C6A2</color>
     <color name="myorders_text_color">#08C6A2</color>
+    <color name="background_color">#FAFAFA</color>
+    <color name="blue_color">#2A3795</color>
 </resources>

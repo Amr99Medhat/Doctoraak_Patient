@@ -43,13 +43,7 @@ class HomeFragment : BaseFragment() {
     private val rotateCloseRight:Animation by lazy {AnimationUtils.loadAnimation(requireContext(),R.anim.contactus_from_right_anim)}
     private var clicked = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-
-
-
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
