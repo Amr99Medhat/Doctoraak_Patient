@@ -2,15 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <layer-list>
-            <item >
+            <item>
                 <shape android:shape="rectangle">
                     <solid android:color="@color/colorGray_new" />
                     <corners android:radius="@dimen/_10sdp" />
                     <padding android:right="@dimen/_10sdp" />
+                    <padding android:left="@dimen/_10sdp"/>
                 </shape>
             </item>
             <item>
-                <bitmap android:gravity="center|end" android:src="@drawable/ic_spinner_down" />
+                <bitmap android:gravity="center|end" android:src="@drawable/ic_spinner_down"/>
             </item>
         </layer-list>
     </item>

@@ -106,6 +106,7 @@
         <activity
                 android:name=".ui.main.MainActivity"
                 android:launchMode="singleTask"
+                android:windowSoftInputMode="adjustPan"
                 android:screenOrientation="portrait" />
         <activity
                 android:name=".ui.signUp.SignUpActivity"

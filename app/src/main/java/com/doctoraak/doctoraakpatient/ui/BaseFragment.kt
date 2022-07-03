@@ -41,4 +41,18 @@ open class BaseFragment:Fragment() {
         //resources.updateConfiguration(configuration, resources.displayMetrics)
         requireContext().createConfigurationContext(configuration)
     }
+
+    fun enableButton(view: View) {
+        view.isEnabled = true
+    }
+
+    protected fun setVisiblityGone(vararg views: View) {
+        for (v in views) {
+            v.visibility = View.GONE
+        }
+    }
+
+    fun disableButton(view: View) {
+        view.isEnabled = false
+    }
 }

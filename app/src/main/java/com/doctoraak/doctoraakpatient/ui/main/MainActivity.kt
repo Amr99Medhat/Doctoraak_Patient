@@ -1,9 +1,11 @@
 package com.doctoraak.doctoraakpatient.ui.main
+
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.databinding.ActivityMainBinding
+import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.SettingsFragment
 import com.doctoraak.doctoraakpatient.ui.profile.ProfileFragment
@@ -18,7 +20,19 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupBottomNavigation()
-        replaceFragment(HomeFragment.newInstance())
+
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                if (user.patient_name == "" || user.phone2 == "") {
+                    replaceFragment(ProfileFragment.newInstance())
+                } else {
+                    replaceFragment(HomeFragment.newInstance())
+                }
+            }
+        }
+
+
     }
 
 
@@ -116,13 +130,13 @@ class MainActivity : BaseActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentView, fragment)
         fragmentTransaction.commit()
-        if (fragmentManager.fragments.size>0){
+        if (fragmentManager.fragments.size > 0) {
 
         }
     }
 
     private fun setupBottomNavigation() {
-        binding.navView.selectedItemId = R.id.navigation_Home
+//        binding.navView.selectedItemId = R.id.navigation_Home
         binding.navView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_Home -> {
@@ -132,7 +146,7 @@ class MainActivity : BaseActivity() {
                 R.id.navigation_Profile -> {
                     replaceFragment(ProfileFragment.newInstance())
                 }
-                R.id.navigation_Settings ->{
+                R.id.navigation_Settings -> {
                     replaceFragment(SettingsFragment.newInstance())
                 }
             }
@@ -142,7 +156,7 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.navView.selectedItemId = R.id.navigation_Home
+        //binding.navView.selectedItemId = R.id.navigation_Home
 
     }
 }

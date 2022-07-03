@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:state_enabled="true"
-            android:drawable="@drawable/mian_button_normal"/>
-    <item android:state_enabled="false" android:drawable="@drawable/disabled_button_normal"/>
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/colorPrimary_new"/>
+    <corners android:radius="10dp"/>
+</shape>

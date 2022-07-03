@@ -69,19 +69,18 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_70sdp"
                 android:layout_marginTop="@dimen/_40sdp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_face"
+                android:src="@drawable/ic_profile"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
-                app:layout_constraintVertical_bias="0.55" />
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image" />
 
         <ImageView
                 android:id="@+id/iv_edit_photo"
                 style="@style/ProfileEditImageView"
                 android:layout_marginEnd="0dp"
                 android:background="@drawable/circle_shape"
+                android:foreground="?attr/selectableItemBackground"
                 android:onClick="@{()->clickHander.onEditPhotoClick()}"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_camera"
@@ -127,8 +126,12 @@
                             android:hint="@string/full_name"
                             android:imeOptions="actionNext"
                             android:inputType="text"
+                            android:textColor="@color/gray_3"
+                            android:textColorHint="@color/blue"
                             android:textSize="@dimen/_13ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_second_phone"
@@ -153,6 +156,8 @@
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:maxLength="11"
+                            android:text="@={userViewModel.user.phone2}"
+                            android:textColor="@color/gray_3"
                             android:textSize="@dimen/_13ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,10 +180,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/background_view_unpressed"
-                            android:enabled="false"
                             android:hint="@string/company_name"
                             android:imeOptions="actionNext"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:text="@={userViewModel.user.name}"
+                            android:textColor="@color/gray_3" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -200,10 +206,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/background_view_unpressed"
-                            android:enabled="false"
                             android:hint="@string/email"
                             android:imeOptions="actionNext"
                             android:inputType="text"
+                            android:text="@={userViewModel.user.email}"
+                            android:textColor="@color/gray_3"
                             android:textSize="@dimen/_13ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -226,10 +233,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/background_view_unpressed"
-                            android:enabled="false"
                             android:hint="@string/phone_number_oneCare"
                             android:imeOptions="actionNext"
                             android:inputType="text"
+                            android:text="@={userViewModel.user.phone}"
+                            android:textColor="@color/gray_3"
                             android:textSize="@dimen/_13ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -255,71 +263,73 @@
                             android:hint="@string/address"
                             android:imeOptions="actionNext"
                             android:inputType="text"
+                            android:text="@={userViewModel.user.address}"
+                            android:textColor="@color/gray_3"
                             android:textSize="@dimen/_13ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_birthday"
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                        android:id="@+id/til_birthday"-->
+                <!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="@dimen/_20sdp"-->
+                <!--                        android:layout_marginTop="@dimen/_20sdp"-->
+                <!--                        android:layout_marginEnd="@dimen/_20sdp"-->
+                <!--                        android:background="@drawable/background_edit_text_selector"-->
+                <!--                        android:padding="@dimen/_4sdp"-->
+                <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                <!--                        app:layout_constraintTop_toBottomOf="@+id/til_address">-->
+
+                <!--                    <com.google.android.material.textfield.TextInputEditText-->
+                <!--                            android:id="@+id/tv_birthday"-->
+                <!--                            android:layout_width="match_parent"-->
+                <!--                            android:layout_height="match_parent"-->
+                <!--                            android:background="@drawable/background_view_unpressed"-->
+                <!--                            android:hint="@string/birthday"-->
+                <!--                            android:imeOptions="actionNext"-->
+                <!--                            android:inputType="text"-->
+                <!--                            android:textSize="@dimen/_13ssp" />-->
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_birthday"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_45sdp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
-                        android:background="@drawable/background_edit_text_selector"
+                        android:background="@drawable/spinner_style"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
                         android:padding="@dimen/_4sdp"
+                        android:paddingStart="@dimen/_16sdp"
+                        android:stateListAnimator="@null"
+                        android:text="@={userViewModel.user.birthdate , default= @string/birthday}"
+                        android:textColor="@color/gray_3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/til_address">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tv_birthday"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background_view_unpressed"
-                            android:hint="@string/birthday"
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:textSize="@dimen/_13ssp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        app:layout_constraintTop_toBottomOf="@+id/til_address" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_gender"
+                <Spinner
+                        android:id="@+id/spr_gender"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_45sdp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
-                        android:background="@drawable/background_edit_text_selector"
+                        android:background="@drawable/spinner_style"
+                        android:dropDownVerticalOffset="@dimen/_40sdp"
+                        android:foreground="?attr/selectableItemBackground"
                         android:padding="@dimen/_4sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/til_birthday">
-
-                    <!--                    <com.google.android.material.textfield.TextInputEditText-->
-                    <!--                            android:id="@+id/tv_gender"-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:background="@drawable/background_view_unpressed"-->
-                    <!--                            android:hint="@string/gender"-->
-                    <!--                            android:imeOptions="actionDone"-->
-                    <!--                            android:inputType="text"-->
-                    <!--                            android:drawableEnd="@drawable/ic_spinner_down"-->
-                    <!--                            android:drawablePadding="@dimen/_10sdp"-->
-                    <!--                            android:textSize="@dimen/_13ssp" />-->
-
-
-                    <Spinner
-                            android:id="@+id/spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
-                            android:background="@drawable/spinner_style"
-                            android:dropDownVerticalOffset="@dimen/_40sdp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
+                        app:layout_constraintTop_toBottomOf="@+id/btn_birthday" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -328,11 +338,16 @@
         <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_save"
                 style="@style/ButtonNormal"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_55sdp"
+                android:fontFamily="@font/ntailub"
+                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/save"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scrollView2" />
 
         <include
                 android:id="@+id/loading"

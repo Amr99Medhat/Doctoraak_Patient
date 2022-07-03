@@ -153,16 +153,16 @@ class HomeFragment : BaseFragment() {
 
         val logo = requireActivity().findViewById<ImageView>(R.id.iv_oncare_logo)
 
-        val user = SessionManager.returnUserInfo()
-        if (user != null) {
-            if (user.insurance!!.id == 1) {
-                logo.visibility = View.VISIBLE
-                if (user.patient_name == "" || user.phone2 == "") {
-                    startActivity(Intent(requireContext(), ProfileActivity::class.java))
-                    requireActivity().finish()
-                }
-            }
-        }
+//        val user = SessionManager.returnUserInfo()
+//        if (user != null) {
+//            if (user.insurance!!.id == 1) {
+//                logo.visibility = View.VISIBLE
+//                if (user.patient_name == "" || user.phone2 == "") {
+//                    startActivity(Intent(requireContext(), ProfileActivity::class.java))
+//                    requireActivity().finish()
+//                }
+//            }
+//        }
 
     }
 
