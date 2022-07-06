@@ -19,6 +19,7 @@ import android.provider.MediaStore
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
@@ -70,6 +71,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     @SuppressLint("SetTextI18n")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         binding.tvBirthday.text = "$year-${(month + 1)}-$dayOfMonth"
+        Log.d("date","$year-${(month + 1)}-$dayOfMonth")
         showSaveButton("$year-${(month + 1)}-$dayOfMonth")
     }
 
@@ -515,7 +517,7 @@ class ProfileActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         }
 
         fun onEditBirthDateClick() {
-            val dialogFragment = DatePikerFragment()
+            val dialogFragment = DatePikerFragment(false)
             dialogFragment.show(supportFragmentManager, "DatePikerdialog")
         }
 

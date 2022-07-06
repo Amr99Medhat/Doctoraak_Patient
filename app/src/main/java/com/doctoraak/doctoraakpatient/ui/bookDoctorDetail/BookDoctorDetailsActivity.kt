@@ -105,7 +105,7 @@ class BookDoctorDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetList
         }
 
         binding.etDate.setOnClickListener {
-            val dialogFragment = DatePikerFragment()
+            val dialogFragment = DatePikerFragment(false)
             dialogFragment.show(supportFragmentManager, "DatePiker")
         }
 

@@ -143,7 +143,7 @@ class LabOrderActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         })
 
         binding.inSelectLabInfo.et_date.setOnClickListener {
-            val dialogFragment = DatePikerFragment()
+            val dialogFragment = DatePikerFragment(false)
             dialogFragment.show(supportFragmentManager, "DatePikerlab")
         }
 
