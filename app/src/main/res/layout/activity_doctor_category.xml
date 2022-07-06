@@ -47,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/search"
+                android:textColorHint="@color/white"
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:drawableEnd="@drawable/ic_search"

@@ -16,8 +16,8 @@
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_75sdp"
+                android:visibility="invisible"
                 app:cardCornerRadius="@dimen/_15sdp"
-                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

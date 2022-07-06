@@ -33,9 +33,8 @@ class MainActivity : BaseActivity() {
             }
         } else {
             replaceFragment(HomeFragment.newInstance())
+            binding.navView.selectedItemId = R.id.navigation_Home
         }
-
-
     }
 
 
