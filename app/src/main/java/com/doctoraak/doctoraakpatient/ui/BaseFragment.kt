@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.doctoraak.doctoraakpatient.customView.DialogType
 import com.doctoraak.doctoraakpatient.customView.SweetDialog
+import kotlinx.android.synthetic.main.dialog_sweet.*
 import java.util.*
 
 open class BaseFragment:Fragment() {
@@ -55,4 +56,22 @@ open class BaseFragment:Fragment() {
     fun disableButton(view: View) {
         view.isEnabled = false
     }
+
+
+    ///////////////////
+    protected open fun showSuccessDialog(msg: String, title: String) {
+        val sd = SweetDialog.newInstance(requireContext(), DialogType.SUCCESS)
+        sd.show()
+        sd.setMessage(msg)
+        sd.setTitle(title)
+        sd.btn_cancel.visibility = View.GONE
+        sd.btn_ok.visibility = View.VISIBLE
+        sd.setCancelable(true)
+        sd.setOkClickListener(View.OnClickListener {
+//            startActivity(Intent(this, MyOrdersActivity::class.java))
+//            finish()
+        }
+        )
+    }
+
 }

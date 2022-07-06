@@ -20,17 +20,17 @@ class DatePikerFragment : DialogFragment() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val dialog = DatePickerDialog(activity!!, R.style.DateDialogTheme,
+        val dialog = DatePickerDialog(requireActivity(), R.style.DateDialogTheme,
             activity as DatePickerDialog.OnDateSetListener?,
             year, month, day).apply {
             setOnShowListener { a__ ->
                 getButton(DialogInterface.BUTTON_POSITIVE).apply {
-                    setBackgroundColor(ContextCompat.getColor(activity!! , R.color.transparent))
-                    setTextColor(ContextCompat.getColor(activity!! , R.color.black))
+                    setBackgroundColor(ContextCompat.getColor(requireActivity() , R.color.transparent))
+                    setTextColor(ContextCompat.getColor(requireActivity() , R.color.black))
                 }
                 getButton(DialogInterface.BUTTON_NEGATIVE).apply {
-                    setBackgroundColor(ContextCompat.getColor(activity!! , R.color.transparent))
-                    setTextColor(ContextCompat.getColor(activity!! , R.color.black))
+                    setBackgroundColor(ContextCompat.getColor(requireActivity() , R.color.transparent))
+                    setTextColor(ContextCompat.getColor(requireActivity() , R.color.black))
 
                 }
             }

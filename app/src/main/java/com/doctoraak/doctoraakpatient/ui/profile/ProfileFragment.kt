@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -16,12 +15,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
@@ -36,16 +33,15 @@ import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseFragment
 import com.doctoraak.doctoraakpatient.ui.DatePikerFragment
 import com.doctoraak.doctoraakpatient.ui.main.MainActivity
-import com.doctoraak.doctoraakpatient.utils.Constants
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.doctoraak.doctoraakpatient.utils.Utils.Companion.showSnackbar
-import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_sweet.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 private val NAME_KEY = "NAME_KEY"
 private val PHOTO_KEY = "PHOTO_KEY"
@@ -61,11 +57,6 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
     lateinit var currentPhotoPath: String
     private lateinit var viewModel: ProfileViewModel
     private lateinit var mFragmentProfileBinding: FragmentProfileBinding
-
-    enum class DialogType {
-        Text,
-        Number
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -90,11 +81,12 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val missing = activity?.intent!!.getBooleanExtra(Constants.MISSING_DATA, false)
-        if (missing) {
-            showMissingDataDialog()
-            Toast.makeText(requireContext(), "showMissingDataDialog", Toast.LENGTH_SHORT).show()
-        }
+
+//        val missing = activity?.intent!!.getBooleanExtra(Constants.MISSING_DATA, false)
+//        if (missing) {
+//            showMissingDataDialog()
+//            Toast.makeText(requireContext(), "showMissingDataDialog", Toast.LENGTH_SHORT).show()
+//        }
 
         if (savedInstanceState == null) {
             initializeData()
@@ -104,7 +96,7 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         }
         mFragmentProfileBinding.lifecycleOwner = this
         mFragmentProfileBinding.userViewModel = viewModel
-        //mFragmentProfileBinding.clickHander = ProfileClickHander()
+        mFragmentProfileBinding.clickHander = ProfileClickHander()
         iniatializeUI()
 
         mFragmentProfileBinding.btnSave.setOnClickListener {
@@ -124,7 +116,21 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
             }
         }
 
+
+//        mFragmentProfileBinding.sprGender.onItemSelectedListener = (AdapterView.OnItemSelectedListener) {
+//            fun onItemSelected(parentView: AdapterView<*>?,
+//                               selectedItemView: View?,
+//                               position: Int,
+//                               id: Long) {
+//                // your code here
+//            }
+//
+//            fun onNothingSelected(parentView: AdapterView<*>?) {
+//                // your code here
+//            }
+//        }
     }
+
 
 
     private fun initializeData() {
@@ -189,8 +195,6 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         viewModel.updateProfileResponse.observe(viewLifecycleOwner
         ) { t ->
             SessionManager.logIn(t!!.user!!)
-            Toast.makeText(requireContext(), "showSuccessDialog", Toast.LENGTH_SHORT).show()
-
             showSuccessDialog(
                 getString(R.string.profile_updated_successfulty),
                 getString(R.string.done)
@@ -381,7 +385,7 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         }
     }
 
-    fun showSuccessDialog(msg: String, title: String) {
+    override fun showSuccessDialog(msg: String, title: String) {
         val sd = activity?.let {
             SweetDialog.newInstance(
                 it,
@@ -394,8 +398,10 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         sd.btn_cancel.visibility = View.GONE
         sd.setCancelable(false)
         sd.setOkClickListener(View.OnClickListener {
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+            //Toast.makeText(requireContext(),"Good",Toast.LENGTH_SHORT).show()
+
+            sd.dismiss()
         }
         )
     }
@@ -414,6 +420,9 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
             sd.dismiss()
         })
         sd.setOkClickListener(View.OnClickListener {
+            patinet_name = mFragmentProfileBinding.tvFullName.text.toString()
+            phone2 = mFragmentProfileBinding.tvSecondPhone.text.toString()
+            gender= mFragmentProfileBinding.sprGender.adapter.getItem(0).toString()
             val request = UpdatedProfileRequest(
                 Utils.getUserId().toString(),
                 name,
@@ -548,6 +557,8 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
                 }
             }
     }
+
+
 
 
 

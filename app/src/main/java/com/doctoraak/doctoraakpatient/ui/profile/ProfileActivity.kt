@@ -1,7 +1,6 @@
 package com.doctoraak.doctoraakpatient.ui.profile
 
 import android.Manifest
-import android.R.attr.maxLength
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -44,9 +43,7 @@ import com.doctoraak.doctoraakpatient.utils.Constants
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_search_doctor.view.*
 import kotlinx.android.synthetic.main.dialog_sweet.*
-import kotlinx.android.synthetic.main.main_logos.view.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat

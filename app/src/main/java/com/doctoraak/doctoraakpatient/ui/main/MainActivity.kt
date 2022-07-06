@@ -15,13 +15,14 @@ class MainActivity : BaseActivity() {
 
 
     private lateinit var binding: ActivityMainBinding
+    val user = SessionManager.returnUserInfo()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupBottomNavigation()
 
-        val user = SessionManager.returnUserInfo()
+
         if (user != null) {
             if (user.insurance!!.id == 1) {
                 if (user.patient_name == "" || user.phone2 == "") {
@@ -30,6 +31,8 @@ class MainActivity : BaseActivity() {
                     replaceFragment(HomeFragment.newInstance())
                 }
             }
+        } else {
+            replaceFragment(HomeFragment.newInstance())
         }
 
 
@@ -144,7 +147,11 @@ class MainActivity : BaseActivity() {
                 }
 
                 R.id.navigation_Profile -> {
-                    replaceFragment(ProfileFragment.newInstance())
+                    if (SessionManager.isLogIn()) {
+                        replaceFragment(ProfileFragment.newInstance())
+                    } else {
+                        showLoginFirstDialog(getString(R.string.login_first))
+                    }
                 }
                 R.id.navigation_Settings -> {
                     replaceFragment(SettingsFragment.newInstance())

@@ -11,6 +11,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.databinding.DataBindingUtil
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.databinding.DialogSweetBinding
+import com.doctoraak.doctoraakpatient.ui.BaseFragment
 import com.doctoraak.doctoraakpatient.utils.hide
 import com.doctoraak.doctoraakpatient.utils.show
 import com.doctoraak.doctoraakpatient.utils.toSpannedText

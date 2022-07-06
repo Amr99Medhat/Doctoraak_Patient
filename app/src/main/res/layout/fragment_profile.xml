@@ -11,7 +11,7 @@
 
         <variable
                 name="clickHander"
-                type="com.doctoraak.doctoraakpatient.ui.profile.ProfileActivity.ProfileClickHander" />
+                type="com.doctoraak.doctoraakpatient.ui.profile.ProfileFragment.ProfileClickHander" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -263,6 +263,7 @@
                             android:hint="@string/address"
                             android:imeOptions="actionNext"
                             android:inputType="text"
+
                             android:text="@={userViewModel.user.address}"
                             android:textColor="@color/gray_3"
                             android:textSize="@dimen/_13ssp" />
@@ -308,7 +309,8 @@
                         android:padding="@dimen/_4sdp"
                         android:paddingStart="@dimen/_16sdp"
                         android:stateListAnimator="@null"
-                        android:text="@={userViewModel.user.birthdate , default= @string/birthday}"
+                        android:onClick="@{()->clickHander.onEditBirthDateClick()}"
+                        android:text="@={userViewModel.user.birthdate}"
                         android:textColor="@color/gray_3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -344,7 +346,7 @@
                 android:fontFamily="@font/ntailub"
                 android:foreground="?attr/selectableItemBackground"
                 android:text="@string/save"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/scrollView2" />

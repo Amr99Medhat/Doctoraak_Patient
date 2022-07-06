@@ -12,7 +12,6 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.doctoraak.doctoraakpatient.R
 import com.doctoraak.doctoraakpatient.customView.DialogType
 import com.doctoraak.doctoraakpatient.customView.SweetDialog
