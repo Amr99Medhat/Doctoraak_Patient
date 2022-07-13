@@ -132,7 +132,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_second_phone"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -180,6 +179,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/background_view_unpressed"
+                            android:enabled="false"
                             android:hint="@string/company_name"
                             android:imeOptions="actionNext"
                             android:inputType="text"
@@ -206,6 +206,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/background_view_unpressed"
+                            android:enabled="false"
                             android:hint="@string/email"
                             android:imeOptions="actionNext"
                             android:inputType="text"
@@ -233,6 +234,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/background_view_unpressed"
+                            android:enabled="false"
                             android:hint="@string/phone_number_oneCare"
                             android:imeOptions="actionNext"
                             android:inputType="text"
@@ -306,10 +308,10 @@
                         android:background="@drawable/spinner_style"
                         android:foreground="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
+                        android:onClick="@{()->clickHander.onEditBirthDateClick()}"
                         android:padding="@dimen/_4sdp"
                         android:paddingStart="@dimen/_16sdp"
                         android:stateListAnimator="@null"
-                        android:onClick="@{()->clickHander.onEditBirthDateClick()}"
                         android:text="@={userViewModel.user.birthdate}"
                         android:textColor="@color/gray_3"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -141,7 +141,7 @@ class RadiologyOrderActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
         })
 
         binding.inSelectRadiologyInfo.et_date.setOnClickListener {
-            val dialogFragment = DatePikerFragment()
+            val dialogFragment = DatePikerFragment(false)
             dialogFragment.show(supportFragmentManager, "DatePikerlab")
         }
 

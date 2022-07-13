@@ -15,6 +15,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -116,21 +117,7 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
             }
         }
 
-
-//        mFragmentProfileBinding.sprGender.onItemSelectedListener = (AdapterView.OnItemSelectedListener) {
-//            fun onItemSelected(parentView: AdapterView<*>?,
-//                               selectedItemView: View?,
-//                               position: Int,
-//                               id: Long) {
-//                // your code here
-//            }
-//
-//            fun onNothingSelected(parentView: AdapterView<*>?) {
-//                // your code here
-//            }
-//        }
     }
-
 
 
     private fun initializeData() {
@@ -160,14 +147,14 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         mFragmentProfileBinding.tvEmail.setText(viewModel.user.value!!.email)
 
 
-        if (gender == "male") {
+        if (gender == "Male" || gender == "ذكر") {
             mFragmentProfileBinding.sprGender.adapter = activity?.applicationContext?.let {
                 ArrayAdapter(it,
                     R.layout.item_spinner,
                     arrayListOf(resources.getString(R.string.male),
                         resources.getString(R.string.female)))
             } as SpinnerAdapter
-        } else if (gender == "female") {
+        } else if (gender == "Female" || gender == "أنثي") {
             mFragmentProfileBinding.sprGender.adapter = activity?.applicationContext?.let {
                 ArrayAdapter(it,
                     R.layout.item_spinner,
@@ -183,10 +170,6 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
                         resources.getString(R.string.female)))
             } as SpinnerAdapter
         }
-//        mFragmentProfileBinding.sprGender.text =
-//            if (gender.equals("male")) getString(R.string.male) else getString(R.string.female)
-
-
     }
 
 
@@ -230,11 +213,12 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        mFragmentProfileBinding.btnBirthday.text = "$year-${(month + 1)}-$dayOfMonth"
-        showSaveButton("$year-${(month + 1)}-$dayOfMonth")
-    }
+//    @SuppressLint("SetTextI18n")
+//    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+//        mFragmentProfileBinding.btnBirthday.text = "$year-${(month + 1)}-$dayOfMonth"
+//        Log.d("date","$year-${(month + 1)}-$dayOfMonth")
+//        showSaveButton("$year-${(month + 1)}-$dayOfMonth")
+//    }
 
     private fun showSaveButton(text: String) {
         if (mFragmentProfileBinding.btnSave.visibility != View.VISIBLE && text.isNotEmpty())
@@ -420,9 +404,19 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
             sd.dismiss()
         })
         sd.setOkClickListener(View.OnClickListener {
+
             patinet_name = mFragmentProfileBinding.tvFullName.text.toString()
             phone2 = mFragmentProfileBinding.tvSecondPhone.text.toString()
-            gender= mFragmentProfileBinding.sprGender.adapter.getItem(0).toString()
+            gender = mFragmentProfileBinding.sprGender.selectedItem.toString()
+
+            if (gender == "ذكر"){
+                gender = "Male"
+            }else if (gender == "أنثي"){
+                gender = "Female"
+            }else if (gender == resources.getString(R.string.gender)){
+                gender = ""
+            }
+
             val request = UpdatedProfileRequest(
                 Utils.getUserId().toString(),
                 name,
@@ -487,8 +481,8 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
     inner class ProfileClickHander() {
 
         fun onEditBirthDateClick() {
-            val dialogFragment = DatePikerFragment()
-            activity?.let { dialogFragment.show(it.supportFragmentManager, "DatePikerdialog") }
+            val dialogFragment = DatePikerFragment(true)
+            requireActivity().let { dialogFragment.show(it.supportFragmentManager, "DatePikerdialog3030") }
         }
 
         fun onEditPhotoClick() {
@@ -558,8 +552,15 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
             }
     }
 
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        TODO("Not yet implemented")
+    }
 
-
+//    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+//        Log.d("date","$year-${(month + 1)}-$dayOfMonth")
+//        val date = "$year-${(month + 1)}-$dayOfMonth"
+//        Toast.makeText(requireContext(),date,Toast.LENGTH_SHORT).show()
+//    }
 
 
 }
