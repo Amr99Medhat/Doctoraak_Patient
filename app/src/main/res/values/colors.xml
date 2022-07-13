@@ -40,4 +40,5 @@
     <color name="myorders_text_color">#08C6A2</color>
     <color name="background_color">#FAFAFA</color>
     <color name="blue_color">#2A3795</color>
+    <color name="find_service_card_selector_color">#A13ACCE1</color>
 </resources>

@@ -79,6 +79,7 @@
                         android:layout_marginEnd="25dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="4dp"
+                       android:foreground="@drawable/find_service_card_selector"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -91,7 +92,7 @@
                                 android:id="@+id/background_View1"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -132,6 +133,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="25dp"
                         app:cardCornerRadius="10dp"
+                        android:foreground="@drawable/find_service_card_selector"
                         app:cardElevation="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +147,7 @@
                                 android:id="@+id/background_View2"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -200,7 +202,7 @@
                                 android:id="@+id/background_View8"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -255,7 +257,7 @@
                                 android:id="@+id/background_View9"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -310,7 +312,7 @@
                                 android:id="@+id/background_View7"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -324,7 +326,7 @@
                                 app:layout_constraintEnd_toEndOf="@+id/background_View7"
                                 app:layout_constraintStart_toStartOf="@+id/background_View7"
                                 app:layout_constraintTop_toTopOf="@+id/background_View7"
-                                app:srcCompat="@drawable/ic_service" />
+                                app:srcCompat="@drawable/ic_pharmacy" />
 
                         <TextView
                                 android:layout_width="wrap_content"
@@ -365,7 +367,7 @@
                                 android:id="@+id/background_View3"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -420,7 +422,7 @@
                                 android:id="@+id/background_View4"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -475,7 +477,7 @@
                                 android:id="@+id/background_View5"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -531,7 +533,7 @@
                                 android:id="@+id/background_View6"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -587,7 +589,7 @@
                                 android:id="@+id/background_View10"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
-                                android:background="#AC7FFA"
+                                android:background="@color/white"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />

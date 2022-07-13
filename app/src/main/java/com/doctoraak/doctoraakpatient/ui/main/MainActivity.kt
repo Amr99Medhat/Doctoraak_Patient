@@ -28,6 +28,7 @@ class MainActivity : BaseActivity() {
                 if (user.patient_name == "" || user.phone2 == "") {
                     replaceFragment(ProfileFragment.newInstance())
                 } else {
+                    binding.navView.selectedItemId = R.id.navigation_Home
                     replaceFragment(HomeFragment.newInstance())
                 }
             }
@@ -160,9 +161,4 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        //binding.navView.selectedItemId = R.id.navigation_Home
-
-    }
 }

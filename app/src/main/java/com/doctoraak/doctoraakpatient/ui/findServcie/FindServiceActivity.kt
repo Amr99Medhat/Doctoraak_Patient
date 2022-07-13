@@ -37,6 +37,26 @@ class FindServiceActivity : BaseActivity() {
         applyAnimation(R.anim.slide_in_start, binding.itCvIncubation)
         applyAnimation(R.anim.slide_in_start, binding.itCvIsolationCenter)
 
+        setButtonsListeners()
+
+
+        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
+        val user = SessionManager.returnUserInfo()
+        if (user != null) {
+            if (user.insurance!!.id == 1) {
+                logo.visibility = View.VISIBLE
+            }
+        }
+
+    }
+
+
+    private fun setButtonsListeners(){
+
+        binding.ivBack.setOnClickListener{
+            onBackPressed()
+        }
+
         binding.itCvDoctor.setOnClickListener {
             SessionManager.setDoctorType(DoctorType.DOCTOR)
             val intent = Intent(this , DoctorCategoryActivity::class.java)
@@ -86,14 +106,5 @@ class FindServiceActivity : BaseActivity() {
         binding.itCvIsolationCenter.setOnClickListener {
             IcuActivity.launch(this, true)
         }
-
-        val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
-        val user = SessionManager.returnUserInfo()
-        if (user != null) {
-            if (user.insurance!!.id == 1) {
-                logo.visibility = View.VISIBLE
-            }
-        }
-
     }
 }
