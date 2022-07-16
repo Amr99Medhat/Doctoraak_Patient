@@ -81,5 +81,8 @@ dependencies {
     implementation 'com.github.PaymobAccept:Android-SDK:0.1.2'
 
     implementation 'wu.seal.jsontokotlin:library:3.6.1'
+
+    //fragment
+    implementation('androidx.fragment:fragment-ktx:1.4.0-alpha02')
 }
 apply plugin: 'com.google.gms.google-services'

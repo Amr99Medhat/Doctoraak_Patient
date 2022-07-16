@@ -299,7 +299,6 @@
                         android:padding="@dimen/_4sdp"
                         android:paddingStart="@dimen/_16sdp"
                         android:stateListAnimator="@null"
-                        android:text="@={userViewModel.user.birthdate}"
                         android:textColor="@color/gray_3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
