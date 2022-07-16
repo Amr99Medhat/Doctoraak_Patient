@@ -19,7 +19,7 @@ import java.util.*
 
 class DatePikerFragment(var fragment: Boolean) : DialogFragment(),
     DatePickerDialog.OnDateSetListener {
-    val calendar = Calendar.getInstance()
+    private val calendar = Calendar.getInstance()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val dialog: DatePickerDialog?
@@ -30,10 +30,6 @@ class DatePikerFragment(var fragment: Boolean) : DialogFragment(),
 
         dialog = if (fragment) {
             DatePickerDialog(requireActivity(), this, year, month, day)
-
-//            DatePickerDialog(requireActivity(), R.style.DateDialogTheme,
-//                requireActivity() as DatePickerDialog.OnDateSetListener?,
-//                year, month, day)
         } else {
             DatePickerDialog(requireActivity(), R.style.DateDialogTheme,
                 activity as DatePickerDialog.OnDateSetListener?,
@@ -60,17 +56,13 @@ class DatePikerFragment(var fragment: Boolean) : DialogFragment(),
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        Log.d("here", "$year-${(month + 1)}-$dayOfMonth")
         calendar.set(Calendar.YEAR, year)
         calendar.set(Calendar.MONTH, month)
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
         val selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(calendar.time)
-
         val selectedBundle = Bundle()
-
         selectedBundle.putString("SELECTED_DATE", selectedDate)
-
         setFragmentResult("REQUEST_KEY", selectedBundle)
 
     }

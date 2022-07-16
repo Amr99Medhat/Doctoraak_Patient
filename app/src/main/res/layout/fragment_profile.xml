@@ -114,7 +114,6 @@
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:textColor="@color/gray_3"
-                            android:textColorHint="@color/blue"
                             android:textSize="@dimen/_13ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
 

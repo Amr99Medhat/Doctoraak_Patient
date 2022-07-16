@@ -8,7 +8,9 @@ import com.doctoraak.doctoraakpatient.databinding.ActivityMainBinding
 import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseActivity
 import com.doctoraak.doctoraakpatient.ui.SettingsFragment
+import com.doctoraak.doctoraakpatient.ui.main.HomeFragment.Companion.newInstance
 import com.doctoraak.doctoraakpatient.ui.profile.ProfileFragment
+import com.doctoraak.doctoraakpatient.utils.Constants
 
 
 class MainActivity : BaseActivity() {
@@ -26,10 +28,18 @@ class MainActivity : BaseActivity() {
         if (user != null) {
             if (user.insurance!!.id == 1) {
                 if (user.patient_name == "" || user.phone2 == "") {
-                    replaceFragment(ProfileFragment.newInstance())
+                    val profileFragment = ProfileFragment()
+                    val bundle = Bundle()
+                    bundle.putString(Constants.MISSING_DATA, Constants.MISSING_DATA)
+                    profileFragment.arguments = bundle
+                    replaceFragment(profileFragment)
+                    binding.navView.selectedItemId = R.id.navigation_Profile
+
+
                 } else {
-                    binding.navView.selectedItemId = R.id.navigation_Home
                     replaceFragment(HomeFragment.newInstance())
+                    binding.navView.selectedItemId = R.id.navigation_Home
+
                 }
             }
         } else {
@@ -143,7 +153,26 @@ class MainActivity : BaseActivity() {
         binding.navView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_Home -> {
-                    replaceFragment(HomeFragment.newInstance())
+                    if (user != null) {
+                        if (user.insurance!!.id == 1) {
+                            if (user.patient_name == "" || user.phone2 == "") {
+                                val profileFragment = ProfileFragment()
+                                val bundle = Bundle()
+                                bundle.putString(Constants.MISSING_DATA, Constants.MISSING_DATA)
+                                profileFragment.arguments = bundle
+                                replaceFragment(profileFragment)
+                                binding.navView.selectedItemId = R.id.navigation_Profile
+
+                            } else {
+                                replaceFragment(HomeFragment.newInstance())
+                                //binding.navView.selectedItemId = R.id.navigation_Home
+                            }
+                        }
+                    } else {
+                        //binding.navView.selectedItemId = R.id.navigation_Home
+                        replaceFragment(HomeFragment.newInstance())
+
+                    }
                 }
 
                 R.id.navigation_Profile -> {
@@ -151,10 +180,31 @@ class MainActivity : BaseActivity() {
                         replaceFragment(ProfileFragment.newInstance())
                     } else {
                         showLoginFirstDialog(getString(R.string.login_first))
+
+
                     }
                 }
                 R.id.navigation_Settings -> {
-                    replaceFragment(SettingsFragment.newInstance())
+                    if (user != null) {
+                        if (user.insurance!!.id == 1) {
+                            if (user.patient_name == "" || user.phone2 == "") {
+                                val profileFragment = ProfileFragment()
+                                val bundle = Bundle()
+                                bundle.putString(Constants.MISSING_DATA, Constants.MISSING_DATA)
+                                profileFragment.arguments = bundle
+                                replaceFragment(profileFragment)
+                                binding.navView.selectedItemId = R.id.navigation_Profile
+                            } else {
+                                replaceFragment(SettingsFragment.newInstance())
+                                binding.navView.selectedItemId = R.id.navigation_Settings
+                            }
+                        }
+                    } else {
+                        replaceFragment(SettingsFragment.newInstance())
+                        //binding.navView.selectedItemId = R.id.navigation_Settings
+
+
+                    }
                 }
             }
             return@setOnItemSelectedListener true

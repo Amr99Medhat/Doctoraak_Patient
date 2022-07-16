@@ -3,11 +3,11 @@ package com.doctoraak.doctoraakpatient.ui.profile
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -15,11 +15,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.SpinnerAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
@@ -34,9 +35,9 @@ import com.doctoraak.doctoraakpatient.repository.local.SessionManager
 import com.doctoraak.doctoraakpatient.ui.BaseFragment
 import com.doctoraak.doctoraakpatient.ui.DatePikerFragment
 import com.doctoraak.doctoraakpatient.ui.main.MainActivity
+import com.doctoraak.doctoraakpatient.utils.Constants
 import com.doctoraak.doctoraakpatient.utils.Utils
 import com.doctoraak.doctoraakpatient.utils.Utils.Companion.showSnackbar
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_sweet.*
 import java.io.File
 import java.io.IOException
@@ -44,10 +45,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-private val NAME_KEY = "NAME_KEY"
-private val PHOTO_KEY = "PHOTO_KEY"
-private val GENDER_KEY = "GENDER_KEY"
-private val BUTTON_VISIBILITY_KEY = "BUTTON_VISIBILITY_KEY"
+private const val NAME_KEY = "NAME_KEY"
+private const val PHOTO_KEY = "PHOTO_KEY"
+private const val GENDER_KEY = "GENDER_KEY"
 
 class ProfileFragment : BaseFragment() {
     private var name = ""
@@ -59,12 +59,22 @@ class ProfileFragment : BaseFragment() {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var mFragmentProfileBinding: FragmentProfileBinding
 
+    companion object {
+
+        @JvmStatic
+        fun newInstance() =
+            ProfileFragment().apply {
+                arguments = Bundle().apply {
+
+                }
+            }
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(NAME_KEY, name)
         outState.putString(PHOTO_KEY, photo)
         outState.putString(GENDER_KEY, gender)
-        outState.putInt(BUTTON_VISIBILITY_KEY, mFragmentProfileBinding.btnSave.visibility)
 
     }
 
@@ -83,13 +93,11 @@ class ProfileFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (arguments!!.getString(Constants.MISSING_DATA) == Constants.MISSING_DATA) {
 
-//        val missing = activity?.intent!!.getBooleanExtra(Constants.MISSING_DATA, false)
-//        if (missing) {
-//            showMissingDataDialog()
-//            Toast.makeText(requireContext(), "showMissingDataDialog", Toast.LENGTH_SHORT).show()
-//        }
+            showMissingDataDialog()
 
+        }
         if (savedInstanceState == null) {
             initializeData()
             viewModel.user.value = Utils.getUser()
@@ -99,17 +107,15 @@ class ProfileFragment : BaseFragment() {
         mFragmentProfileBinding.lifecycleOwner = this
         mFragmentProfileBinding.userViewModel = viewModel
         mFragmentProfileBinding.clickHander = ProfileClickHander()
-        iniatializeUI()
+        initializeUI()
 
         mFragmentProfileBinding.btnSave.setOnClickListener {
             if (isValidProfileDetails()) {
-                showWrringDialog()
+                showWarringDialog()
 
             }
         }
         observeData()
-        //setListenerToInfoButtons()
-
         val logo = requireActivity().findViewById<ImageView>(R.id.iv_oncare_logo)
         val user = SessionManager.returnUserInfo()
         if (user != null) {
@@ -117,12 +123,6 @@ class ProfileFragment : BaseFragment() {
                 logo.visibility = View.VISIBLE
             }
         }
-        if (mFragmentProfileBinding.btnBirthday.text == "") {
-            Log.d("here", "Amr")
-            mFragmentProfileBinding.btnBirthday.text = "6"
-        }
-
-
     }
 
 
@@ -139,19 +139,17 @@ class ProfileFragment : BaseFragment() {
         name = savedInstanceState.getString(NAME_KEY, "")
         photo = savedInstanceState.getString(PHOTO_KEY, "")
         gender = savedInstanceState.getString(GENDER_KEY, "")
-        mFragmentProfileBinding.btnSave.visibility =
-            savedInstanceState.getInt(BUTTON_VISIBILITY_KEY)
     }
 
-    private fun iniatializeUI() {
+    private fun initializeUI() {
         Glide.with(this).load(photo)
             .placeholder(R.drawable.ic_face)
             .error((R.drawable.ic_face))
             .into(mFragmentProfileBinding.civImage)
-
-        mFragmentProfileBinding.tvFullName.setText(Utils.getUserName())
+        mFragmentProfileBinding.tvFullName.setText(viewModel.user.value!!.patient_name)
         mFragmentProfileBinding.tvEmail.setText(viewModel.user.value!!.email)
         mFragmentProfileBinding.btnBirthday.text = viewModel.user.value!!.birthdate
+
 
 
         if (gender == "Male" || gender == "ذكر") {
@@ -181,7 +179,6 @@ class ProfileFragment : BaseFragment() {
 
 
     private fun observeData() {
-
         viewModel.updateProfileResponse.observe(viewLifecycleOwner
         ) { t ->
             SessionManager.logIn(t!!.user!!)
@@ -190,16 +187,12 @@ class ProfileFragment : BaseFragment() {
                 getString(R.string.done)
             )
             mFragmentProfileBinding.loading.visibility = View.INVISIBLE
-            enableButton(mFragmentProfileBinding.btnSave)
-            setVisiblityGone(mFragmentProfileBinding.btnSave)
         }
         viewModel.isLoading.observe(viewLifecycleOwner) { t ->
             if (t!!) {
                 mFragmentProfileBinding.loading.visibility = View.VISIBLE
-                disableButton(mFragmentProfileBinding.btnSave)
             } else {
                 mFragmentProfileBinding.loading.visibility = View.INVISIBLE
-                enableButton(mFragmentProfileBinding.btnSave)
             }
         }
 
@@ -207,7 +200,6 @@ class ProfileFragment : BaseFragment() {
             if (!t.isNullOrEmpty()) {
                 showSnackbar(mFragmentProfileBinding.clProfile, t)
                 mFragmentProfileBinding.loading.visibility = View.INVISIBLE
-                enableButton(mFragmentProfileBinding.btnSave)
             }
         }
 
@@ -215,21 +207,8 @@ class ProfileFragment : BaseFragment() {
             if (t!! != 0) {
                 showSnackbar(mFragmentProfileBinding.clProfile, getString(t))
                 mFragmentProfileBinding.loading.visibility = View.INVISIBLE
-                enableButton(mFragmentProfileBinding.btnSave)
             }
         }
-    }
-
-//    @SuppressLint("SetTextI18n")
-//    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-//        mFragmentProfileBinding.btnBirthday.text = "$year-${(month + 1)}-$dayOfMonth"
-//        Log.d("date","$year-${(month + 1)}-$dayOfMonth")
-//        showSaveButton("$year-${(month + 1)}-$dayOfMonth")
-//    }
-
-    private fun showSaveButton(text: String) {
-        if (mFragmentProfileBinding.btnSave.visibility != View.VISIBLE && text.isNotEmpty())
-            mFragmentProfileBinding.btnSave.visibility = View.VISIBLE
     }
 
     private fun selectImage(context: Context) {
@@ -316,7 +295,6 @@ class ProfileFragment : BaseFragment() {
                         bitmap = source?.let { ImageDecoder.decodeBitmap(it) }!!
                     }
                     mFragmentProfileBinding.civImage.setImageBitmap(bitmap)
-                    showSaveButton("image loaded")
                     photo = currentPhotoPath
 
                 }
@@ -334,7 +312,7 @@ class ProfileFragment : BaseFragment() {
                             val columnIndex = cursor.getColumnIndex(filePathColumn[0])
                             photo = cursor.getString(columnIndex)
                             mFragmentProfileBinding.civImage.setImageURI(selectedImage)
-                            showSaveButton("image loaded")
+                            // showSaveButton("image loaded")
                             cursor.close()
                         }
                     }
@@ -371,7 +349,7 @@ class ProfileFragment : BaseFragment() {
         requestCode: Int, permissions: Array<String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             activity?.let { selectImage(it) }
         }
     }
@@ -390,14 +368,12 @@ class ProfileFragment : BaseFragment() {
         sd.setCancelable(false)
         sd.setOkClickListener(View.OnClickListener {
             startActivity(Intent(requireContext(), MainActivity::class.java))
-            //Toast.makeText(requireContext(),"Good",Toast.LENGTH_SHORT).show()
-
             sd.dismiss()
         }
         )
     }
 
-    fun showWrringDialog() {
+    private fun showWarringDialog() {
         val sd = activity?.let {
             SweetDialog.newInstance(
                 it,
@@ -428,7 +404,7 @@ class ProfileFragment : BaseFragment() {
                 Utils.getUserId().toString(),
                 name,
                 gender,
-                viewModel.user.value!!.birthdate,
+                mFragmentProfileBinding.btnBirthday.text.toString(),
                 photo,
                 viewModel.user.value!!.address,
                 Utils.getApiToken(),
@@ -447,7 +423,7 @@ class ProfileFragment : BaseFragment() {
         )
     }
 
-    fun showMissingDataDialog() {
+    private fun showMissingDataDialog() {
         val sd = activity?.let {
             SweetDialog.newInstance(
                 it,
@@ -486,7 +462,6 @@ class ProfileFragment : BaseFragment() {
     }
 
     inner class ProfileClickHander() {
-
         fun onEditBirthDateClick() {
             val dialogFragment = DatePikerFragment(true)
             requireActivity().let {
@@ -538,48 +513,30 @@ class ProfileFragment : BaseFragment() {
         }
     }
 
-//    @SuppressLint("SetTextI18n")
-//    @RequiresApi(Build.VERSION_CODES.M)
-//    fun checkFields() {
-//        if (binding.tvFulName.text.toString().trim().isEmpty()) {
-//            binding.fullNameText.text = "${resources.getText(R.string.name)} *"
-//            binding.ivEditFullName.backgroundTintList =
-//                ColorStateList.valueOf(resources.getColor(R.color.red, null))
-//            binding.fullNameText.setTextColor(resources.getColor(R.color.red, null))
-//        } else {
-//            binding.fullNameText.text = resources.getText(R.string.name)
-//            binding.ivEditFullName.backgroundTintList =
-//                ColorStateList.valueOf(resources.getColor(R.color.colorAccent, null))
-//            binding.fullNameText.setTextColor(resources.getColor(R.color.gray_1, null))
-//        }
-//        if (binding.tvSecondPhone.text.toString().trim().isEmpty()) {
-//            binding.tvPhoneSecondText.text = "${resources.getText(R.string.phone_number)} *"
-//            binding.ivEditPhone.backgroundTintList =
-//                ColorStateList.valueOf(resources.getColor(R.color.red, null))
-//            binding.tvPhoneSecondText.setTextColor(resources.getColor(R.color.red, null))
-//        } else {
-//            binding.tvPhoneSecondText.text = resources.getText(R.string.phone_number)
-//            binding.ivEditPhone.backgroundTintList =
-//                ColorStateList.valueOf(resources.getColor(R.color.colorAccent, null))
-//            binding.tvPhoneSecondText.setTextColor(resources.getColor(R.color.gray_1, null))
-//        }
-//    }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
+    private fun checkFields() {
+        if (mFragmentProfileBinding.tvFullName.text.toString().trim().isEmpty()) {
+            mFragmentProfileBinding.tilFullName.hintTextColor =
+                (ColorStateList.valueOf(resources.getColor(R.color.red, null)))
+            mFragmentProfileBinding.tvFullName.requestFocus()
+            return
+        } else {
+            mFragmentProfileBinding.tilFullName.hintTextColor =
+                (ColorStateList.valueOf(resources.getColor(R.color.colorPrimary_new, null)))
+        }
+        if (mFragmentProfileBinding.tvSecondPhone.text.toString().trim().isEmpty()) {
+            mFragmentProfileBinding.tilSecondPhone.hintTextColor =
+                (ColorStateList.valueOf(resources.getColor(R.color.red, null)))
+            mFragmentProfileBinding.tvSecondPhone.requestFocus()
+        } else {
+            mFragmentProfileBinding.tilSecondPhone.hintTextColor =
+                (ColorStateList.valueOf(resources.getColor(R.color.colorPrimary_new, null)))
+        }
     }
 
-
-//    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-//        Log.d("date","$year-${(month + 1)}-$dayOfMonth")
-//        val date = "$year-${(month + 1)}-$dayOfMonth"
-//        Toast.makeText(requireContext(),date,Toast.LENGTH_SHORT).show()
-//    }
-
+    override fun onResume() {
+        super.onResume()
+        checkFields()
+    }
 
 }
