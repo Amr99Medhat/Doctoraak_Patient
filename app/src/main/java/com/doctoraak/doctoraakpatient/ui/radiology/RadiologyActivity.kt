@@ -83,7 +83,9 @@ class RadiologyActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_radiology)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         if (savedInstanceState != null) {
             getState(savedInstanceState)
         }

@@ -32,7 +32,9 @@ class IcuItemActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this , R.layout.activity_icu_item)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         val json = intent.getStringExtra(getString(R.string.icu_item_key)) ?: ""
         icu = Utils.convertJsonToObject(json)
         binding.mapView.onCreate(savedInstanceState)

@@ -34,7 +34,9 @@ class DoctorCategoryActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_doctor_category)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         when (SessionManager.getDoctorType()) {
             DoctorType.HOSPITAL -> {
                 binding.tvTitle.text = getString(R.string.hospital)

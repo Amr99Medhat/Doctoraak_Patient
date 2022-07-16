@@ -33,7 +33,9 @@ class IncubationItemActivity : BaseActivity()
     {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this , R.layout.activity_incubation_item)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         val json = intent.getStringExtra(getString(R.string.incubation_item_key))
         incubationItem = Utils.convertJsonToObject(json!!)
 

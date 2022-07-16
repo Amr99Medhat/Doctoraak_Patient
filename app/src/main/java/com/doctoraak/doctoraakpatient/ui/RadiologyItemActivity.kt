@@ -31,7 +31,9 @@ class RadiologyItemActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_radiology_item)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         setRecyclerviewLinearLayout(binding.rvWorkingDate)
 
         radiology = Utils.convertJsonToObject(intent.getStringExtra(getString(R.string.radiology_item_key)) ?:"")

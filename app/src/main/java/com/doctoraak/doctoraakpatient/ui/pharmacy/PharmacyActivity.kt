@@ -198,6 +198,9 @@ class PharmacyActivity : BaseActivity()
         if (savedInstanceState != null) {
             getState(savedInstanceState)
         }
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
 
         observeData()
         initUI()

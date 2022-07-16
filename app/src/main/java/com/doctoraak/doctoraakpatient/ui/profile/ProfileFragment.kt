@@ -77,6 +77,7 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         mFragmentProfileBinding = FragmentProfileBinding.inflate(inflater)
+
         return mFragmentProfileBinding.root
     }
 

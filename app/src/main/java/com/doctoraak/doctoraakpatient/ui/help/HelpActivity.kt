@@ -16,7 +16,9 @@ class HelpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this ,R.layout.activity_help)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
 
         val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
         val user = SessionManager.returnUserInfo()

@@ -101,6 +101,7 @@ class HomeFragment : BaseFragment() {
                 showLoginFirstDialog(getString(R.string.login_first))
             }
         }
+
         return binding.root
     }
 

@@ -40,7 +40,9 @@ class NotificationActivity : BaseActivity() {
         setRecyclerviewLinearLayout(binding.rvNotifications)
         adapter = NotificationsAdapter(ArrayList<NotificationInfo>() ,this)
         binding.rvNotifications.adapter = adapter
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         observeData()
         getUserNotifications()
 

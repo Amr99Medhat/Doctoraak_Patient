@@ -57,6 +57,10 @@ class FavoriteDoctorActivity : BaseActivity()
             }
         }
 
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
         setRecyclerviewLinearLayout(binding.rvFavDoctors)
         adapter = FavouriteDoctorAdapter(ArrayList<Clinic>() , this)
         binding.rvFavDoctors.adapter = adapter

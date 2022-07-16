@@ -86,7 +86,9 @@ class SearchDoctorActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_doctor)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         specializationId =
             intent.getIntExtra(getString(com.doctoraak.doctoraakpatient.R.string.specialization_Id_Key),
                 -1)

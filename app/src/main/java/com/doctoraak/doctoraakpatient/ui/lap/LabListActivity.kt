@@ -30,7 +30,9 @@ class LabListActivity : BaseActivity()
     {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView( this, R.layout.activity_lab_list)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         filter = Utils.convertJsonToObject(intent.getStringExtra(FILTER_LAB_KEY) ?: "")
         val labs: ArrayList<Lab> = Utils.getCachedLabList()
         viewModel.pageNum.postValue(1)

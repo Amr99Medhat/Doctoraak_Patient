@@ -37,32 +37,19 @@
                 style="@style/mainLogoStyle"
                 layout="@layout/main_logos" />
 
-        <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:contentDescription="@string/back"
-                android:src="@drawable/ic_back_new"
-                android:tint="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_25sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="72dp"
                 android:fontFamily="@font/ntailub"
                 android:text="@string/profile"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_22ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_back" />
+                app:layout_constraintTop_toTopOf="@+id/toolbar_image" />
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_image"

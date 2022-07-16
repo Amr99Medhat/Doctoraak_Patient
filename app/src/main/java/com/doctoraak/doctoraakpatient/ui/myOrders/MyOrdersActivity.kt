@@ -24,6 +24,11 @@ class MyOrdersActivity : BaseActivity()
 
         handleBottomNavigation()
         handleViewPagerSwipe()
+        binding.bottomNavigation.itemIconTintList = null
+
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
 
         val logo = findViewById<ImageView>(R.id.iv_oncare_logo)
         val user = SessionManager.returnUserInfo()

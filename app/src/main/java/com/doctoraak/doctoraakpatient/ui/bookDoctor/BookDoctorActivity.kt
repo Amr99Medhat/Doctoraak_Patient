@@ -34,6 +34,9 @@ class BookDoctorActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_book_doctor)
 
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
 
         setRecyclerviewLayout()
 

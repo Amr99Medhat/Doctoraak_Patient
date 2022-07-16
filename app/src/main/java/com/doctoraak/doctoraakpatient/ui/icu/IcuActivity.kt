@@ -125,7 +125,9 @@ class IcuActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_icu)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         isIsolationCenter = intent.getBooleanExtra(INTENT_IS_ISOLATION_CENTER, false)
 
         val cityList = Utils.getCitiessNames()

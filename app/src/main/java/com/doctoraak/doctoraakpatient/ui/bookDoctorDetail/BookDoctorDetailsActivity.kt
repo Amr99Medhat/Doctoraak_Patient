@@ -84,6 +84,10 @@ class BookDoctorDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetList
             getState(savedInstanceState)
         }
 
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
         binding.lifecycleOwner = this
 
         clinicId = intent.getIntExtra(getString(R.string.clinic_id_key), -1)

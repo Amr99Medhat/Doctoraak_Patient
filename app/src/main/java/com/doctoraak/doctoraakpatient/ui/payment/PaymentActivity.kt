@@ -66,6 +66,10 @@ class PaymentActivity : BaseActivity() {
         binding.clickhander = PaymentClickHandler()
         binding.lifecycleOwner = this
 
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
         observeData()
         binding.viewPager.apply {
             adapter = PaymentSliderAdapter(this@PaymentActivity, ArrayList<Int>().apply {

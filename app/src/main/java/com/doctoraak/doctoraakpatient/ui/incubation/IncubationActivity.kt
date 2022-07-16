@@ -143,7 +143,9 @@ class IncubationActivity : BaseActivity() {
         binding.searchByAddress.et_address.setOnClickListener {
             checkIfGPSEnabled()
         }
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         autoCompleteTextViewSelectListners()
 
         val logo = findViewById<ImageView>(R.id.iv_oncare_logo)

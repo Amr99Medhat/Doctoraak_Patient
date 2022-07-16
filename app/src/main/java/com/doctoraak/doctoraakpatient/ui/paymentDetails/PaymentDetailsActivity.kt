@@ -35,6 +35,9 @@ class PaymentDetailsActivity : BaseActivity() {
 
         observeData()
         viewModel.getPaymentDetails()
+        binding.ivBack.setOnClickListener{
+            onBackPressed()
+        }
 
         binding.clickHandler = PaymentDetailsClickHander()
         binding.lifecycleOwner = this

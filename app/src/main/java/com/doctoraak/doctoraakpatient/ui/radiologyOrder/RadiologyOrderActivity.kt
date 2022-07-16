@@ -121,7 +121,9 @@ class RadiologyOrderActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_radiology_order)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         if (savedInstanceState != null){
             getState(savedInstanceState)
         }

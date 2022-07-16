@@ -33,7 +33,9 @@ class LapItemActivity : BaseActivity()
     {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this , R.layout.activity_lap_item)
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         setRecyclerviewLinearLayout(binding.rvWorkingDate)
         addListDivider(binding.rvWorkingDate)
 
